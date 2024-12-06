@@ -116,7 +116,6 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 [[My Essays]]
 [[My Tools]]
 [[My latest Blog post]]
-[[What&#39;s Next?]]
 [[Contact]]
 
 &lt;&lt;set $mirror = false&gt;&gt;
@@ -140,13 +139,13 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;desk&quot; || _answer == &quot;desk &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;desk&quot;&gt;&gt;
             &lt;&lt;goto &quot;Writing&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;bookcase&quot; || _answer == &quot;bookcase &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;bookcase&quot;&gt;&gt;
             &lt;&lt;goto &quot;Bookshelf&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Main Hall&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -164,13 +163,13 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;ask&quot; || _answer == &quot;ask &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;ask&quot;&gt;&gt;
             &lt;&lt;goto &quot;About Me&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;blog&quot; || _answer == &quot;blog &quot;&gt;&gt;
-            &lt;&lt;goto &quot;My latest Blog post&quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;blog&quot;&gt;&gt;
+            &lt;&lt;goto &quot;My lates Blog post&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Main Hall&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -214,16 +213,16 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;poems&quot; || _answer == &quot;poems &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;poems&quot;&gt;&gt;
             &lt;&lt;goto &quot;My poems&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;glasses&quot; || _answer == &quot;glasses &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;glasses&quot;&gt;&gt;
             &lt;&lt;goto &quot;Glasses&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Cave right&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
-         &lt;&lt;if _answer == &quot;object&quot; || _answer == &quot;object &quot;&gt;&gt;
+         &lt;&lt;if _answer == &quot;object&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Toolbox&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -232,7 +231,7 @@ You can:
 </tw-passagedata><tw-passagedata pid="7" name="Bookshelf" tags="" position="550,300" size="100,100">&lt;&lt;if $crowbar == false&gt;&gt;
 &gt; &#39;&#39;You investigate the bookcase&#39;&#39;
 Turning your gaze to the towering presence in the corner of the room, you can’t help but feel overwhelmed. You see its shelves are crammed with well-worn leather bound books, their spines cracked and faded with time, yet still emanating a sense of wisdom and mystery. 
-!!!!As your eyes wander across the shelves, you notice something odd—a small gap behind the bookcase, barely visible but just enough to catch your attention. // If only you had something to pry it loose, you could see what lies hidden in the shadows.//
+As your eyes wander across the shelves, you notice something odd—a small gap behind the bookcase, barely visible but just enough to catch your attention. // If only you had something to pry it loose, you could see what lies hidden in the shadows.//
 
 You can:
 &#39;&#39;Read the shelf labelled ‘Stories’&#39;&#39; //(Stories)//
@@ -243,13 +242,13 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
             &lt;&lt;goto &quot;Cave right&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;essays&quot; || _answer == &quot;essays &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;essays&quot;&gt;&gt;
             &lt;&lt;goto &quot;My Essays&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;stories&quot; || _answer == &quot;stories &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;stories&quot;&gt;&gt;
         	&lt;&lt;goto &quot;My Stories&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -258,7 +257,7 @@ You can:
 &lt;&lt;else&gt;&gt;
 &gt; &#39;&#39;You investigate the bookcase&#39;&#39;
 Turning your gaze to the towering presence in the corner of the room, you can’t help but feel overwhelmed. You see its shelves are crammed with well-worn leather bound books, their spines cracked and faded with time, yet still emanating a sense of wisdom and mystery. 
-!!!!As your eyes wander across the shelves, you notice something odd—a small gap behind the bookcase, barely visible but just enough to catch your attention. //Good thing you found that random crowbar!//
+As your eyes wander across the shelves, you notice something odd—a small gap behind the bookcase, barely visible but just enough to catch your attention. //Good thing you found that random crowbar!//
 
 You can:
 &#39;&#39;Read the shelf labelled ‘stories’&#39;&#39; //(Stories)//
@@ -270,16 +269,16 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
             &lt;&lt;goto &quot;Cave right&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;crowbar&quot; || _answer == &quot;crowbar &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;crowbar&quot;&gt;&gt;
             &lt;&lt;goto &quot;Chest&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;stories&quot; || _answer == &quot;stories &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;stories&quot;&gt;&gt;
         	&lt;&lt;goto &quot;My Stories&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
-         &lt;&lt;if _answer == &quot;essays&quot; || _answer == &quot;essays &quot;&gt;&gt;
+         &lt;&lt;if _answer == &quot;essays&quot;&gt;&gt;
         	&lt;&lt;goto &quot;My Essays&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -291,7 +290,7 @@ You can:
 
 //I wrote alot of these in my first year, but they&#39;re still my favourites - even if they need some work to improve them.//
 
-[[Childhood-onset Fluency Disorder-&gt;Childhood-onset Fluency Disorder - An Acrostic Poem]]
+[[Childhood-onset Fluency Disorder - Acrostic]]
 [[Summer]]
 [[Trapped - Sijo]]
 [[2:36]]
@@ -302,7 +301,7 @@ You can:
 
 I wrote alot of these in my first year, but they&#39;re still my favourites - even if they need some work to improve them.
 
-[[Childhood-onset Fluency Disorder - An Acrostic Poem]]
+[[Childhood-onset Fluency Disorder - Acrostic]]
 [[Summer]]
 [[Trapped - Sijo]]
 [[2:36]]
@@ -359,13 +358,13 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;mirror&quot; || _answer == &quot;mirror &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;miror&quot;&gt;&gt;
             &lt;&lt;goto &quot;Wall&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;left&quot; || _answer == &quot;left &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;left&quot;&gt;&gt;
             &lt;&lt;goto &quot;Cave left&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;right&quot; || _answer == &quot;right &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;right&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Cave right&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -386,13 +385,13 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;popcorn&quot; || _answer == &quot;porpcorn &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;popcorn&quot;&gt;&gt;
             &lt;&lt;goto &quot;Popcorn&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;screenplay&quot; || _answer == &quot;screenplay &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;screenplay&quot;&gt;&gt;
             &lt;&lt;goto &quot;The Affair - 1st Minute&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Main Hall&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -411,7 +410,6 @@ Trust me, you’re going to want to take the leap.
 [[Embark]]
 
 Both options show you the same work, just in a different format.
-!!If any bugs pop up, just refresh and try again
 
 &lt;&lt;set $crowbar = false&gt;&gt;
 &lt;&lt;set $popcorn = false&gt;&gt;
@@ -441,10 +439,10 @@ Or, if this has been enough of a detour, type &#39;&#39;Stop&#39;&#39; to jump s
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;stop&quot; || _answer == &quot;stop &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;stop&quot;&gt;&gt;
             &lt;&lt;goto &quot;My Work&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;start&quot; || _answer == &quot;start &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;start&quot;&gt;&gt;
             &lt;&lt;goto &quot;Main Hall&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -473,8 +471,7 @@ I’m still here because they didn’t give up, and neither will I for that same
 Like I said, I still have a lot to learn. But maybe, one day, I’ll look in the mirror and laugh—not at myself, but with the confidence that I’ve grown into someone who doesn’t need to &#39;&#39;know whether I should laugh or cry&#39;&#39; as long as I’m enjoying the life I live.
 
 &lt;&lt;return&gt;&gt;
-</tw-passagedata><tw-passagedata pid="16" name="Childhood-onset Fluency Disorder - An Acrostic Poem" tags="" position="475,1100" size="100,100">&#39;&#39;Childhood-onset Fluency Disorder&#39;&#39; An Acrostic Poem
-
+</tw-passagedata><tw-passagedata pid="16" name="Childhood-onset Fluency Disorder - Acrostic" tags="" position="475,1100" size="100,100">&#39;&#39;Childhood-onset Fluency Disorder&#39;&#39; 
 &#39;&#39;S&#39;&#39;-s-slowly you watch me in contempt as I,
 &#39;&#39;T&#39;&#39;-t-try attempt to my words.
 -
@@ -727,13 +724,13 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;take&quot; || _answer == &quot;take &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;take&quot;&gt;&gt;
             &lt;&lt;goto &quot;Take popcorn&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;eat&quot; || _answer == &quot;eat &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;eat&quot;&gt;&gt;
             &lt;&lt;goto &quot;Eat Popcorn&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Cave left&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -748,10 +745,10 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;eat&quot; || _answer == &quot;eat &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;eat&quot;&gt;&gt;
             &lt;&lt;goto &quot;Eat Popcorn&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
             &lt;&lt;goto &quot;Cave left&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -769,7 +766,7 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Cave left&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -786,7 +783,7 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Cave left&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -809,7 +806,7 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
         	&lt;&lt;goto &quot;Cave left&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -833,10 +830,10 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;wear&quot; || _answer == &quot;wear &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;wear&quot;&gt;&gt;
             &lt;&lt;goto &quot;Wear&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
             &lt;&lt;goto &quot;Writing&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -854,10 +851,10 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;open&quot; || _answer == &quot;open &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;open&quot;&gt;&gt;
             &lt;&lt;goto &quot;My Tools&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
             &lt;&lt;goto &quot;Writing&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -872,7 +869,7 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
             &lt;&lt;goto &quot;Writing&quot;&gt;&gt;
          &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -893,7 +890,7 @@ You can:
 &lt;&lt;textbox &quot;$qa&quot; &quot;&quot;&gt;&gt;
     &lt;&lt;button &quot;Submit&quot;&gt;&gt;
         &lt;&lt;set _answer = $qa.toLowerCase()&gt;&gt;
-        &lt;&lt;if _answer == &quot;back&quot; || _answer == &quot;back &quot;&gt;&gt;
+        &lt;&lt;if _answer == &quot;back&quot;&gt;&gt;
             &lt;&lt;goto &quot;Writing&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -912,7 +909,7 @@ If you’re looking for a more polished overview of my work, head to the “My W
 Thanks again for everything. You&#39;ve made this process a bit less lonely.
 
 !!!Niall
-If you liked everything you&#39;ve seen then I highly recommend that you follow this [[Link -&gt;What&#39;s Next?]] to see my upcoming projects.
+
 &lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="The Last Will and Testament of Damien Doyle" tags="" position="600,825" size="100,100">//Dearest esteemed reader,//
 
 This novel has been reconstituted for educational purposes only, and is not suitable for audiences below the age of 14 or those with heart problems. 
@@ -1020,14 +1017,6 @@ Yet, they still do it. They choose destruction. That they reduce themselves to o
 Without the instrumentals, the song is akin to a bard&#39;s lament of a broken heart. Everyone hears the lyrics but rarely understands why it was written. There&#39;s immense pain in this song, shown through the fracture of a life they yearn for and the reality they cannot attain.
 
 The chorus is the cries spoken by a beggar that knows the world is unfair, who knows the risks of the game, yet is still surprised when they lose. 
-
-&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="What&#39;s Next?" tags="" position="850,750" size="100,100">&#39;&#39;What&#39;s Next?&#39;&#39; 05/12/24
-
-This site, this portfolio—it’s just the beginning. Everything here was built with Twine, a tool made for crafting narrative-based games. Sounds simple, right? But here’s the kicker: Twine isn’t just about simplicity. It’s capable of so much more—complex mechanics, dynamic visuals, even full-blown games that feel worlds apart from what you’re seeing here.
-
-Why am I telling you this? Because what you’re exploring now is just a taste. A starting point. When my dissertation is finished, using this very same software, you’ll see just how far I’ve pushed myself. How far I’ve stretched what Twine—and I—can do.
-
-I won’t spoil the details, but trust me: if this caught your attention, you’re going to love what comes next.
 
 &lt;&lt;return&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
