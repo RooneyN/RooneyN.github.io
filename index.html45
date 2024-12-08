@@ -296,7 +296,7 @@ You can:
 [[Trapped - Sijo]]
 [[2:36]]
 
-[[Return-&gt;My Work]] 
+&lt;&lt;return&gt;&gt;
 
 &lt;&lt;else&gt;&gt;
 
@@ -307,7 +307,7 @@ I wrote alot of these in my first year, but they&#39;re still my favourites - ev
 [[Trapped - Sijo]]
 [[2:36]]
 
-[[Return-&gt;My Work]] 
+&lt;&lt;return&gt;&gt;
 
 
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="About Me" tags="" position="0,825" size="100,100">&lt;&lt;if $mirror is true&gt;&gt;
@@ -334,7 +334,7 @@ In recent years, I’ve dedicated myself to honing my craft, studying the works 
 
 [[I wanna be yours - Arctic Monkeys]]
 
-[[Return-&gt;My Work]] </tw-passagedata><tw-passagedata pid="11" name="Main Hall" tags="" position="275,25" size="100,100">
+&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="Main Hall" tags="" position="275,25" size="100,100">
 &#39;&#39;Your story begins in the main hall:&#39;&#39; a vast space imbued with something that you can’t quite place your finger on.
 Whatever it is, you feel warm in its embrace. 
 It&#39;s comfort is smothering, if you weren’t too intrigued to explore this place; You’d likely want to fall asleep right here on the floor. You feel safer as everything from the outside world fades away with every breath and exhale. 
@@ -603,7 +603,7 @@ Avenging those who&#39;ve fallen to the inferno wing challenge.
 
 [[The Affair - 1st Minute]]
 
-[[Return-&gt;My Work]] </tw-passagedata><tw-passagedata pid="21" name="The Affair - 1st Minute" tags="" position="300,625" size="100,100">&#39;&#39;The Affair&#39;&#39;
+&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="The Affair - 1st Minute" tags="" position="300,625" size="100,100">&#39;&#39;The Affair&#39;&#39;
 
 &#39;&#39;INT. MOUSE’S EAR BAR – NIGHT&#39;&#39;
 A cosy, upscale speakeasy. Low mood lighting glints off 
@@ -673,7 +673,7 @@ I don&#39;t really feel like giving out my information just yet without a proper
 !!You also find a crowbar! 
 &lt;&lt;set $crowbar = true&gt;&gt;
 
-[[Return-&gt;My Work]] 
+&lt;&lt;return&gt;&gt;
 
 &lt;&lt;else&gt;&gt;
 
@@ -683,7 +683,7 @@ Hey, these are just the tools I sometimes use to work on my writing and I wanted
 
 [[Niall-Libs (coming soon)]]
 
-[[Return-&gt;My Work]] 
+&lt;&lt;return&gt;&gt;
 
 &lt;&lt;/if&gt;&gt;
 </tw-passagedata><tw-passagedata pid="24" name="100 Word story generator" tags="" position="75,1400" size="100,100">Every year, I take part in a 100-word short story challenge—a fast-paced, creative sprint that tests both skill and imagination.
@@ -714,7 +714,7 @@ Give it a try—it might spark something unexpected.
 &#39;&#39;My latest 100 word short story that beat 60  other writers&#39;&#39;
 [[MISSING PERSON&#39;S CASE]]
 
-[[Return-&gt;My Work]] </tw-passagedata><tw-passagedata pid="26" name="Popcorn" tags="" position="275,150" size="100,100">&gt;&#39;&#39;You investigate the popcorn&#39;&#39;
+&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="Popcorn" tags="" position="275,150" size="100,100">&gt;&#39;&#39;You investigate the popcorn&#39;&#39;
 You pick up a piece of popcorn, rolling it between your fingers. A slick, greasy film clings to your skin—unpleasant, yet oddly intriguing.
 Maybe it’s worth keeping. You never know when something like this might come in handy...
 
