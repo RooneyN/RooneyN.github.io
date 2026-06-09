@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Dani ❤️">
 <link rel="apple-touch-icon" href="icon-512.png">
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap">
 <style>
 /* ── TOKENS ─────────────────────────────────── */
 :root{
@@ -723,9 +723,9 @@ canvas.scratch-canvas{
 </div>
 
 <!-- AUDIO -->
-<audio id="audio-ambient" loop></audio>
-<audio id="audio-unlock"></audio>
-<audio id="audio-click"></audio>
+<audio id="audio-ambient"></audio>
+<audio id="audio-unlock"><source src="audio/zelda-chest.mp3" type="audio/mpeg"></audio>
+<audio id="audio-click"><source src="audio/cute-pop.mp3" type="audio/mpeg"></audio>
 <audio id="audio-taco"><source src="audio/taco-bong.mp3" type="audio/mpeg"></audio>
 
 <script>
@@ -1050,15 +1050,31 @@ function confirmReset(){
 }
 
 /* ════════════════════════════════════════════════
-   AUDIO
+   AUDIO ENGINE & RANDOM PLAYLIST
 ════════════════════════════════════════════════ */
+var playlist = [
+  'audio/rain-track-1.mp3',
+  'audio/rain-track-2.mp3'
+];
+var currentTrack = Math.floor(Math.random() * playlist.length);
+
 function startAudio(){
   var a=document.getElementById('audio-ambient');
-  if(a&&a.children.length){a.volume=.35;a.play().catch(function(){});}
+  if(a){
+    a.volume=0.30;
+    a.src=playlist[currentTrack];
+    a.play().catch(function(){});
+    
+    a.onended = function() {
+      currentTrack = Math.floor(Math.random() * playlist.length);
+      a.src = playlist[currentTrack];
+      a.play().catch(function(){});
+    };
+  }
 }
 function playUnlock(){var a=document.getElementById('audio-unlock');if(a){a.currentTime=0;a.play().catch(function(){});}}
 function playClick() {var a=document.getElementById('audio-click'); if(a){a.currentTime=0;a.play().catch(function(){});}}
-
+function playTaco(){ var a=document.getElementById('audio-taco'); if(a){a.currentTime=0;a.play().catch(function(){});} }
 /* ════════════════════════════════════════════════
    DEV DIARY
 ════════════════════════════════════════════════ */
