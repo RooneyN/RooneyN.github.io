@@ -499,7 +499,7 @@ canvas.scratch-canvas{
 
 <!-- LOVE METER -->
 <div id="meter-bar" style="display:none">
-  <span id="meter-icon">🤍</span>
+  <span id="meter-icon" onclick="tapHeart()" style="cursor:pointer; user-select:none; -webkit-user-select:none;">🤍</span>
   <div id="meter-track"><div id="meter-fill"></div></div>
   <span id="meter-pct">0%</span>
 </div>
@@ -725,6 +725,46 @@ canvas.scratch-canvas{
     ">Back to your gifts</button>
   </div>
 </div>
+
+/* ════════════════════════════════════════════════
+   EASTER EGG: LOVE METER OVERLOAD (7 TAPS)
+════════════════════════════════════════════════ */
+var heartTaps = 0;
+function tapHeart() {
+  heartTaps++;
+  if (heartTaps === 7) {
+    playUnlock();
+    
+    /* Max out and break the meter */
+    document.getElementById('meter-pct').textContent = '999%';
+    document.getElementById('meter-fill').style.width = '100%';
+    document.getElementById('meter-fill').style.background = '#ff2a5f'; 
+    document.getElementById('meter-icon').textContent = '💖';
+    
+    /* The custom emoji payload */
+    var emojis = ['🌮','🏎️','🦊','🤪','💕','🎮','🇨🇴']; 
+    var bg = document.getElementById('hearts-bg');
+    
+    for(var i=0; i<45; i++){
+      var h = document.createElement('span');
+      h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      
+      /* Randomize size, position, and speed for maximum chaos */
+      var size = (1.2 + Math.random() * 1.5) + 'rem';
+      var left = (Math.random() * 100) + 'vw';
+      var duration = (2.5 + Math.random() * 2) + 's';
+      var delay = (Math.random() * 0.5) + 's';
+      
+      h.style.cssText = 'position:absolute;font-size:'+size+';left:'+left+';bottom:-50px;'
+        +'animation:floatUp '+duration+' linear '+delay+' forwards;z-index:999;';
+      
+      bg.appendChild(h);
+      
+      /* Clean up the DOM after they float away so the app doesn't lag */
+      setTimeout((function(el){ return function(){ if(el.parentNode) el.parentNode.removeChild(el); }; })(h), 5000);
+    }
+  }
+}
 
 <!-- AUDIO -->
 <audio id="audio-ambient"></audio>
@@ -1097,14 +1137,18 @@ function checkDarkGate(){
   /* ── FLEX MODE ── */
   if (val === 'show off') {
     S.flexMode = true;
-    /* Put all 8 items in the array so all 8 slots fill */
-    S.giftsUnlocked = ['greenbeans','redbeans','roses','steak','wheels','bubbles','mist','story'];
-    /* Pre-clear all the scratch canvases */
-    S.scratchedDone = { greenbeans:true, redbeans:true, roses:true, steak:true, wheels:true, bubbles:true, mist:true, story:true };
+    /* Only push 7 items (completely skipping 'roses') */
+    S.giftsUnlocked = ['greenbeans','redbeans','steak','wheels','bubbles','mist','story'];
+    S.scratchedDone = { greenbeans:true, redbeans:true, steak:true, wheels:true, bubbles:true, mist:true, story:true };
     S.steakUnlocked = true;
     S.love = 100;
     S.setupComplete = true;
-    S.letterParts = MASTER_LETTER.slice(); 
+    
+    /* Safely grab the letters, but delete the 3rd paragraph (the roses one) */
+    var safeLetters = MASTER_LETTER.slice();
+    safeLetters.splice(2, 1); 
+    S.letterParts = safeLetters; 
+    
     saveState();
     
     var gate = document.getElementById('dark-gate');
@@ -1534,10 +1578,14 @@ var SCREENS = {
       +'</div>';
   },
 
-  /* HUB */
+ 
+/* HUB */
   hub:function(){
     var slots='';
-    for(var i=0;i<8;i++){
+    /* If she used Flex Mode, shrink the max slots to 7 so it doesn't leave a blank space */
+    var totalSlots = S.flexMode ? 7 : 8; 
+    
+    for(var i=0;i<totalSlots;i++){
       var key  = S.giftsUnlocked[i];
       var gift = key ? GIFTS[key] : null;
       if(gift){
@@ -1549,21 +1597,23 @@ var SCREENS = {
         slots+='<div class="gift-slot empty-slot">🔒 Slot '+(i+1)+' — waiting for your next code...</div>';
       }
     }
+    
     /* secret reset — tiny, tucked in bottom-right corner of card */
     var resetBtn='<button onclick="showReset()" title="reset" style="'
       +'position:absolute;bottom:10px;right:12px;'
       +'background:transparent;border:none;cursor:pointer;'
       +'opacity:.06;font-size:.6rem;color:var(--soft);'
-      +'font-family:Arial,sans-serif;letter-spacing:1px;'
+      +'font-family:Quicksand,sans-serif;letter-spacing:1px;'
       +'transition:opacity .2s;padding:4px 6px;border-radius:6px;'
       +'" onmouseenter="this.style.opacity=\'.35\'" onmouseleave="this.style.opacity=\'.06\'"'
       +' ontouchstart="this.style.opacity=\'.35\'" ontouchend="this.style.opacity=\'.06\'">⚙</button>';
+      
     return ''
       +'<button class="diary-toggle" onclick="toggleDiary(\'d-hub\')" title="Dev diary">📖</button>'
-      +'<div class="diary-content" id="d-hub"><!-- FILL IN: dev diary note --> This is your home base. Every code I send unlocks something new 💌</div>'
+      +'<div class="diary-content" id="d-hub">This is your home base. Every code I send unlocks something new 💌</div>'
       +'<h2 class="script">🎁 Your Gifts</h2>'
       +'<p>Codes arrive through the day — each one unlocks something just for you 💕</p>'
-      +'<p class="soft">'+S.giftsUnlocked.length+'/8 unlocked</p>'
+      +'<p class="soft">'+S.giftsUnlocked.length+'/'+totalSlots+' unlocked</p>'
       +'<hr>'
       +slots
       +'<hr>'
