@@ -1053,7 +1053,7 @@ function startAudio(){
     a.play().catch(function(){});
     
     a.onended = function() {
-      currentTrack = Math.floor(Math.random() * playlist.length);
+      currentTrack = (currentTrack + 1) % playlist.length;
       a.src = playlist[currentTrack];
       a.play().catch(function(){});
     };
@@ -1142,22 +1142,8 @@ PW_TO_KEY[PW.greenbeans] = 'greenbeans';
 PW_TO_KEY[PW.redbeans]   = 'redbeans';
 PW_TO_KEY[PW.roses]      = 'roses';
 PW_TO_KEY[PW.steak]      = 'steak';
-PW_TO_KEY[PW.wheels]     = 'wheels';
-PW_TO_KEY[PW.bubbles]    = 'bubbles';
-PW_TO_KEY[PW.mist]       = 'mist';
-PW_TO_KEY[PW.story]      = 'story';
-
-var CHEAT_UNLOCK_ALL = 'masterkey';
-var CHEAT_REPLAY = 'replay';
-
-/* ════════════════════════════════════════════════
-   GIFT PASSWORDS & CHEAT CODES
-════════════════════════════════════════════════ */
-var PW_TO_KEY = {};
-PW_TO_KEY[PW.greenbeans] = 'greenbeans';
-PW_TO_KEY[PW.redbeans]   = 'redbeans';
-PW_TO_KEY[PW.roses]      = 'roses';
-PW_TO_KEY[PW.steak]      = 'steak';
+PW_TO_KEY[PW.sweets]     = 'sweets';
+PW_TO_KEY[PW.diffuser]   = 'diffuser';
 PW_TO_KEY[PW.wheels]     = 'wheels';
 PW_TO_KEY[PW.bubbles]    = 'bubbles';
 PW_TO_KEY[PW.mist]       = 'mist';
@@ -1187,8 +1173,8 @@ function checkGiftCode(){
   /* ── DEV CHEAT ── */
   if (val === CHEAT_UNLOCK_ALL) {
     document.getElementById('pw-gift').value='';
-    S.giftsUnlocked = ['greenbeans','redbeans','roses','steak','wheels','bubbles','mist','story'];
-    S.scratchedDone = { greenbeans:true, redbeans:true, roses:true, steak:true, wheels:true, bubbles:true, mist:true, story:true };
+    S.giftsUnlocked = ['greenbeans','redbeans','roses','steak','sweets','diffuser','wheels','bubbles','mist','story'];
+    S.scratchedDone = { greenbeans:true, redbeans:true, roses:true, steak:true, sweets:true, diffuser:true, wheels:true, bubbles:true, mist:true, story:true };
     S.steakUnlocked = true;
     S.vignetteOpen = true;
     S.love = 100;
@@ -1217,7 +1203,7 @@ function checkGiftCode(){
         }
       }
       
-      setLove(Math.round((S.giftsUnlocked.length/8)*100));
+      setLove(Math.round((S.giftsUnlocked.length/10)*100));
       saveState();
       document.getElementById('pw-gift').value='';
       msg.className='pw-msg ok';
@@ -1225,7 +1211,7 @@ function checkGiftCode(){
       setTimeout(function(){ 
          msg.textContent=''; msg.className='pw-msg'; 
          goto('hub');
-         if(S.giftsUnlocked.length>=8 && S.steakUnlocked){ setTimeout(showComplete, 600); }
+         if(S.giftsUnlocked.length>=10 && S.steakUnlocked){ setTimeout(showComplete, 600); }
       }, 2500);
     } else {
       msg.textContent='You\'ve already unlocked the steak dinner 💕';
@@ -1246,7 +1232,7 @@ function checkGiftCode(){
     }
 
     if(giftKey==='story') S.vignetteOpen=true;
-    setLove(Math.round((S.giftsUnlocked.length/8)*100)); 
+    setLove(Math.round((S.giftsUnlocked.length/10)*100)); 
     saveState();
     document.getElementById('pw-gift').value='';
     msg.className='pw-msg ok';
@@ -1254,7 +1240,7 @@ function checkGiftCode(){
     setTimeout(function(){
       if(msg){msg.textContent='';msg.className='pw-msg';}
       goto('hub');
-      if(S.giftsUnlocked.length>=8 && S.steakUnlocked){
+      if(S.giftsUnlocked.length>=10 && S.steakUnlocked){
         setTimeout(showComplete, 600);
       }
     },1800);
@@ -1289,7 +1275,7 @@ function tapHeart() {
     document.getElementById('meter-icon').textContent = '💖';
     
     var bombWrap = document.createElement('div');
-    bombWrap.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden;';
+    bombWrap.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;';
     document.body.appendChild(bombWrap);
     
     if(!document.getElementById('bomb-style')) {
@@ -1574,7 +1560,7 @@ var SCREENS = {
   hub:function(){
     var slots='';
     /* If she used Flex Mode, shrink the max slots to 7 so it doesn't leave a blank space */
-    var totalSlots = S.flexMode ? 7 : 8; 
+    var totalSlots = S.flexMode ? 9 : 10; 
     
     for(var i=0;i<totalSlots;i++){
       var key  = S.giftsUnlocked[i];
