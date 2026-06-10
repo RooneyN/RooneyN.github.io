@@ -1294,18 +1294,18 @@ function tapHeart() {
       
       var size = (1.5 + Math.random() * 2.5) + 'rem'; 
       var left = (Math.random() * 100) + 'vw';
-      var duration = (0.8 + Math.random() * 1.5) + 's'; 
-      var delay = (Math.random() * 0.15) + 's'; 
+      var duration = (3 + Math.random() * 3) + 's'; 
+      var delay = (Math.random() * 1.5) + 's'; 
       
       h.style.cssText = 'position:absolute;font-size:'+size+';left:'+left+';bottom:-100px;'
-        +'animation: bombFly '+duration+' cubic-bezier(0.25, 1, 0.5, 1) '+delay+' forwards;';
+        +'animation: bombFly '+duration+' cubic-bezier(0.2, 0.6, 0.4, 1) '+delay+' forwards;';
       
       bombWrap.appendChild(h);
     }
     
     setTimeout(function(){
        if(bombWrap.parentNode) bombWrap.parentNode.removeChild(bombWrap);
-    }, 3500);
+    }, 7000);
   }
 }
 
