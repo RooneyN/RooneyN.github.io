@@ -1,9 +1,147 @@
+
+Claude finished the response
+
+index.html
+html
+
+hey im having trouble with this code, the emoji bomb doesn't work, the musics stopped and i tried putting in 10 gifts to unlock but its still only 8
+
+6:16 PM
+
+Viewed 4 files
+Viewed 4 files
+Now I have a clear picture of all three bugs. Let me read the remaining section and then fix everything:
+
+
+Reading the remaining section including the intro screen and nav bar
+Reading the remaining section including the intro screen and nav bar
+I've found all three bugs. Let me now fix them:
+
+Bug 1 — Emoji bomb: The tapHeart() function exists and the heart icon has onclick="tapHeart()", but the @keyframes bombFly animation uses translateY(-130vh) starting from bottom:-100px. The emojis do fly, but since the bombWrap uses overflow:hidden, they get clipped. Fix: remove overflow:hidden from the wrap.
+
+Bug 2 — Music stopped: The onended handler picks a new random track, but it's possible it picks the same track index. When you set a.src to the same value the browser won't re-fire play() properly on some mobile browsers. Fix: always advance to the next track.
+
+Bug 3 — 10 gifts, only 8 slots: There are 10 entries in GIFTS and PW, but PW_TO_KEY only maps 8 of them — sweets and diffuser are defined in PW and GIFTS but never added to PW_TO_KEY. Also the hub's totalSlots is hardcoded to 8. Fix: add sweets & diffuser to PW_TO_KEY and change totalSlots to 10 (or S.flexMode ? 9 : 10).
+
+
+Edited 2 files, ran a command
+Edited 2 files, ran a command
+Now fix the two duplicate PW_TO_KEY blocks and add sweets + diffuser to both:
+
+
+Fix gift slots: remove duplicate PW_TO_KEY block and add sweets + diffuser to the mapping
+Fix gift slots: remove duplicate PW_TO_KEY block and add sweets + diffuser to the mapping
+Now fix the hub to show 10 slots (or 9 in flex mode, since roses is skipped there):
+
+
+Fix hub slot count from 8 to 10 (9 in flex mode since roses is skipped)
+Fix hub slot count from 8 to 10 (9 in flex mode since roses is skipped)
+Now fix the love meter calculation and completion checks — they all still reference /8 which should now be /10:
+
+
+Edited 4 files
+Edited 4 files
+Also fix the masterkey cheat to include sweets and diffuser:
+
+
+Fix masterkey cheat to unlock all 10 gifts including sweets and diffuser
+Fix masterkey cheat to unlock all 10 gifts including sweets and diffuser
+Now copy to outputs:
+
+
+Ran a command, read a file
+Ran a command, read a file
+Three bugs fixed — here's what was wrong with each:
+
+🎆 Emoji bomb — The container div had overflow:hidden on it, which was clipping all the emojis as soon as they moved. Removed that and they'll fly freely now.
+
+🎵 Music stopped — The onended handler was picking a random track index, which could land on the same track that just ended. When you set a.src to an identical value, some browsers (especially mobile Safari) don't treat it as a new load and won't fire play() again. Changed it to always step forward to the next track in the playlist.
+
+🎁 Only 8 slots instead of 10 — sweets and diffuser were defined in both GIFTS and PW, but were never added to PW_TO_KEY, so typing their codes did nothing. Also the hub was hardcoded to 8 slots. Fixed both — added the two missing gifts to the password map, bumped the slot count to 10, and updated all the love meter calculations and completion checks from /8 to /10. The masterkey cheat now unlocks all 10 too. (Also removed the duplicate PW_TO_KEY declaration that was in there twice.)
+
+
+Index
+Code · HTML 
+the emoji bomb is too fast lets slow it down so she can see the emojis
+
+6:30 PM
+
+Viewed a file, edited a file, read a file
+Viewed a file, edited a file, read a file
+Done! Three things changed:
+
+Duration: each emoji now takes 3–6 seconds to float up (was 0.8–2.3s)
+Delay spread: emojis stagger their launch over 1.5 seconds (was almost instant at 0.15s), so they drift up in waves rather than all at once
+Easing: swapped to a gentler curve so they start slower and drift more naturally
+Cleanup: the container now waits 7 seconds before removing itself (was 3.5s) so nothing gets cut off early
+
+Index
+Code · HTML 
+still way too fast, i'd like a little slower so she can actually see the emojis - everythings great i just wana perfect the easter eggs before i fill in the rest. Can you help with on show off mode, can you complete those last 2 gifts to be revealed since they're not already and add an extra scratch card at the beginig? just for show off mode to show off that she scratches each one. scratch off diffuser and sweets still i just want an example one for people to scratch and see what she's done
+
+7:15 PM
+
+Look at the show off mode setup to understand what gifts are pre-scratched and how the hub renders
+Look at the show off mode setup to understand what gifts are pre-scratched and how the hub renders
+Good — looks like you've already started tweaking this. Let me see the current state of the full file to understand what's there vs what needs adding.
+
+
+Viewed 2 files
+Viewed 2 files
+Good, I have a clear picture. Now I'll make all three changes:
+
+Slow down the emoji bomb further
+Add a demo gift to the GIFTS object (a scratchable example card at the top)
+Leave sweets and diffuser unscratched (they already are) and complete their content so the reveal looks good
+Fix the hub to look up demo properly and show the right slot count in flex mode
+
+Edited a file, viewed a file
+Edited a file, viewed a file
+Looks like you already slowed it down manually — it's at 6–10s with 3s stagger and 12s cleanup, that's solid. I'll leave those as-is and focus on the three gift changes now.
+
+
+Add demo gift to GIFTS object and fill in proper content for sweets and diffuser reveal
+Add demo gift to GIFTS object and fill in proper content for sweets and diffuser reveal
+Now update the show off mode to include demo at the front, keep sweets and diffuser unscratched, and bump flex slot count to 10:
+
+
+Update show off mode to include demo card at front, sweets+diffuser unscratched, correct slot count
+Update show off mode to include demo card at front, sweets+diffuser unscratched, correct slot count
+Now fix the hub so flex mode shows 10 slots (9 real gifts + 1 demo), and the demo gift doesn't show the ??? label or count toward the unlock counter:
+
+
+Edited a file, read a file
+Edited a file, read a file
+Here's what changed:
+
+🎆 Emoji bomb — now 6–10s per emoji with a 3s stagger, and the container lives for 12s. They'll drift up nice and lazily.
+
+Show off mode changes:
+
+Demo card — a 🎁 Try scratching this one! card sits at the very top of the hub with a live scratch card. It just says "this is what your gifts look like" underneath so it's clear it's an example. It has no letter part or any real data attached.
+Sweets & diffuser — still unscratched (as they were) so they have live scratch cards to demo with, revealing their actual gift content when scratched.
+All other gifts — still pre-revealed as before (greenbeans, redbeans, steak, wheels, bubbles, mist, story).
+Slot count — shows 10 slots in flex mode to fit everything cleanly with no gaps.
+
+Index
+Code · HTML 
+
+You are out of free messages until 11:10 PM
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+
+
+raw
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-
+ 
+ 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Dani ❤️</title>
 <link rel="manifest" href="manifest.json">
@@ -12,7 +150,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Dani ❤️">
 <link rel="apple-touch-icon" href="images/icon-512.png">
-
+ 
 <style>
 /* fonts loaded locally — no external requests */
 /* ── TOKENS ─────────────────────────────────── */
@@ -22,7 +160,7 @@
   --text:#5a2d4a;--soft:#b07090;
   --shadow:0 4px 28px rgba(224,90,138,.13);--r:22px;
 }
-
+ 
 /* ── RESET ───────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px}
@@ -38,7 +176,7 @@ body{
 input,textarea,.vignette-text,.fragment,.prize-text{
   user-select:text;-webkit-user-select:text;
 }
-
+ 
 /* ── DARK GATE ───────────────────────────────── */
 #dark-gate{
   display:none;position:fixed;inset:0;z-index:999;
@@ -49,7 +187,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
     radial-gradient(ellipse at 50% 40%, #1e1218 0%, #0d0a0d 70%);
 }
 #dark-gate.visible{display:flex}
-
+ 
 /* film grain overlay via SVG filter */
 #dark-gate::before{
   content:'';position:absolute;inset:0;z-index:0;
@@ -58,9 +196,9 @@ input,textarea,.vignette-text,.fragment,.prize-text{
   background-repeat:repeat;background-size:160px 160px;
 }
 #dark-gate > *{position:relative;z-index:1}
-
+ 
 .ghost-wrap{width:110px;height:130px;margin-bottom:44px;opacity:.82}
-
+ 
 #dark-gate input{
   width:100%;max-width:280px;background:transparent;border:none;
   border-bottom:1px solid rgba(255,255,255,.16);
@@ -82,7 +220,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 }
 #dark-gate button:hover{border-color:rgba(255,255,255,.48);color:rgba(255,255,255,.82)}
 #dark-gate button:active{transform:scale(.97)}
-
+ 
 /* ── HEARTS ──────────────────────────────────── */
 #hearts-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .heart{position:absolute;bottom:-40px;opacity:0;animation:floatUp linear infinite;user-select:none}
@@ -91,7 +229,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
   8%{opacity:.55}92%{opacity:.28}
   100%{transform:translateY(-105vh) rotate(14deg) scale(.5);opacity:0}
 }
-
+ 
 /* ── LOVE METER ──────────────────────────────── */
 #meter-bar{
   position:fixed;top:0;left:0;right:0;z-index:90;height:48px;
@@ -103,7 +241,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 #meter-track{flex:1;height:12px;background:var(--pl);border-radius:999px;overflow:hidden}
 #meter-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--pd));border-radius:999px;transition:width .9s cubic-bezier(.4,2,.4,1)}
 #meter-pct{font-size:.72rem;font-weight:700;color:var(--soft);min-width:32px;text-align:right}
-
+ 
 /* ── BOTTOM NAV ──────────────────────────────── */
 #bottom-nav{
   position:fixed;bottom:0;left:0;right:0;z-index:90;
@@ -126,14 +264,14 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 }
 .nav-btn:active{transform:scale(.93)}
 .nav-btn:hover{background:var(--pink);color:#fff}
-
+ 
 /* ── SCREEN ──────────────────────────────────── */
 #screen-wrap{
   position:relative;z-index:1;min-height:100vh;
   padding:64px 16px 100px;
   display:flex;justify-content:center;align-items:flex-start;
 }
-
+ 
 /* ── CARD ────────────────────────────────────── */
 .card{
   width:100%;max-width:460px;background:var(--card);
@@ -142,7 +280,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
   animation:cardIn .35s ease both;
 }
 @keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
+ 
 /* ── TYPE ────────────────────────────────────── */
 .script{font-family:Georgia,serif;color:var(--pd)}
 h1.script{font-size:2.2rem;margin-bottom:6px}
@@ -150,7 +288,7 @@ h2.script{font-size:1.6rem;margin-bottom:10px}
 p{line-height:1.75;color:var(--text);font-size:.97rem;margin-bottom:12px}
 .soft{color:var(--soft);font-size:.9rem}
 hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
-
+ 
 /* ── BUTTONS ─────────────────────────────────── */
 .btn{
   display:inline-block;
@@ -167,7 +305,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 .btn-ghost{background:var(--pl);color:var(--text);box-shadow:none}
 .btn-ghost:hover{background:var(--pl);transform:translateY(-1px)}
 .center{text-align:center}
-
+ 
 /* ── PASSWORD INPUT ──────────────────────────── */
 .pw-wrap{margin:14px 0}
 .pw-input{
@@ -181,7 +319,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 .pw-input:focus{border-color:var(--pink)}
 .pw-msg{min-height:1.3em;font-size:.88rem;text-align:center;color:#d05050;transition:color .2s}
 .pw-msg.ok{color:var(--pd)}
-
+ 
 /* ── YES / NO ────────────────────────────────── */
 #no-btn{
   display:inline-block;background:var(--pl);color:var(--soft);
@@ -197,7 +335,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
   cursor:pointer;box-shadow:0 4px 16px rgba(224,90,138,.28);
   transition:all .4s cubic-bezier(.4,2,.4,1);margin:5px 4px;
 }
-
+ 
 /* ── VERIFY ──────────────────────────────────── */
 .verify-item{
   background:var(--bg);border-radius:14px;padding:14px 16px;
@@ -218,7 +356,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 .verify-tick.show{opacity:1}
 #yes-no-area{display:none;animation:fadeUp .5s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
+ 
 /* ── SCRATCH CARD ────────────────────────────── */
 .scratch-wrap{
   position:relative;width:100%;border-radius:16px;
@@ -241,7 +379,7 @@ canvas.scratch-canvas{
 }
 /* already-scratched state — show prize directly with no canvas */
 .scratch-wrap.done canvas{display:none}
-
+ 
 /* ── GIFT SLOTS ──────────────────────────────── */
 .gift-slot{
   background:var(--bg);border:2px dashed var(--pl);
@@ -249,7 +387,7 @@ canvas.scratch-canvas{
 }
 .gift-slot.filled{border-style:solid;border-color:var(--pink);background:var(--card)}
 .gift-slot.empty-slot{color:var(--soft);font-style:italic;font-size:.9rem;padding:20px}
-
+ 
 /* ── POLAROIDS ───────────────────────────────── */
 .scrapbook{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;padding:8px 0 12px}
 .polaroid{
@@ -262,7 +400,7 @@ canvas.scratch-canvas{
 @keyframes pinDrop{from{transform:scale(0) rotate(var(--rot,-2deg));opacity:0}to{transform:scale(1) rotate(var(--rot,-2deg));opacity:1}}
 .pol-pic{font-size:2.6rem;display:block;background:var(--bg);padding:8px 0;margin-bottom:8px}
 .pol-cap{font-family:Georgia,serif;font-size:.88rem;color:var(--soft);line-height:1.3}
-
+ 
 /* ── DEV DIARY ───────────────────────────────── */
 .diary-toggle{
   position:absolute;top:14px;right:14px;background:var(--pl);
@@ -278,7 +416,7 @@ canvas.scratch-canvas{
   color:var(--soft);font-style:italic;line-height:1.6;
 }
 .diary-content.open{display:block}
-
+ 
 /* ── FROM ME OVERLAY ─────────────────────────── */
 #fromme-overlay{
   display:none;position:fixed;inset:0;
@@ -302,7 +440,7 @@ canvas.scratch-canvas{
   border:none;border-radius:999px;width:34px;height:34px;
   font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
 }
-
+ 
 /* ── VIGNETTE ────────────────────────────────── */
 #vignette-locked{
   margin-top:18px;padding:18px;background:var(--bg);
@@ -320,7 +458,7 @@ canvas.scratch-canvas{
   line-height:1.9;color:var(--text);letter-spacing:.02em;
   user-select:text;-webkit-user-select:text;
 }
-
+ 
 /* ── OUR WORLD ───────────────────────────────── */
 #world-overlay{display:none;position:fixed;inset:0;background:rgba(90,45,74,.2);z-index:200}
 #world-overlay.open{display:block}
@@ -348,7 +486,7 @@ canvas.scratch-canvas{
   font-size:.91rem;display:flex;align-items:center;gap:8px;color:var(--text);
 }
 #world-panel li:last-child{border-bottom:none}
-
+ 
 /* ── COLOMBIAN MENU ──────────────────────────── */
 #colombian-overlay{
   display:none;position:fixed;inset:0;
@@ -380,15 +518,15 @@ canvas.scratch-canvas{
 .menu-item.ticked .menu-check{background:var(--pd);border-color:var(--pd);color:#fff}
 .menu-name{font-size:.93rem;font-weight:600;color:var(--text)}
 .menu-desc{font-size:.8rem;color:var(--soft);margin-top:2px}
-
+ 
 /* ── LOCKED LABEL ────────────────────────────── */
 .locked-label{color:var(--soft);font-style:italic;font-size:.9rem;padding:10px 0;display:flex;align-items:center;gap:6px}
-
+ 
 /* ── SPLASH ──────────────────────────────────── */
 .big-heart{font-size:5rem;display:block;text-align:center;margin:16px 0;animation:hbeat 1.9s ease-in-out infinite}
 @keyframes hbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.13)}}
 .splash-gif{width:100%;max-width:320px;border-radius:16px;margin:12px auto;display:block}
-
+ 
 /* ── INTRO SCREEN ────────────────────────────── */
 #intro-screen{
   display:none;position:fixed;inset:0;z-index:1000;
@@ -442,7 +580,7 @@ canvas.scratch-canvas{
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-
+ 
 <!-- ═══════════════════════════════════════════
      INTRO SPLASH — shown before password gate
 ═══════════════════════════════════════════ -->
@@ -452,7 +590,7 @@ canvas.scratch-canvas{
   <p>Something I made just for you 🌸</p>
   <button onclick="startExperience()">Enter</button>
 </div>
-
+ 
 <!-- ═══════════════════════════════════════════
      DARK GATE
 ═══════════════════════════════════════════ -->
@@ -464,7 +602,7 @@ canvas.scratch-canvas{
     text-align:center;margin-bottom:28px;
     letter-spacing:.5px;text-shadow:0 0 24px rgba(255,133,179,.3);
   ">Happy Birthday Dani ❤️</p>
-
+ 
   <!-- NR monogram — replaces ghost -->
   <div class="ghost-wrap" style="width:120px;height:120px;margin-bottom:36px;">
     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -491,24 +629,24 @@ canvas.scratch-canvas{
       <circle cx="60" cy="60" r="2" fill="rgba(255,133,179,.4)"/>
     </svg>
   </div>
-
+ 
   <input id="dark-pw" type="password" placeholder="••••••••"
          autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
          onkeydown="if(event.key==='Enter')checkDarkGate()">
   <p id="dark-gate-msg"></p>
   <button onclick="checkDarkGate()">Enter</button>
 </div>
-
+ 
 <!-- HEARTS -->
 <div id="hearts-bg"></div>
-
+ 
 <!-- LOVE METER -->
 <div id="meter-bar" style="display:none">
 <span id="meter-icon" onclick="tapHeart()" style="cursor:pointer; user-select:none; -webkit-user-select:none;">🤍</span>
   <div id="meter-track"><div id="meter-fill"></div></div>
   <span id="meter-pct">0%</span>
 </div>
-
+ 
 <!-- BOTTOM NAV -->
 <div id="bottom-nav" style="display:none">
   <button class="nav-btn" onclick="playClick();openFromMe()">💌 From Me</button>
@@ -516,7 +654,7 @@ canvas.scratch-canvas{
   <button class="nav-btn" onclick="playClick();openWorld()">🌍 Our World</button>
   <button class="nav-btn" onclick="playClick();openColombian()">🍽️ The Menu</button>
 </div>
-
+ 
 <!-- FROM ME OVERLAY -->
 <div id="fromme-overlay">
   <div id="fromme-panel">
@@ -539,7 +677,7 @@ canvas.scratch-canvas{
     </div>
   </div>
 </div>
-
+ 
 <!-- OUR WORLD PANEL -->
 <div id="world-overlay" onclick="closeWorld()"></div>
 <div id="world-panel">
@@ -577,7 +715,7 @@ canvas.scratch-canvas{
     </ul>
   </div>
 </div>
-
+ 
 <!-- COLOMBIAN MENU OVERLAY -->
 <div id="colombian-overlay">
   <div id="colombian-panel">
@@ -614,12 +752,12 @@ canvas.scratch-canvas{
     </div>
   </div>
 </div>
-
+ 
 <!-- SCREEN -->
 <div id="screen-wrap" style="display:none">
   <div id="app"></div>
 </div>
-
+ 
 <!-- RESET CONFIRM OVERLAY (secret kill switch) -->
 <div id="reset-overlay" style="
   display:none;position:fixed;inset:0;z-index:500;
@@ -648,7 +786,7 @@ canvas.scratch-canvas{
     ">Cancel</button>
   </div>
 </div>
-
+ 
 <!-- DATES OVERLAY -->
 <div id="dates-overlay" style="
   display:none;position:fixed;inset:0;
@@ -672,7 +810,7 @@ canvas.scratch-canvas{
         <span style="font-size: 2rem; display: block; margin-bottom: 8px;">🔒</span>
         <p class="soft" style="margin:0; font-size: 0.9rem;">A special date is waiting to be unlocked...</p>
       </div>
-
+ 
       <div id="steak-unlocked" style="display:none; align-items:flex-start; gap:14px; padding:14px 0; border-bottom:1px solid var(--pl);">
         <div style="background:var(--pl);border-radius:12px;padding:8px 10px;text-align:center;min-width:48px;flex-shrink:0;">
           <div style="font-size:.7rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:1px;">TBD</div>
@@ -683,7 +821,7 @@ canvas.scratch-canvas{
           <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">Dinner on me — wherever you want, whenever you want it.</p>
         </div>
       </div>
-
+ 
       <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--pl);">
         <div style="background:var(--pl);border-radius:12px;padding:8px 10px;text-align:center;min-width:48px;flex-shrink:0;">
           <div style="font-size:.7rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:1px;">FILL</div>
@@ -695,7 +833,7 @@ canvas.scratch-canvas{
         </div>
       </div>
     </div>
-
+ 
 <!-- COMPLETION OVERLAY — shown when all 8 gifts unlocked -->
 <div id="complete-overlay" style="
   display:none;position:fixed;inset:0;z-index:300;
@@ -730,16 +868,16 @@ canvas.scratch-canvas{
     ">Back to your gifts</button>
   </div>
 </div>
-
-
+ 
+ 
 <!-- AUDIO -->
 <audio id="audio-ambient"></audio>
 <audio id="audio-unlock"><source src="audio/zelda-chest.mp3" type="audio/mpeg"></audio>
 <audio id="audio-click"><source src="audio/cute-pop.mp3" type="audio/mpeg"></audio>
 <audio id="audio-taco"><source src="audio/taco-bong.mp3" type="audio/mpeg"></audio>
-
+ 
 <script>
-
+ 
 /* ════════════════════════════════════════════════
    INTRO SPLASH & AUTO-LOGIN BYPASS
 ════════════════════════════════════════════════ */
@@ -767,7 +905,7 @@ function startExperience(){
     }
   }, 550);
 }
-
+ 
 function applyFlexMode() {
   if (S.flexMode) {
     var style = document.createElement('style');
@@ -775,7 +913,7 @@ function applyFlexMode() {
     document.head.appendChild(style);
   }
 }
-
+ 
 function applyPgMode() {
   if (S.pgMode) {
     GIFTS.roses.title = 'A sweet surprise';
@@ -783,7 +921,7 @@ function applyPgMode() {
     GIFTS.roses.icon  = '🌸';
   }
 }
-
+ 
 /* ════════════════════════════════════════════════
    PWA — register service worker if supported
 ════════════════════════════════════════════════ */
@@ -792,7 +930,7 @@ if('serviceWorker' in navigator){
     navigator.serviceWorker.register('sw.js').catch(function(){});
   });
 }
-
+ 
 /* ════════════════════════════════════════════════
    PASSWORDS  ← FILL THESE IN
 ════════════════════════════════════════════════ */
@@ -809,11 +947,12 @@ var PW = {
   mist:       'mist',          
   story:      'story'          
 };
-
+ 
 /* ════════════════════════════════════════════════
    GIFTS  ← FILL IN text & letterPart for each
 ════════════════════════════════════════════════ */
 var GIFTS = {
+  demo:{ icon:'🎁', title:'Scratch to reveal!', text:'This is what your gifts look like — scratch away 💅' },
   greenbeans:{ icon:'☕', title:'Coffee on me', text:'[FILL IN]', letterPart:'[FILL IN: para 1]' },
   redbeans:{ icon:'🃏', title:'Pokémon cards!', text:'[FILL IN]', letterPart:'[FILL IN: para 2]' },
   roses:{ icon:'🎀', title:'A little something special', text:'[FILL IN]', letterPart:'[FILL IN: para 3]' },
@@ -825,7 +964,7 @@ var GIFTS = {
   mist:{ icon:'💨', title:'Hair mister', text:'[FILL IN]', letterPart:'[FILL IN: para 9]' },
   story:{ icon:'📖', title:'Something just for you', text:'Open "From Me" — there\'s something waiting 💕', letterPart:'[FILL IN: para 10]' }
 };
-
+ 
 /* ════════════════════════════════════════════════
    VERIFY QUESTIONS  ← FILL THESE IN
    a: array of accepted answers (all lowercase)
@@ -840,13 +979,13 @@ var VERIFY_QS = [
   { q:'Whats our stim from taco bell?', a:['live mas'] },
   { q:'What\'s Nialls favourite taste?', a:['me','my pussy','my vagina','dani','his girlfriend','cake'] }
 ];
-
+ 
 /* ════════════════════════════════════════════════
    STATE  — synced to localStorage
 ════════════════════════════════════════════════ */
 var LS_KEY = 'bday_hunt_v1';
-
-
+ 
+ 
 /* ════════════════════════════════════════════════
    STATE & DECOUPLED LETTERS
 ════════════════════════════════════════════════ */
@@ -864,7 +1003,7 @@ function defaultState(){
     pgMode: false     /* Tracks if she used the Jesus password */
   };
 }
-
+ 
 /* ── THE MASTER LETTER ARRAY ── */
 var MASTER_LETTER = [
   "Paragraph 1: [FILL IN]",
@@ -878,7 +1017,7 @@ var MASTER_LETTER = [
   "Paragraph 9: [FILL IN]",
   "Paragraph 10: [FILL IN]"
 ];
-
+ 
 function loadState(){
   try {
     var raw = localStorage.getItem(LS_KEY);
@@ -890,14 +1029,14 @@ function loadState(){
   } catch(e){}
   return defaultState();
 }
-
+ 
 function saveState(){
   try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch(e){}
 }
-
+ 
 /* initialise state after functions are defined */
 var S = loadState();
-
+ 
 /* ════════════════════════════════════════════════
    ROUTER
 ════════════════════════════════════════════════ */
@@ -911,7 +1050,7 @@ function goto(name){
   window.scrollTo(0,0);
   setTimeout(initScratchCards, 80);
 }
-
+ 
 /* ════════════════════════════════════════════════
    LOVE METER
 ════════════════════════════════════════════════ */
@@ -924,14 +1063,14 @@ function setLove(v){
     S.love<25?icons[0]:S.love<55?icons[1]:S.love<85?icons[2]:icons[3];
   saveState();
 }
-
+ 
 /* ════════════════════════════════════════════════
    FROM ME
 ════════════════════════════════════════════════ */
 function addLetter(text){
   if(S.letterParts.indexOf(text)===-1){ S.letterParts.push(text); saveState(); }
 }
-
+ 
 function openFromMe(){
   var body = document.getElementById('fromme-body');
   body.innerHTML = S.letterParts.length===0
@@ -943,26 +1082,26 @@ function openFromMe(){
   document.getElementById('fromme-overlay').classList.add('open');
 }
 function closeFromMe(){ document.getElementById('fromme-overlay').classList.remove('open'); }
-
+ 
 /* ════════════════════════════════════════════════
    OUR WORLD
 ════════════════════════════════════════════════ */
 function openWorld() { document.getElementById('world-panel').classList.add('open');  document.getElementById('world-overlay').classList.add('open'); }
 function closeWorld(){ document.getElementById('world-panel').classList.remove('open'); document.getElementById('world-overlay').classList.remove('open'); }
-
+ 
 /* ════════════════════════════════════════════════
    COLOMBIAN MENU
 ════════════════════════════════════════════════ */
 function openColombian() { restoreMenuTicks(); document.getElementById('colombian-overlay').classList.add('open'); }
 function closeColombian(){ document.getElementById('colombian-overlay').classList.remove('open'); }
-
+ 
 function tickMenu(el, name){
   el.classList.toggle('ticked');
   S.menuTicked[name] = el.classList.contains('ticked');
   el.querySelector('.menu-check').textContent = S.menuTicked[name] ? '✓' : '';
   saveState();
 }
-
+ 
 function restoreMenuTicks(){
   /* run after overlay opens so DOM is ready */
   setTimeout(function(){
@@ -977,7 +1116,7 @@ function restoreMenuTicks(){
     });
   }, 20);
 }
-
+ 
 /* ════════════════════════════════════════════════
    DATES
 ════════════════════════════════════════════════ */
@@ -989,7 +1128,7 @@ function openDates() {
   }
 }
 function closeDates(){ document.getElementById('dates-overlay').style.display='none'; }
-
+ 
 /* ════════════════════════════════════════════════
    COMPLETION
 ════════════════════════════════════════════════ */
@@ -1013,7 +1152,7 @@ function showComplete(){
   }
 }
 function closeComplete(){ document.getElementById('complete-overlay').style.display='none'; }
-
+ 
 /* ════════════════════════════════════════════════
    SECRET RESET
 ════════════════════════════════════════════════ */
@@ -1035,7 +1174,7 @@ function confirmReset(){
   setLove(0);
   goto('hub');
 }
-
+ 
 /* ════════════════════════════════════════════════
    AUDIO ENGINE & RANDOM PLAYLIST
 ════════════════════════════════════════════════ */
@@ -1044,7 +1183,7 @@ var playlist = [
   'audio/rain-track-2.mp3'
 ];
 var currentTrack = Math.floor(Math.random() * playlist.length);
-
+ 
 function startAudio(){
   var a=document.getElementById('audio-ambient');
   if(a){
@@ -1066,21 +1205,22 @@ function playTaco(){ var a=document.getElementById('audio-taco'); if(a){a.curren
    DEV DIARY
 ════════════════════════════════════════════════ */
 function toggleDiary(id){ var e=document.getElementById(id); if(e) e.classList.toggle('open'); }
-
-
+ 
+ 
 /* ════════════════════════════════════════════════
    DARK GATE (With "show off" Flex Mode)
 ════════════════════════════════════════════════ */
 function checkDarkGate(){
   var val = document.getElementById('dark-pw').value.toLowerCase().trim();
   var msg = document.getElementById('dark-gate-msg');
-
+ 
   /* ── FLEX MODE ── */
   if (val === 'show off') {
     S.flexMode = true;
-    /* Only push 7 items (completely skipping 'roses') */
-    S.giftsUnlocked = ['greenbeans','redbeans','steak','wheels','bubbles','mist','story'];
+    /* demo first so it appears at top — sweets & diffuser unscratched so she can demo them */
+    S.giftsUnlocked = ['demo','greenbeans','redbeans','steak','sweets','diffuser','wheels','bubbles','mist','story'];
     S.scratchedDone = { greenbeans:true, redbeans:true, steak:true, wheels:true, bubbles:true, mist:true, story:true };
+    /* demo, sweets, diffuser intentionally NOT in scratchedDone — they'll have live scratch cards */
     S.steakUnlocked = true;
     S.love = 100;
     S.setupComplete = true;
@@ -1109,7 +1249,7 @@ function checkDarkGate(){
     }, 650);
     return;
   }
-
+ 
   /* ── NORMAL LOGIN ── */
   if(val===PW.gate){
     var gate = document.getElementById('dark-gate');
@@ -1133,7 +1273,7 @@ function checkDarkGate(){
     document.getElementById('dark-pw').focus();
   }
 }
-
+ 
 /* ════════════════════════════════════════════════
    GIFT PASSWORDS & CHEAT CODES
 ════════════════════════════════════════════════ */
@@ -1148,28 +1288,28 @@ PW_TO_KEY[PW.wheels]     = 'wheels';
 PW_TO_KEY[PW.bubbles]    = 'bubbles';
 PW_TO_KEY[PW.mist]       = 'mist';
 PW_TO_KEY[PW.story]      = 'story';
-
+ 
 var CHEAT_UNLOCK_ALL = 'masterkey';
 var CHEAT_REPLAY = 'replay';
-
+ 
 function checkGiftCode(){
   var val = document.getElementById('pw-gift').value.toLowerCase().trim();
   var msg = document.getElementById('pw-gift-msg');
   if(!val) return;
-
+ 
   /* ── PG MODE ── */
   if (val === 'leaveroomforjesus') {
      S.pgMode = true;
      applyPgMode(); 
      val = PW_TO_KEY[PW.roses] ? PW.roses : 'roses'; 
   }
-
+ 
   if (val === CHEAT_REPLAY) {
     document.getElementById('pw-gift').value='';
     showComplete();
     return;
   }
-
+ 
   /* ── DEV CHEAT ── */
   if (val === CHEAT_UNLOCK_ALL) {
     document.getElementById('pw-gift').value='';
@@ -1186,9 +1326,9 @@ function checkGiftCode(){
     setTimeout(showComplete, 600);
     return;
   }
-
+ 
   var giftKey = PW_TO_KEY[val]||null;
-
+ 
   /* ── STEAK LOGIC (Dates Tab + 8th Gift Card Fix) ── */
   if (giftKey === 'steak') {
     if (!S.steakUnlocked) {
@@ -1219,7 +1359,7 @@ function checkGiftCode(){
     }
     return;
   }
-
+ 
   /* ── NORMAL GIFTS ── */
   if(giftKey && S.giftsUnlocked.indexOf(giftKey)===-1){
     S.giftsUnlocked.push(giftKey);
@@ -1230,7 +1370,7 @@ function checkGiftCode(){
            S.letterParts.push(MASTER_LETTER[paragraphIndex]); 
        }
     }
-
+ 
     if(giftKey==='story') S.vignetteOpen=true;
     setLove(Math.round((S.giftsUnlocked.length/10)*100)); 
     saveState();
@@ -1258,7 +1398,7 @@ function checkGiftCode(){
    VERIFY — live typing
 ════════════════════════════════════════════════ */
 function playTaco(){ var a=document.getElementById('audio-taco'); if(a){a.currentTime=0;a.play().catch(function(){});} }
-
+ 
 /* ════════════════════════════════════════════════
    EASTER EGG: LOVE METER OVERLOAD (BOMB ENGINE)
 ════════════════════════════════════════════════ */
@@ -1284,7 +1424,7 @@ function tapHeart() {
         s.innerHTML = '@keyframes bombFly { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(-130vh) scale(1.5) rotate(360deg); opacity: 0; } }';
         document.head.appendChild(s);
     }
-
+ 
     /* iPhone safe emojis */
     var emojis = ['🌮','🏎️','🦊','🤪','💕','🎮','🇨🇴']; 
     
@@ -1294,21 +1434,21 @@ function tapHeart() {
       
       var size = (1.5 + Math.random() * 2.5) + 'rem'; 
       var left = (Math.random() * 100) + 'vw';
-      var duration = (3 + Math.random() * 3) + 's'; 
-      var delay = (Math.random() * 1.5) + 's'; 
+      var duration = (6 + Math.random() * 4) + 's'; 
+      var delay = (Math.random() * 3) + 's'; 
       
       h.style.cssText = 'position:absolute;font-size:'+size+';left:'+left+';bottom:-100px;'
-        +'animation: bombFly '+duration+' cubic-bezier(0.2, 0.6, 0.4, 1) '+delay+' forwards;';
+        +'animation: bombFly '+duration+' linear '+delay+' forwards;';
       
       bombWrap.appendChild(h);
     }
     
     setTimeout(function(){
        if(bombWrap.parentNode) bombWrap.parentNode.removeChild(bombWrap);
-    }, 7000);
+    }, 12000);
   }
 }
-
+ 
 function checkVerifyInput(inputEl, qIndex){
   var val      = inputEl.value.toLowerCase().trim();
   var accepted = VERIFY_QS[qIndex].a;
@@ -1339,12 +1479,12 @@ function checkVerifyInput(inputEl, qIndex){
   if(area)  area.style.display  = allOk ? 'block' : 'none';
   if(popup) popup.style.display = allOk ? 'block' : 'none';
 }
-
+ 
 /* YES / NO */
 var yesStage=0;
 var yesTexts=['Yes! 🎀','Please? 🥺','Pretty please? 💕','I\'ll give you a kiss! 😘'];
 var yesPad=[14,18,24,32], yesPx=[34,44,60,80], yesFs=[1,1.3,1.7,2.1];
-
+ 
 function pressNo(){
   playClick();
   yesStage=Math.min(yesStage+1,yesTexts.length-1);
@@ -1359,7 +1499,7 @@ function pressNo(){
   yb.style.padding=yesPad[yesStage]+'px '+yesPx[yesStage]+'px';
 }
 function pressYes(){ playClick(); yesStage=0; S.setupComplete = true; saveState(); goto('hub'); }
-
+ 
 /* ════════════════════════════════════════════════
    SCRATCH CARD
    — threshold: 75% (more scratching required)
@@ -1374,19 +1514,19 @@ function initScratchCards(){
   document.querySelectorAll('.scratch-wrap').forEach(function(wrap){
     if(wrap.dataset.init) return;
     wrap.dataset.init='1';
-
+ 
     var key    = wrap.dataset.key;
     var canvas = wrap.querySelector('.scratch-canvas');
-
+ 
     if(key && S.scratchedDone[key]){
       if(canvas) canvas.parentNode.removeChild(canvas);
       wrap.classList.add('done');
       return;
     }
-
+ 
     if(!canvas) return;
     var prize = wrap.querySelector('.scratch-prize');
-
+ 
     function sizeCanvas(){
       var w = wrap.offsetWidth;
       var h = prize.offsetHeight||120;
@@ -1396,11 +1536,11 @@ function initScratchCards(){
       canvas.style.height = h+'px';
       return {w:w, h:h};
     }
-
+ 
     var dim = sizeCanvas();
     var ctx = canvas.getContext('2d');
     ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
-
+ 
     ctx.fillStyle='#b898aa';
     ctx.fillRect(0,0,dim.w,dim.h);
     ctx.fillStyle='rgba(255,255,255,.22)';
@@ -1411,7 +1551,7 @@ function initScratchCards(){
       }
     }
     ctx.globalCompositeOperation='destination-out';
-
+ 
     var painting = false;
     var totalArea = dim.w * dim.h;
     var cleared   = 0;
@@ -1420,13 +1560,13 @@ function initScratchCards(){
     /* Track previous mouse position to stop the wiggle exploit */
     var lastX = -999; 
     var lastY = -999;
-
+ 
     function getPos(e){
       var r=canvas.getBoundingClientRect();
       if(e.touches) return {x:e.touches[0].clientX-r.left, y:e.touches[0].clientY-r.top};
       return {x:e.clientX-r.left, y:e.clientY-r.top};
     }
-
+ 
     function scratch(x,y){
       var radius = Math.min(dim.w, dim.h) * 0.08; /* Slightly smaller brush */
       
@@ -1436,7 +1576,7 @@ function initScratchCards(){
       
       lastX = x; 
       lastY = y;
-
+ 
       ctx.beginPath();
       ctx.arc(x,y,radius,0,Math.PI*2);
       ctx.fill();
@@ -1458,7 +1598,7 @@ function initScratchCards(){
         }
       }
     }
-
+ 
     canvas.addEventListener('mousedown', function(e){ painting=true; var p=getPos(e); scratch(p.x,p.y); });
     canvas.addEventListener('mousemove', function(e){ if(!painting)return; var p=getPos(e); scratch(p.x,p.y); });
     canvas.addEventListener('mouseup',   function(){ painting=false; });
@@ -1468,7 +1608,7 @@ function initScratchCards(){
     canvas.addEventListener('touchend',  function(){ painting=false; });
   });
 }
-
+ 
 /* ════════════════════════════════════════════════
    FLOATING HEARTS
 ════════════════════════════════════════════════ */
@@ -1487,7 +1627,7 @@ function initScratchCards(){
     bg.appendChild(h);
   }
 })();
-
+ 
 /* ════════════════════════════════════════════════
    SCRATCH CARD HTML HELPER
    data-key links canvas to S.scratchedDone
@@ -1504,12 +1644,12 @@ function scratchCardHTML(giftKey){
     +(S.scratchedDone[giftKey]?'':'<canvas class="scratch-canvas"></canvas>')
     +'</div>';
 }
-
+ 
 /* ════════════════════════════════════════════════
    SCREENS
 ════════════════════════════════════════════════ */
 var SCREENS = {
-
+ 
   /* SPLASH */
   splash:function(){ return ''
     
@@ -1522,7 +1662,7 @@ var SCREENS = {
     +'<br><button class="btn" onclick="playClick();goto(\'verify\');">Let\'s go 💗</button>'
     +'</div>';
   },
-
+ 
   /* VERIFY */
   verify:function(){
     var qs = VERIFY_QS.map(function(q,i){
@@ -1554,18 +1694,23 @@ var SCREENS = {
       +'<button id="yes-btn" onclick="pressYes()">Yes! 🎀</button>'
       +'</div>';
   },
-
+ 
  
 /* HUB */
   hub:function(){
     var slots='';
-    /* If she used Flex Mode, shrink the max slots to 7 so it doesn't leave a blank space */
-    var totalSlots = S.flexMode ? 9 : 10; 
+    /* flex mode: 10 slots (demo + 9 real gifts, no roses) */
+    var totalSlots = S.flexMode ? 10 : 10; 
     
     for(var i=0;i<totalSlots;i++){
       var key  = S.giftsUnlocked[i];
       var gift = key ? GIFTS[key] : null;
-      if(gift){
+      if(gift && key === 'demo'){
+        slots+='<div class="gift-slot filled">'
+          +'<p style="font-weight:700;margin-bottom:8px;">✨ Try scratching this one!</p>'
+          +scratchCardHTML(key)
+          +'</div>';
+      } else if(gift){
         slots+='<div class="gift-slot filled">'
           +'<p style="font-weight:700;margin-bottom:8px;">'+gift.icon+' ???</p>'
           +scratchCardHTML(key)
@@ -1604,8 +1749,9 @@ var SCREENS = {
       +'<div class="center"><button class="btn" onclick="checkGiftCode()">Unlock 🔑</button></div>'
       +resetBtn;
   }
-
+ 
 }; /* end SCREENS */
 </script>
 </body>
 </html>
+ 
