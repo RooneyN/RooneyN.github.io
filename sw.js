@@ -5,8 +5,8 @@ const ASSETS = [
   './manifest.json',
   './images/icon-192.png',
   './images/icon-512.png',
-  './images/us.jpg',
-  './images/dani-photo.jpg',
+
+
   './audio/rain-track-1.mp3',
   './audio/rain-track-2.mp3',
   './audio/zelda-chest.mp3',

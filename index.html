@@ -389,8 +389,7 @@ canvas.scratch-canvas{
   display:none;position:fixed;inset:0;z-index:1000;
   align-items:center;justify-content:center;
   flex-direction:column;
-  background-image:url("us.jpg");
-  background-size:cover;background-position:center;
+  background:radial-gradient(ellipse at 50% 40%, #2a1020 0%, #0d0a0d 70%);
   padding:32px 24px;
   font-family:'Helvetica Neue',Arial,sans-serif;
 }
@@ -440,8 +439,7 @@ canvas.scratch-canvas{
      INTRO SPLASH — shown before password gate
 ═══════════════════════════════════════════ -->
 <div id="intro-screen" class="visible">
-  <!-- FILL IN: swap dani-photo.jpg for a real photo of you two -->
-  <img src="dani-photo.jpg" class="intro-photo" alt="" onerror="this.style.display='none'">
+  
   <h1>Happy Birthday Dani ❤️</h1>
   <p>Something I made just for you 🌸</p>
   <button onclick="startExperience()">Enter</button>
@@ -1491,9 +1489,9 @@ var SCREENS = {
 
   /* SPLASH */
   splash:function(){ return ''
-    /* FILL IN: swap us.jpg for your favourite photo of you two */
+    
     +'<div class="center">'
-    +'<img src="us.jpg" class="splash-gif" alt="" onerror="this.style.display=\'none\'">'
+    
     +'<h1 class="script" style="margin-top:16px;">Happy Birthday</h1>'
     /* FILL IN: her name */
     +'<h2 class="script" style="margin-top:4px;">[Her Name] 💕</h2>'
