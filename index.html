@@ -797,61 +797,33 @@ if('serviceWorker' in navigator){
    PASSWORDS  ← FILL THESE IN
 ════════════════════════════════════════════════ */
 var PW = {
-  gate:       'birthday',      /* dark gate entry                */
-  greenbeans: 'greenbeans',    /* ☕ Coffee money                */
-  redbeans:   'redbeans',      /* 🃏 Pokémon cards               */
-  roses:      'roses',         /* 🎀 Love Honey box              */
-  steak:      'steak',         /* 🥩 Steak dinner                */
-  wheels:     'wheels',        /* 🚗 Uber home                   */
-  bubbles:    'bubbles',       /* 🧃 Sweet drink                 */
-  mist:       'mist',          /* 💨 Hair mister                 */
-  story:      'story'          /* 📖 Vignette unlock             */
+  gate:       'birthday',      
+  greenbeans: 'greenbeans',    
+  redbeans:   'redbeans',      
+  roses:      'roses',         
+  steak:      'corte',         /* 🥩 Steak (Spanish sticky note answer) */
+  sweets:     'sweets',        /* 🍬 NEW: The Sweets */
+  diffuser:   'diffuser',      /* 🍫 NEW: Chocolate Diffuser */
+  wheels:     'wheels',        
+  bubbles:    'bubbles',       
+  mist:       'mist',          
+  story:      'story'          
 };
 
 /* ════════════════════════════════════════════════
    GIFTS  ← FILL IN text & letterPart for each
 ════════════════════════════════════════════════ */
 var GIFTS = {
-  greenbeans:{
-    icon:'☕', title:'Coffee on me',
-    text:'[FILL IN: coffee gift details / how you\'re sending the money ☕]',
-    letterPart:'[FILL IN: opening paragraph of your letter]'
-  },
-  redbeans:{
-    icon:'🃏', title:'Pokémon cards!',
-    text:'[FILL IN: Pokémon card details — waiting at home / which pack etc]',
-    letterPart:'[FILL IN: second paragraph of your letter]'
-  },
-  roses:{
-    icon:'🎀', title:'A little something special',
-    text:'[FILL IN: Love Honey box details]',
-    letterPart:'[FILL IN: third paragraph]'
-  },
-  steak:{
-    icon:'🥩', title:'Steak night',
-    text:'[FILL IN: steak dinner voucher / restaurant / how it works]',
-    letterPart:'[FILL IN: fourth paragraph]'
-  },
-  wheels:{
-    icon:'🚗', title:'Uber home sorted',
-    text:'[FILL IN: Uber money details — how you\'re sending it]',
-    letterPart:'[FILL IN: fifth paragraph]'
-  },
-  bubbles:{
-    icon:'🧃', title:'Your favourite drink',
-    text:'[FILL IN: her favourite drink and where to get it]',
-    letterPart:'[FILL IN: sixth paragraph]'
-  },
-  mist:{
-    icon:'💨', title:'Hair mister',
-    text:'[FILL IN: hair mister details — waiting at home etc]',
-    letterPart:'[FILL IN: seventh paragraph]'
-  },
-  story:{
-    icon:'📖', title:'Something just for you',
-    text:'Open "From Me" — there\'s something waiting at the bottom 💕',
-    letterPart:'[FILL IN: closing paragraph of your letter]'
-  }
+  greenbeans:{ icon:'☕', title:'Coffee on me', text:'[FILL IN]', letterPart:'[FILL IN: para 1]' },
+  redbeans:{ icon:'🃏', title:'Pokémon cards!', text:'[FILL IN]', letterPart:'[FILL IN: para 2]' },
+  roses:{ icon:'🎀', title:'A little something special', text:'[FILL IN]', letterPart:'[FILL IN: para 3]' },
+  steak:{ icon:'🥩', title:'Steak night', text:'[FILL IN]', letterPart:'[FILL IN: para 4]' },
+  sweets:{ icon:'🍬', title:'A sugar rush', text:'[FILL IN]', letterPart:'[FILL IN: para 5]' },
+  diffuser:{ icon:'🍫', title:'Chocolate room diffuser', text:'[FILL IN]', letterPart:'[FILL IN: para 6]' },
+  wheels:{ icon:'🚗', title:'Uber home sorted', text:'[FILL IN]', letterPart:'[FILL IN: para 7]' },
+  bubbles:{ icon:'🧃', title:'Your favourite drink', text:'[FILL IN]', letterPart:'[FILL IN: para 8]' },
+  mist:{ icon:'💨', title:'Hair mister', text:'[FILL IN]', letterPart:'[FILL IN: para 9]' },
+  story:{ icon:'📖', title:'Something just for you', text:'Open "From Me" — there\'s something waiting 💕', letterPart:'[FILL IN: para 10]' }
 };
 
 /* ════════════════════════════════════════════════
@@ -866,7 +838,7 @@ var VERIFY_QS = [
   { q:'What game brought us together?', a:['fortnite'] },
   { q:'What street was our first apartment?', a:['duke street','duke st','duke'] },
   { q:'Whats our stim from taco bell?', a:['live mas'] },
-  { q:'What\'s Nialls favourite taste?', a:['me','my pussy','my vagina','dani','his girlfriend'] }
+  { q:'What\'s Nialls favourite taste?', a:['me','my pussy','my vagina','dani','his girlfriend','cake'] }
 ];
 
 /* ════════════════════════════════════════════════
@@ -901,7 +873,10 @@ var MASTER_LETTER = [
   "Paragraph 4: [FILL IN]",
   "Paragraph 5: [FILL IN]",
   "Paragraph 6: [FILL IN]",
-  "Paragraph 7: [FILL IN]"
+  "Paragraph 7: [FILL IN]",
+  "Paragraph 8: [FILL IN]",
+  "Paragraph 9: [FILL IN]",
+  "Paragraph 10: [FILL IN]"
 ];
 
 function loadState(){
@@ -1305,7 +1280,7 @@ var heartTaps = 0;
 function tapHeart() {
   heartTaps++;
   if (heartTaps >= 7) {
-    heartTaps = 0; /* Resets so you can trigger it multiple times! */
+    heartTaps = 0; 
     playUnlock();
     
     document.getElementById('meter-pct').textContent = '999%';
@@ -1313,31 +1288,28 @@ function tapHeart() {
     document.getElementById('meter-fill').style.background = '#ff2a5f'; 
     document.getElementById('meter-icon').textContent = '💖';
     
-    /* 1. Create a special invisible overlay that sits ON TOP of everything (z-index 9999) */
     var bombWrap = document.createElement('div');
     bombWrap.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden;';
     document.body.appendChild(bombWrap);
     
-    /* 2. Add the custom fast-explosion keyframes if they don't exist yet */
     if(!document.getElementById('bomb-style')) {
         var s = document.createElement('style');
         s.id = 'bomb-style';
-        /* This makes them fully opaque, shoot up fast, and spin */
         s.innerHTML = '@keyframes bombFly { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(-130vh) scale(1.5) rotate(360deg); opacity: 0; } }';
         document.head.appendChild(s);
     }
 
+    /* iPhone safe emojis */
     var emojis = ['🌮','🏎️','🦊','🤪','💕','🎮','🇨🇴']; 
     
-    /* 3. Spawn 65 emojis instantly */
     for(var i=0; i<65; i++){
       var h = document.createElement('span');
       h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
       
-      var size = (1.5 + Math.random() * 2.5) + 'rem'; /* Much bigger */
+      var size = (1.5 + Math.random() * 2.5) + 'rem'; 
       var left = (Math.random() * 100) + 'vw';
-      var duration = (0.8 + Math.random() * 1.5) + 's'; /* Shoots up much faster */
-      var delay = (Math.random() * 0.15) + 's'; /* Almost zero delay */
+      var duration = (0.8 + Math.random() * 1.5) + 's'; 
+      var delay = (Math.random() * 0.15) + 's'; 
       
       h.style.cssText = 'position:absolute;font-size:'+size+';left:'+left+';bottom:-100px;'
         +'animation: bombFly '+duration+' cubic-bezier(0.25, 1, 0.5, 1) '+delay+' forwards;';
@@ -1345,7 +1317,6 @@ function tapHeart() {
       bombWrap.appendChild(h);
     }
     
-    /* 4. Clean up the DOM to prevent the phone from lagging */
     setTimeout(function(){
        if(bombWrap.parentNode) bombWrap.parentNode.removeChild(bombWrap);
     }, 3500);
