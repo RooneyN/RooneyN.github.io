@@ -1299,12 +1299,13 @@ function checkGiftCode(){
 function playTaco(){ var a=document.getElementById('audio-taco'); if(a){a.currentTime=0;a.play().catch(function(){});} }
 
 /* ════════════════════════════════════════════════
-   EASTER EGG: LOVE METER OVERLOAD (7 TAPS)
+   EASTER EGG: LOVE METER OVERLOAD (BOMB ENGINE)
 ════════════════════════════════════════════════ */
 var heartTaps = 0;
 function tapHeart() {
   heartTaps++;
-  if (heartTaps === 7) {
+  if (heartTaps >= 7) {
+    heartTaps = 0; /* Resets so you can trigger it multiple times! */
     playUnlock();
     
     document.getElementById('meter-pct').textContent = '999%';
@@ -1312,23 +1313,42 @@ function tapHeart() {
     document.getElementById('meter-fill').style.background = '#ff2a5f'; 
     document.getElementById('meter-icon').textContent = '💖';
     
-    var emojis = ['🌮','🏎️','🦊','🤪','💕','🎮','🇨🇴']; 
-    var bg = document.getElementById('hearts-bg');
+    /* 1. Create a special invisible overlay that sits ON TOP of everything (z-index 9999) */
+    var bombWrap = document.createElement('div');
+    bombWrap.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden;';
+    document.body.appendChild(bombWrap);
     
-    for(var i=0; i<45; i++){
+    /* 2. Add the custom fast-explosion keyframes if they don't exist yet */
+    if(!document.getElementById('bomb-style')) {
+        var s = document.createElement('style');
+        s.id = 'bomb-style';
+        /* This makes them fully opaque, shoot up fast, and spin */
+        s.innerHTML = '@keyframes bombFly { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(-130vh) scale(1.5) rotate(360deg); opacity: 0; } }';
+        document.head.appendChild(s);
+    }
+
+    var emojis = ['🌮','🏎️','🦊','🤪','💕','🎮','🇨🇴']; 
+    
+    /* 3. Spawn 65 emojis instantly */
+    for(var i=0; i<65; i++){
       var h = document.createElement('span');
       h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-      var size = (1.2 + Math.random() * 1.5) + 'rem';
+      
+      var size = (1.5 + Math.random() * 2.5) + 'rem'; /* Much bigger */
       var left = (Math.random() * 100) + 'vw';
-      var duration = (2.5 + Math.random() * 2) + 's';
-      var delay = (Math.random() * 0.5) + 's';
+      var duration = (0.8 + Math.random() * 1.5) + 's'; /* Shoots up much faster */
+      var delay = (Math.random() * 0.15) + 's'; /* Almost zero delay */
       
-      h.style.cssText = 'position:absolute;font-size:'+size+';left:'+left+';bottom:-50px;'
-        +'animation:floatUp '+duration+' linear '+delay+' forwards;z-index:999;';
+      h.style.cssText = 'position:absolute;font-size:'+size+';left:'+left+';bottom:-100px;'
+        +'animation: bombFly '+duration+' cubic-bezier(0.25, 1, 0.5, 1) '+delay+' forwards;';
       
-      bg.appendChild(h);
-      setTimeout((function(el){ return function(){ if(el.parentNode) el.parentNode.removeChild(el); }; })(h), 5000);
+      bombWrap.appendChild(h);
     }
+    
+    /* 4. Clean up the DOM to prevent the phone from lagging */
+    setTimeout(function(){
+       if(bombWrap.parentNode) bombWrap.parentNode.removeChild(bombWrap);
+    }, 3500);
   }
 }
 
