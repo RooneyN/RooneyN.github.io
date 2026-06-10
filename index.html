@@ -27,7 +27,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px}
 body{
-  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-family:Arial,sans-serif;
   background:var(--bg);color:var(--text);
   min-height:100vh;overflow-x:hidden;
   overscroll-behavior-y:none;          /* no rubber-band bounce */
@@ -43,7 +43,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 #dark-gate{
   display:none;position:fixed;inset:0;z-index:999;
   flex-direction:column;align-items:center;justify-content:center;
-  padding:32px 24px;font-family:'Helvetica Neue',Arial,sans-serif;
+  padding:32px 24px;font-family:Arial,sans-serif;
   /* radial glow + grain */
   background:
     radial-gradient(ellipse at 50% 40%, #1e1218 0%, #0d0a0d 70%);
@@ -64,7 +64,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 #dark-gate input{
   width:100%;max-width:280px;background:transparent;border:none;
   border-bottom:1px solid rgba(255,255,255,.16);
-  color:rgba(255,255,255,.65);font-family:'Helvetica Neue',Arial,sans-serif;
+  color:rgba(255,255,255,.65);font-family:Arial,sans-serif;
   font-size:1rem;letter-spacing:4px;text-align:center;
   padding:10px 4px;outline:none;caret-color:rgba(255,255,255,.45);
   transition:border-color .2s;display:block;margin:0 auto 10px;
@@ -76,7 +76,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 #dark-gate button{
   background:transparent;border:1px solid rgba(255,255,255,.2);
   border-radius:999px;color:rgba(255,255,255,.5);
-  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.82rem;
+  font-family:Arial,sans-serif;font-weight:700;font-size:.82rem;
   letter-spacing:2.5px;text-transform:uppercase;padding:12px 36px;
   cursor:pointer;transition:border-color .2s,color .2s;
 }
@@ -115,7 +115,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 .nav-btn{
   background:var(--pl);border:none;border-radius:999px;
   padding:12px 16px;               /* bigger touch targets */
-  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.78rem;
+  font-family:Arial,sans-serif;font-weight:700;font-size:.78rem;
   color:var(--text);cursor:pointer;transition:background .18s,transform .1s;
   white-space:nowrap;
 }
@@ -151,7 +151,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
   display:inline-block;
   background:linear-gradient(135deg,var(--pink),var(--pd));
   color:#fff;border:none;border-radius:999px;
-  padding:14px 34px;font-family:'Helvetica Neue',Arial,sans-serif;
+  padding:14px 34px;font-family:Arial,sans-serif;
   font-weight:700;font-size:1rem;cursor:pointer;
   box-shadow:0 4px 16px rgba(224,90,138,.28);
   transition:transform .15s,box-shadow .15s;
@@ -167,7 +167,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 .pw-wrap{margin:14px 0}
 .pw-input{
   width:100%;border:2px solid var(--pl);border-radius:999px;
-  padding:13px 20px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:1rem;
+  padding:13px 20px;font-family:Arial,sans-serif;font-size:1rem;
   color:var(--text);background:var(--bg);outline:none;
   text-align:center;letter-spacing:2px;
   transition:border-color .2s;display:block;margin-bottom:8px;
@@ -181,14 +181,14 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 #no-btn{
   display:inline-block;background:var(--pl);color:var(--soft);
   border:none;border-radius:999px;padding:14px 32px;
-  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:1rem;
+  font-family:Arial,sans-serif;font-weight:700;font-size:1rem;
   cursor:pointer;transition:all .35s ease;margin:5px 4px;
 }
 #yes-btn{
   display:inline-block;
   background:linear-gradient(135deg,var(--pink),var(--pd));
   color:#fff;border:none;border-radius:999px;padding:14px 34px;
-  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:1rem;
+  font-family:Arial,sans-serif;font-weight:700;font-size:1rem;
   cursor:pointer;box-shadow:0 4px 16px rgba(224,90,138,.28);
   transition:all .4s cubic-bezier(.4,2,.4,1);margin:5px 4px;
 }
@@ -203,7 +203,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 .verify-q{font-weight:700;font-size:.93rem;margin-bottom:8px}
 .verify-input{
   width:100%;border:1.5px solid var(--pl);border-radius:999px;
-  padding:10px 16px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:.93rem;
+  padding:10px 16px;font-family:Arial,sans-serif;font-size:.93rem;
   color:var(--text);background:#fff;outline:none;transition:border-color .2s;
   user-select:text;-webkit-user-select:text;
 }
@@ -311,7 +311,7 @@ canvas.scratch-canvas{
 }
 #vignette-content.open{display:block;animation:fadeUp .5s ease both}
 .vignette-text{
-  font-family:'Helvetica Neue',Arial,sans-serif;font-size:1.05rem;font-weight:600;
+  font-family:Arial,sans-serif;font-size:1.05rem;font-weight:600;
   line-height:1.9;color:var(--text);
   user-select:text;-webkit-user-select:text;
 }
@@ -391,7 +391,7 @@ canvas.scratch-canvas{
   flex-direction:column;
   background:radial-gradient(ellipse at 50% 40%, #2a1020 0%, #0d0a0d 70%);
   padding:32px 24px;
-  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-family:Arial,sans-serif;
 }
 #intro-screen.visible{display:flex}
 #intro-screen::before{
@@ -421,7 +421,7 @@ canvas.scratch-canvas{
 #intro-screen button{
   background:transparent;border:1px solid rgba(255,255,255,.3);
   border-radius:999px;color:rgba(255,255,255,.7);
-  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;
+  font-family:Arial,sans-serif;font-weight:700;
   font-size:.9rem;letter-spacing:2.5px;
   text-transform:uppercase;padding:14px 44px;
   cursor:pointer;transition:border-color .2s,color .2s,background .2s;
@@ -630,12 +630,12 @@ canvas.scratch-canvas{
     </p>
     <button onclick="confirmReset()" style="
       background:#c0392b;color:#fff;border:none;border-radius:999px;
-      padding:12px 28px;font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;
+      padding:12px 28px;font-family:Arial,sans-serif;font-weight:700;
       font-size:.9rem;cursor:pointer;margin-right:8px;
     ">Yes, reset</button>
     <button onclick="document.getElementById('reset-overlay').style.display='none'" style="
       background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);
-      border-radius:999px;padding:12px 28px;font-family:'Helvetica Neue',Arial,sans-serif;
+      border-radius:999px;padding:12px 28px;font-family:Arial,sans-serif;
       font-weight:700;font-size:.9rem;cursor:pointer;
     ">Cancel</button>
   </div>
@@ -715,7 +715,7 @@ canvas.scratch-canvas{
     <button onclick="closeComplete()" style="
       background:transparent;border:1px solid rgba(255,133,179,.45);
       border-radius:999px;color:rgba(255,255,255,.7);
-      font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;
+      font-family:Arial,sans-serif;font-weight:700;
       font-size:.88rem;letter-spacing:2px;text-transform:uppercase;
       padding:13px 40px;cursor:pointer;
       transition:border-color .2s,color .2s;
@@ -1042,7 +1042,7 @@ function confirmReset(){
   var fb=document.createElement('div');
   fb.style.cssText='position:fixed;top:60px;left:50%;transform:translateX(-50%);'
     +'background:#2d7a4a;color:#fff;padding:10px 22px;border-radius:999px;'
-    +'font-family:'Helvetica Neue',Arial,sans-serif;font-size:.85rem;font-weight:700;'
+    +'font-family:Arial,sans-serif;font-size:.85rem;font-weight:700;'
     +'z-index:600;opacity:1;transition:opacity .5s ease;pointer-events:none;';
   fb.textContent='Progress cleared ✓';
   document.body.appendChild(fb);
@@ -1554,7 +1554,7 @@ var SCREENS = {
       +'position:absolute;bottom:10px;right:12px;'
       +'background:transparent;border:none;cursor:pointer;'
       +'opacity:.06;font-size:.6rem;color:var(--soft);'
-      +'font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:1px;'
+      +'font-family:Arial,sans-serif;letter-spacing:1px;'
       +'transition:opacity .2s;padding:4px 6px;border-radius:6px;'
       +'" onmouseenter="this.style.opacity=\'.35\'" onmouseleave="this.style.opacity=\'.06\'"'
       +' ontouchstart="this.style.opacity=\'.35\'" ontouchend="this.style.opacity=\'.06\'">⚙</button>';
