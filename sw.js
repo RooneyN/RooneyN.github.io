@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bday-hunt-v1';
+const CACHE_NAME = 'bday-hunt-v2';
 const ASSETS = [
   './',
   './index.html',
