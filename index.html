@@ -321,6 +321,133 @@ canvas.scratch-canvas{
   user-select:text;-webkit-user-select:text;
 }
 
+/* ── STORY BOOK ──────────────────────────────── */
+#book-overlay{
+  display:none;position:fixed;inset:0;z-index:400;
+  background:rgba(90,45,74,.38);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:20px;
+}
+#book-overlay.open{display:flex}
+
+#book-wrap{
+  position:relative;width:100%;max-width:440px;
+  animation:bookOpen .35s cubic-bezier(.4,2,.4,1) both;
+}
+@keyframes bookOpen{
+  from{opacity:0;transform:scale(.92) translateY(16px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+#book-inner{
+  background:var(--card);
+  border-radius:var(--r);
+  box-shadow:var(--shadow),0 0 0 1px var(--pl);
+  overflow:hidden;
+  position:relative;
+}
+
+/* delicate rule across the top */
+#book-header{
+  padding:20px 22px 14px;
+  border-bottom:1px solid var(--pl);
+  display:flex;align-items:center;justify-content:space-between;
+}
+#book-title-text{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:1.05rem;font-style:italic;
+  color:var(--pd);letter-spacing:.02em;
+}
+#book-close-btn{
+  background:var(--pl);border:none;border-radius:999px;
+  width:32px;height:32px;font-size:.9rem;
+  color:var(--soft);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .18s;flex-shrink:0;
+}
+#book-close-btn:hover{background:var(--pink);color:#fff}
+
+/* pages */
+#book-pages{
+  display:flex;min-height:300px;position:relative;
+}
+/* centre rule acting as spine */
+#book-pages::after{
+  content:'';position:absolute;
+  left:50%;top:12px;bottom:12px;
+  width:1px;background:var(--pl);
+  pointer-events:none;
+}
+.book-page{
+  flex:1;padding:20px 18px 36px;
+  position:relative;min-height:300px;
+}
+
+.book-page-text{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:1.05rem;line-height:1.85;
+  color:var(--text);
+  white-space:pre-wrap;
+  word-break:break-word;
+  user-select:text;-webkit-user-select:text;
+}
+
+.book-page-num{
+  position:absolute;bottom:14px;
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:.78rem;font-style:italic;color:var(--soft);
+}
+.book-page:first-child .book-page-num{right:16px}
+.book-page:last-child  .book-page-num{left:16px}
+
+/* nav */
+#book-nav{
+  border-top:1px solid var(--pl);
+  padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:8px;
+}
+.book-nav-btn{
+  background:var(--pl);border:none;border-radius:999px;
+  color:var(--text);font-family:'EB Garamond',Georgia,serif;
+  font-size:.93rem;font-style:italic;
+  padding:8px 20px;cursor:pointer;
+  transition:background .18s,transform .1s;
+  user-select:none;-webkit-user-select:none;
+}
+.book-nav-btn:hover{background:var(--pink);color:#fff}
+.book-nav-btn:active{transform:scale(.95)}
+.book-nav-btn:disabled{opacity:.35;cursor:default;background:var(--pl)}
+.book-nav-btn:disabled:hover{background:var(--pl);color:var(--text)}
+
+#book-page-indicator{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:.82rem;font-style:italic;
+  color:var(--soft);text-align:center;flex:1;
+}
+
+/* tap hint */
+.book-tap-hint{
+  text-align:center;font-family:'EB Garamond',Georgia,serif;
+  font-size:.8rem;font-style:italic;
+  color:var(--soft);margin-top:10px;opacity:.8;
+}
+
+/* open-book button in From Me panel */
+#vignette-book-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--pink),var(--pd));
+  color:#fff;border:none;border-radius:999px;
+  padding:14px 30px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(224,90,138,.28);
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:1.1rem;font-style:italic;
+  margin-top:10px;
+  transition:transform .15s,box-shadow .15s;
+}
+#vignette-book-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,90,138,.38)}
+#vignette-book-btn:active{transform:scale(.96)}
+#vignette-book-btn .book-icon{font-size:1.25rem}
+
 /* ── OUR WORLD ───────────────────────────────── */
 #world-overlay{display:none;position:fixed;inset:0;background:rgba(90,45,74,.2);z-index:200}
 #world-overlay.open{display:block}
@@ -532,9 +659,11 @@ canvas.scratch-canvas{
     </div>
     <div id="vignette-content">
       <p class="soft" style="font-size:.8rem;margin-bottom:12px;">✨ Unlocked just for you</p>
-      <!-- FILL IN: your full vignette / story -->
-      <div class="vignette-text" id="vignette-text">
-        [FILL IN — your vignette. Write as much as you want. Use &lt;br&gt;&lt;br&gt; for paragraph breaks.]
+      <div style="text-align:center;padding:8px 0 4px;">
+        <button id="vignette-book-btn" onclick="openBook()">
+          <span class="book-icon">📖</span> Read My Story
+        </button>
+        <p class="soft" style="font-size:.75rem;margin-top:10px;letter-spacing:.5px;">1,347 words — written just for you 💕</p>
       </div>
     </div>
   </div>
@@ -731,6 +860,34 @@ canvas.scratch-canvas{
   </div>
 </div>
 
+
+<!-- MINECRAFT BOOK OVERLAY -->
+<div id="book-overlay">
+  <div id="book-wrap">
+    <div id="book-inner">
+      <div id="book-header">
+        <span id="book-title-text">✨ Written for you</span>
+        <button id="book-close-btn" onclick="closeBook()">✕</button>
+      </div>
+      <div id="book-pages">
+        <div class="book-page" id="book-left-page">
+          <div class="book-page-text" id="book-left-text"></div>
+          <span class="book-page-num" id="book-left-num"></span>
+        </div>
+        <div class="book-page" id="book-right-page">
+          <div class="book-page-text" id="book-right-text"></div>
+          <span class="book-page-num" id="book-right-num"></span>
+        </div>
+      </div>
+      <div id="book-nav">
+        <button class="book-nav-btn" id="book-prev" onclick="bookTurnPage(-1)">← back</button>
+        <span id="book-page-indicator"></span>
+        <button class="book-nav-btn" id="book-next" onclick="bookTurnPage(1)">next →</button>
+      </div>
+    </div>
+    <p class="book-tap-hint">tap either page to turn 🌸</p>
+  </div>
+</div>
 
 <!-- AUDIO -->
 <audio id="audio-ambient"></audio>
@@ -1470,6 +1627,103 @@ function initScratchCards(){
     canvas.addEventListener('touchend',  function(){ painting=false; });
   });
 }
+
+/* ════════════════════════════════════════════════
+   MINECRAFT BOOK
+   — VIGNETTE_PAGES: fill in your story pages here.
+     Each string is one "spread" (left + right page).
+     Split with the ‖ character to separate left|right.
+     Or just use single strings — the engine auto-splits.
+════════════════════════════════════════════════ */
+
+/* ── PUT YOUR VIGNETTE TEXT HERE ──
+   Each item in this array = one page (or one spread).
+   Use \n\n for paragraph breaks within a page.
+   The engine will pair them up into left/right spreads automatically.
+   ──────────────────────────────── */
+var VIGNETTE_PAGES = [
+  /* Page 1 */
+  "[FILL IN — your vignette, page 1. This is the left page of the first spread.]",
+  /* Page 2 */
+  "[FILL IN — page 2. This pairs with page 1 on the right side.]",
+  /* Page 3 */
+  "[FILL IN — page 3. Keep going — add as many pages as you need for 1,347 words.]",
+  /* Page 4 */
+  "[FILL IN — page 4.]",
+  /* Page 5 */
+  "[FILL IN — page 5.]",
+  /* Page 6 */
+  "[FILL IN — page 6.]",
+  /* Page 7 */
+  "[FILL IN — page 7.]",
+  /* Page 8 */
+  "[FILL IN — page 8. Last page — or add more above!]"
+];
+
+/* current spread index (0 = pages 1-2, 1 = pages 3-4, etc.) */
+var bookSpread = 0;
+
+function openBook(){
+  bookSpread = 0;
+  renderBookSpread();
+  document.getElementById('book-overlay').classList.add('open');
+  playClick();
+}
+
+function closeBook(){
+  document.getElementById('book-overlay').classList.remove('open');
+  playClick();
+}
+
+function bookTurnPage(dir){
+  var totalSpreads = Math.ceil(VIGNETTE_PAGES.length / 2);
+  bookSpread = Math.max(0, Math.min(bookSpread + dir, totalSpreads - 1));
+  renderBookSpread();
+  playClick();
+}
+
+function renderBookSpread(){
+  var totalSpreads = Math.ceil(VIGNETTE_PAGES.length / 2);
+  var leftIdx  = bookSpread * 2;
+  var rightIdx = bookSpread * 2 + 1;
+
+  var leftText  = VIGNETTE_PAGES[leftIdx]  || '';
+  var rightText = VIGNETTE_PAGES[rightIdx] || '';
+
+  document.getElementById('book-left-text').textContent  = leftText;
+  document.getElementById('book-right-text').textContent = rightText;
+
+  /* page numbers */
+  var leftPageNum  = leftIdx  + 1;
+  var rightPageNum = rightIdx + 1;
+  document.getElementById('book-left-num').textContent  = leftText  ? leftPageNum  : '';
+  document.getElementById('book-right-num').textContent = rightText ? rightPageNum : '';
+
+  /* spread indicator */
+  document.getElementById('book-page-indicator').textContent =
+    'Spread ' + (bookSpread + 1) + ' / ' + totalSpreads;
+
+  /* button states */
+  document.getElementById('book-prev').disabled = (bookSpread === 0);
+  document.getElementById('book-next').disabled = (bookSpread >= totalSpreads - 1);
+}
+
+/* tap left/right half of the pages area to turn */
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var pages = document.getElementById('book-pages');
+    if(!pages) return;
+    pages.addEventListener('click', function(e){
+      var r = pages.getBoundingClientRect();
+      var mid = r.left + r.width / 2;
+      if(e.clientX < mid){
+        bookTurnPage(-1);
+      } else {
+        bookTurnPage(1);
+      }
+    });
+  });
+})();
 
 /* ════════════════════════════════════════════════
    FLOATING HEARTS
