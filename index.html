@@ -865,7 +865,6 @@ var VERIFY_QS = [
 ════════════════════════════════════════════════ */
 var LS_KEY = 'bday_hunt_v1';
 
-var S = loadState();
 
 /* ════════════════════════════════════════════════
    STATE & DECOUPLED LETTERS
@@ -911,6 +910,9 @@ function loadState(){
 function saveState(){
   try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch(e){}
 }
+
+/* initialise state after functions are defined */
+var S = loadState();
 
 /* ════════════════════════════════════════════════
    ROUTER
