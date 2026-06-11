@@ -580,7 +580,7 @@ canvas.scratch-canvas{
     font-size:1.6rem;color:rgba(255,200,220,.75);
     text-align:center;margin-bottom:28px;
     letter-spacing:.5px;text-shadow:0 0 24px rgba(255,133,179,.3);
-  ">Something just for Dani</p>
+  ">A special something, for a special someone.</p>
   <p style="font-family:Georgia,serif;font-style:italic;font-size:.95rem;color:rgba(255,200,220,.35);text-align:center;margin-bottom:32px;letter-spacing:.5px;">a little door, just for you ❤️</p>
 
   <!-- NR monogram — replaces ghost -->
@@ -803,7 +803,7 @@ canvas.scratch-canvas{
         </div>
         <div>
           <p style="font-weight:700;margin-bottom:2px;font-size:.95rem;">Steak Night</p>
-          <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">Dinner on me — wherever you want, whenever you want it.</p>
+          <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">Romantic dinner for 2 in casa Rooney</p>
         </div>
       </div>
 
@@ -986,13 +986,13 @@ var PW = {
 ════════════════════════════════════════════════ */
 var GIFTS = {
   demo:      { icon:"🎁", title:"Scratch to reveal!", text:"This is what your gifts look like — scratch away 💅" },
-  greenbeans:{ icon:"☕", title:"Coffee on me", text:"[FILL IN]", letterPart:"[FILL IN: para 1]" },
+  greenbeans:{ icon:"☕", title:"Your first drink of the evening on me", text:"I/'ll actually physically fight for this", letterPart:"[FILL IN: para 1]" },
   redbeans:  { icon:"🃏", title:"????", text:"Some battlefields are made of mud. Ours are made of dropped loot, missed shots, and me getting distracted talking to you. Go to your personal landing spot before we dominate as a dream team.", letterPart:"[FILL IN: para 2]" },
   roses:     { icon:"🎀", title:"????", text:"Not every memory lives in your head. Some are hidden away, kept safe for another day. Go look beneath the surface.", letterPart:"[FILL IN: para 3]" },
-  steak:     { icon:"🥩", title:"Steak dinner", text:"With wine, sides and a movie. (You're the dessert)", letterPart:"[FILL IN: para 4]" },
+  steak:     { icon:"🥩", title:"Steak dinner", text:"With a drink of your choice, sides and a movie included. (You're the dessert)", letterPart:"[FILL IN: para 4]" },
   sweets:    { icon:"🍬", title:"????", text:"Before birthdays, before dates, before all of this, there was a moment I didn't realise would matter so much. Find the place hiding the evidence that I was always going to come back.", letterPart:"[FILL IN: para 5]" },
-  diffuser:  { icon:"🍫", title:"Chocolate room diffuser", text:"[FILL IN]", letterPart:"[FILL IN: para 6]" },
-  wheels:    { icon:"🚗", title:"Uber home sorted", text:"[FILL IN]", letterPart:"[FILL IN: para 7]" },
+  diffuser:  { icon:"🍫", title:"????", text:"I know you don't eat as much when you're not with me, so atleast try find this so you can still enjoy the smell.", letterPart:"[FILL IN: para 6]" },
+  wheels:    { icon:"🚗", title:"2x Free Uber rides", text:"These ones you don't need to owe me or make fair.", letterPart:"[FILL IN: para 7]" },
   bubbles:   { icon:"🧃", title:"????", text:"One of the easiest ways to make you happy comes in a bottle and definitely isn't water.", letterPart:"[FILL IN: para 8]" },
   mist:      { icon:"💨", title:"????", text:"Some people unpack their lives into a house. You somehow managed to pack yours into a few boxes and bags. Go look where most of your world is currently living.", letterPart:"[FILL IN: para 9]" },
   story:     { icon:"📖", title:"Something just for you", text:"Open \"From Me\" — there's something waiting 💕", letterPart:"[FILL IN: para 10]" }
@@ -1007,7 +1007,7 @@ var GIFTS = {
 ════════════════════════════════════════════════ */
 var VERIFY_QS = [
   { q:'What show have we spent hours watching together?', a:['f1','drive to survive','formula one','formula 1','.'] },
-  { q:'What game brought us together?', a:['fortnite','magic garden','new yorker crossword','.'] },
+  { q:'What game brought us together?', a:['fortnite','magic garden','new yorker crossword','.','crossword'] },
   { q:'What street was our first apartment?', a:['duke street','duke st','duke','.'] },
   { q:'Whats our stim from taco bell?', a:['live mas','.'] },
   { q:'What\'s Nialls favourite taste?', a:['me','my pussy','my vagina','dani','his girlfriend','cake','.'] }
@@ -1665,8 +1665,7 @@ function scratchCardHTML(giftKey){
 
 var VIGNETTE_PAGES = [
   /* Page 1 */
-  `A Masterpiece in Real Time
-I've always thought writing was boring.
+  `I've always thought writing was boring.
 Not reading.
 Writing.
 The act of it.
@@ -1932,7 +1931,7 @@ var SCREENS = {
     
     +'<h1 class="script" style="margin-top:16px;">Happy Birthday</h1>'
     /* FILL IN: her name */
-    +'<h2 class="script" style="margin-top:4px;">[Her Name] 💕</h2>'
+    +'<h2 class="script" style="margin-top:4px;">Dani 💕</h2>'
     +'<p class="soft" style="margin-top:8px;">Your day starts here ✨</p>'
     +'<br><button class="btn" onclick="playClick();goto(\'verify\');">Let\'s go 💗</button>'
     +'</div>';
