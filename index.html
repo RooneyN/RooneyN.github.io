@@ -324,6 +324,60 @@ canvas.scratch-canvas{
   user-select:text;-webkit-user-select:text;
 }
 
+/* ── STORY PANEL (same pattern as colombian) ─── */
+#story-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(90,45,74,.28);z-index:250;
+  align-items:center;justify-content:center;padding:20px;
+}
+#story-overlay.open{display:flex}
+#story-panel{
+  background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);
+  width:100%;max-width:460px;max-height:82vh;overflow-y:auto;
+  padding:28px 22px 24px;position:relative;animation:cardIn .3s ease both;
+}
+#story-close{
+  position:absolute;top:14px;right:14px;background:var(--pl);
+  border:none;border-radius:999px;width:34px;height:34px;
+  font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+#story-page-text{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:1.08rem;line-height:1.9;color:var(--text);
+  white-space:pre-wrap;word-break:break-word;
+  user-select:text;-webkit-user-select:text;
+  min-height:200px;margin-bottom:28px;
+}
+#story-nav{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  border-top:1px solid var(--pl);padding-top:16px;
+}
+.story-nav-btn{
+  background:var(--pl);border:none;border-radius:999px;
+  color:var(--text);font-family:'EB Garamond',Georgia,serif;
+  font-size:.95rem;font-style:italic;
+  padding:9px 22px;cursor:pointer;
+  transition:background .15s;
+}
+.story-nav-btn:hover{background:var(--pink);color:#fff}
+.story-nav-btn:disabled{opacity:.3;cursor:default}
+#story-indicator{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:.8rem;font-style:italic;color:var(--soft);text-align:center;flex:1;
+}
+#vignette-book-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--pink),var(--pd));
+  color:#fff;border:none;border-radius:999px;
+  padding:14px 30px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(224,90,138,.28);
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:1.1rem;font-style:italic;margin-top:10px;
+  transition:transform .15s,box-shadow .15s;
+}
+#vignette-book-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,90,138,.38)}
+#vignette-book-btn:active{transform:scale(.96)}
+
 /* ── STORY BOOK ──────────────────────────────── */
 #book-overlay{
   display:none;position:fixed;inset:0;z-index:600;
@@ -349,7 +403,6 @@ canvas.scratch-canvas{
   position:relative;
 }
 
-/* delicate rule across the top */
 #book-header{
   padding:20px 22px 14px;
   border-bottom:1px solid var(--pl);
@@ -369,11 +422,9 @@ canvas.scratch-canvas{
 }
 #book-close-btn:hover{background:var(--pink);color:#fff}
 
-/* pages */
 #book-pages{
   display:flex;min-height:300px;position:relative;
 }
-/* centre rule acting as spine */
 #book-pages::after{
   content:'';position:absolute;
   left:50%;top:12px;bottom:12px;
@@ -384,7 +435,6 @@ canvas.scratch-canvas{
   flex:1;padding:20px 18px 36px;
   position:relative;min-height:300px;
 }
-
 .book-page-text{
   font-family:'EB Garamond',Georgia,serif;
   font-size:1.05rem;line-height:1.85;
@@ -393,7 +443,6 @@ canvas.scratch-canvas{
   word-break:break-word;
   user-select:text;-webkit-user-select:text;
 }
-
 .book-page-num{
   position:absolute;bottom:14px;
   font-family:'EB Garamond',Georgia,serif;
@@ -402,7 +451,6 @@ canvas.scratch-canvas{
 .book-page:first-child .book-page-num{right:16px}
 .book-page:last-child  .book-page-num{left:16px}
 
-/* nav */
 #book-nav{
   border-top:1px solid var(--pl);
   padding:12px 18px;
@@ -427,15 +475,11 @@ canvas.scratch-canvas{
   font-size:.82rem;font-style:italic;
   color:var(--soft);text-align:center;flex:1;
 }
-
-/* tap hint */
 .book-tap-hint{
   text-align:center;font-family:'EB Garamond',Georgia,serif;
   font-size:.8rem;font-style:italic;
   color:var(--soft);margin-top:10px;opacity:.8;
 }
-
-/* open-book button in From Me panel */
 #vignette-book-btn{
   display:inline-flex;align-items:center;gap:10px;
   background:linear-gradient(135deg,var(--pink),var(--pd));
@@ -663,7 +707,7 @@ canvas.scratch-canvas{
     <div id="vignette-content">
       <p class="soft" style="font-size:.8rem;margin-bottom:12px;">✨ Unlocked just for you</p>
       <div style="text-align:center;padding:8px 0 4px;">
-        <button id="vignette-book-btn" onclick="openBook()">
+        <button id="vignette-book-btn" onclick="openStory()">
           <span class="book-icon">📖</span> A Masterpiece in Real Time
         </button>
         <p class="soft" style="font-size:.75rem;margin-top:10px;letter-spacing:.5px;">1,347 words — written just for you 💕</p>
@@ -864,35 +908,22 @@ canvas.scratch-canvas{
 </div>
 
 
-<!-- MINECRAFT BOOK OVERLAY -->
-<div id="book-overlay">
-  <div id="book-wrap">
-    <div id="book-inner">
-      <div id="book-header">
-        <span id="book-title-text">✨ Written for you</span>
-        <button id="book-close-btn" onclick="closeBook()">✕</button>
-      </div>
-      <div id="book-pages">
-        <div class="book-page" id="book-left-page">
-          <div class="book-page-text" id="book-left-text"></div>
-          <span class="book-page-num" id="book-left-num"></span>
-        </div>
-        <div class="book-page" id="book-right-page">
-          <div class="book-page-text" id="book-right-text"></div>
-          <span class="book-page-num" id="book-right-num"></span>
-        </div>
-      </div>
-      <div id="book-nav">
-        <button class="book-nav-btn" id="book-prev" onclick="bookTurnPage(-1)">← back</button>
-        <span id="book-page-indicator"></span>
-        <button class="book-nav-btn" id="book-next" onclick="bookTurnPage(1)">next →</button>
-      </div>
+<!-- STORY PANEL -->
+<div id="story-overlay" onclick="if(event.target===this)closeStory()">
+  <div id="story-panel">
+    <button id="story-close" onclick="closeStory()">✕</button>
+    <h2 class="script" style="margin-bottom:6px;">✨ A Masterpiece in Real Time</h2>
+    <p id="story-indicator" style="text-align:left;margin-bottom:18px;font-style:italic;color:var(--soft);font-size:.85rem;"></p>
+    <div id="story-page-text"></div>
+    <div id="story-nav">
+      <button class="story-nav-btn" id="story-prev" onclick="storyPage(-1)">← back</button>
+      <span id="story-page-num" style="font-family:'EB Garamond',Georgia,serif;font-size:.8rem;font-style:italic;color:var(--soft);"></span>
+      <button class="story-nav-btn" id="story-next" onclick="storyPage(1)">next →</button>
     </div>
-    <p class="book-tap-hint">tap either page to turn 🌸</p>
   </div>
 </div>
 
-<!-- AUDIO -->
+<!-- AUDIO --><!-- AUDIO -->
 <audio id="audio-ambient"></audio>
 <audio id="audio-unlock"><source src="audio/zelda-chest.mp3" type="audio/mpeg"></audio>
 <audio id="audio-click"><source src="audio/cute-pop.mp3" type="audio/mpeg"></audio>
@@ -1631,305 +1662,6 @@ function initScratchCards(){
   });
 }
 
-/* ════════════════════════════════════════════════
-   MINECRAFT BOOK
-   — VIGNETTE_PAGES: fill in your story pages here.
-     Each string is one "spread" (left + right page).
-     Split with the ‖ character to separate left|right.
-     Or just use single strings — the engine auto-splits.
-════════════════════════════════════════════════ */
-
-/* ── PUT YOUR VIGNETTE TEXT HERE ──
-   Each item in this array = one page (or one spread).
-   Use \n\n for paragraph breaks within a page.
-   The engine will pair them up into left/right spreads automatically.
-   ──────────────────────────────── */
-var VIGNETTE_PAGES = [
-  /* Page 1 */
-  `A Masterpiece in Real Time
-I've always thought writing was boring.
-Not reading.
-Writing.
-The act of it.
-Yes, I can take a thought and pin it to a page. I can redraft it until the edges sharpen. I can stretch a sentence until it holds exactly the shape I need it to hold.
-I've spent years doing that.
-An entire degree.
-Entire notebooks.
-Shelves full of words arranged into the closest approximations of feelings I've been able to manage.
-But it has never felt like art.
-Painters build things.
-Brushstroke by brushstroke.
-Layer upon layer.
-You can watch a painting become itself.
-Writing has always felt slower.
-Less honest, somehow.
-More like excavation than creation.
-Tonight, for perhaps the first time in my life, words feel completely useless.
-I'm writing this sat on the floor with my back against the foot of the bed, trying desperately to look at my phone for longer than three seconds at a time.
-It's not going well.
-Every sentence arrives injured and mizpelt.
-Half-finished thoughts litter the page.`,
-
-  /* Page 2 */
-  `Entire paragraphs are abandoned before they reach the end because every time I look down to write, I find myself needing to look back up again.
-It's become a ridiculous cycle.
-Watch her.
-Write three words.
-Watch her again.
-Delete the three words.
-Start over.
-At this rate, by the end of the evening this page will contain less writing than it should and considerably more evidence that I am incapable of acting normally around my...
-Dani.
-Across the room, she sits before the mirror with a towel on the back of her chair, preparing for a night out.
-The evening sun hangs low beyond the window, leaking gold into the bedroom through the barely open curtain.
-Light gathers on the dresser.
-On complimentary towels.
-On half my belongings scattered recklessly across the floor.
-It catches the face of my watch for a moment before moving on.
-A ridiculous thing to notice.
-A watch is a watch.
-Except this one spent weeks living on her nightstand after I forgot it, spending more time with her than I did before eventually finding its way back onto my wrist.`,
-
-  /* Page 3 */
-  `It still tells the same time.
-Still ticks exactly as it always did.
-But some objects return carrying extra weight.
-This is one of them.
-The sunlight leaves it behind eventually.
-Most of it seems determined to find her.
-The mirror fractures the sun into softer shapes.
-Warm amber.
-Pale gold.
-Small flashes of brightness that appear and disappear whenever she moves.
-The room feels quieter beneath it.
-Almost reverent.
-I watch her lift her hands to her hair and immediately forget whatever sentence I was trying to write.
-Dark strands slip and curl between her fingers.
-She gathers more.
-Releases them.
-Studies the result.
-There is a rhythm to it all.
-Something practiced.
-Something old.
-The sort of movement that no longer requires thought because the body memorised it years ago.
-And for reasons I can't entirely explain, I find that beautiful.
-There is something strangely intimate about witnessing routines that existed before you.
-Tiny ceremonies performed long before your name entered someone's life.
-Before your voice.
-Before your touch.
-Before they ever imagined sharing a room with you.`,
-
-  /* Page 4 */
-  `She has probably stood before mirrors like this hundreds of times.
-Perhaps thousands.
-Before birthdays.
-Before bad days.
-Before celebrations.
-Before heartbreaks.
-Before first dates and final goodbyes.
-Entire chapters of her life unfolded before reflective glass like this.
-And somehow I have found myself seated in the front row of a ritual that was never designed for an audience.
-That thought alone feels like a privilege.
-Every so often she pauses.
-Leans forward and then back.
-Tilts her head slightly.
-Examines her reflection with the seriousness of an artist studying a canvas.
-A strand is adjusted.
-Then another.
-Then another.
-Each alteration made with complete conviction despite the fact that I am sitting here wondering whether perfection itself has become unnecessarily ambitious.
-Perfection felt smaller before I met her.
-Less specific.
-More theoretical.
-The sort of thing philosophers argued about and artists chased.
-Then she arrived and ruined the discussion completely.
-The room smells faintly of her hair products now.
-Not enough to dominate the air.
-Just enough to announce its presence.?`,
-
-  /* Page 5 */
-  `A soft sweetness drifting through the warmth left behind by the shower.
-It settles into the room quietly.
-Into the carpet I'm sat on.
-Into the sheets behind my back.
-Into memory.
-Everything feels suspended.
-The evening waiting patiently beyond the door.
-The night still unfinished.
-And here, in this small pocket of time, she continues assembling herself piece by piece.
-At some point, I decide the view from the floor isn't enough.
-I push myself upright and cross the room.
-A terrible mistake.
-Distance had at least provided a degree of protection.
-Up close, every detail sharpens.
-The concentration in her eyes.
-The careful movements of her hands.
-The quiet confidence with which she occupies the space around her.
-I stop somewhere behind her.
-That is when it finally occurs to me.
-This is why I've always admired artists.
-Because they get to keep things.
-A painter could have captured this.
-The light gathering around her shoulders.
-The concentration in her eyes.
-The quiet confidence of somebody entirely comfortable in their own skin.`,
-
-  /* Page 6 */
-  `A photographer could have stolen the moment whole.
-Frozen it forever.
-Even now.
-Exactly as it is.
-I have words.
-And words, for perhaps the first time in my life, feel painfully inadequate.
-So inadequate, in fact, that somewhere between crossing the room and standing behind her I apparently forgot how breathing works.
-Not metaphorically.
-Literally.
-My lungs simply cease participating in the evening.
-I stand there for several seconds holding my breath like an idiot before realising I haven't exhaled since leaving the carpet.
-The worst part is that this is not an isolated incident.
-This has happened before.
-Apparently, my body's response to witnessing something beautiful is to briefly abandon oxygen altogether.
-Evolutionarily speaking, this feels like a design flaw.
-Because this isn't really about beauty.
-Beauty would be easier.
-Beauty can be described.
-People do it every day.
-No.
-What has me trapped on this floor like an idiot is something far more difficult to explain.
-It's the complete absence of performance.
-She isn't posing.
-She isn't trying.`,
-
-  /* Page 7 */
-  `She isn't aware that she is being observed at all.
-She is simply existing.
-Entirely herself.
-And somehow that feels rarer than beauty ever could.
-I wonder if she realises how many versions of her exist in the memories of people who love her.
-The laughing version.
-The sleepy version.
-The stubborn version.
-The excited version.
-The version who disappears into conversations about things she loves.
-The version who dances when she thinks nobody is watching.
-The version who believes the little things go unnoticed.
-Tonight's version stands before a mirror preparing for an evening out.
-And I don't think she will ever truly understand how beautiful she looks from where I'm sitting.
-Not because of the outfit planned.
-Not because of her hair routine.
-Not because the dying sunlight has wrapped itself around her like something painted by the Renaissance.
-Because she is entirely unaware of herself.
-Completely unguarded.
-Completely real.
-The sort of beauty that vanishes the moment somebody attempts to manufacture it.`,
-
-  /* Page 8 */
-  `Perhaps that's why I keep looking up.
-Why every sentence takes five times longer than it should.
-Why half these words were probably rewritten three times.
-Why this page exists at all.
-Years from now I won't remember where we were going.
-I won't remember what was playing on the TV.
-I probably won't remember what I had intended to write before all of this started.
-But I'll remember this.
-The gold light.
-The perfume.
-The quiet.
-The girl standing before a mirror.
-And the overwhelming certainty that I was witnessing something infinitely more beautiful than somebody simply getting ready for the evening.
-An ordinary moment.
-Transforming, slowly and without permission, into a memory.
-And, annoyingly, she fucking can draw too.`
-];
-
-/* current spread index (0 = pages 1-2, 1 = pages 3-4, etc.) */
-var bookSpread = 0;
-
-function openBook(){
-  bookSpread = 0;
-  renderBookSpread();
-  document.getElementById('book-overlay').classList.add('open');
-  playClick();
-}
-
-function closeBook(){
-  document.getElementById('book-overlay').classList.remove('open');
-  playClick();
-}
-
-function bookTurnPage(dir){
-  var totalSpreads = Math.ceil(VIGNETTE_PAGES.length / 2);
-  bookSpread = Math.max(0, Math.min(bookSpread + dir, totalSpreads - 1));
-  renderBookSpread();
-  playClick();
-}
-
-function renderBookSpread(){
-  var totalSpreads = Math.ceil(VIGNETTE_PAGES.length / 2);
-  var leftIdx  = bookSpread * 2;
-  var rightIdx = bookSpread * 2 + 1;
-
-  var leftText  = VIGNETTE_PAGES[leftIdx]  || '';
-  var rightText = VIGNETTE_PAGES[rightIdx] || '';
-
-  document.getElementById('book-left-text').textContent  = leftText;
-  document.getElementById('book-right-text').textContent = rightText;
-
-  /* page numbers */
-  var leftPageNum  = leftIdx  + 1;
-  var rightPageNum = rightIdx + 1;
-  document.getElementById('book-left-num').textContent  = leftText  ? leftPageNum  : '';
-  document.getElementById('book-right-num').textContent = rightText ? rightPageNum : '';
-
-  /* spread indicator */
-  document.getElementById('book-page-indicator').textContent =
-    'Spread ' + (bookSpread + 1) + ' / ' + totalSpreads;
-
-  /* button states */
-  document.getElementById('book-prev').disabled = (bookSpread === 0);
-  document.getElementById('book-next').disabled = (bookSpread >= totalSpreads - 1);
-}
-
-/* tap left/right half of the pages area to turn */
-(function(){
-  document.addEventListener('DOMContentLoaded', function(){
-    var pages = document.getElementById('book-pages');
-    if(!pages) return;
-    pages.addEventListener('click', function(e){
-      var r = pages.getBoundingClientRect();
-      var mid = r.left + r.width / 2;
-      if(e.clientX < mid){
-        bookTurnPage(-1);
-      } else {
-        bookTurnPage(1);
-      }
-    });
-  });
-})();
-
-/* ════════════════════════════════════════════════
-   FLOATING HEARTS
-════════════════════════════════════════════════ */
-(function(){
-  var bg=document.getElementById('hearts-bg');
-  var s=['🤍','💕','💗','💓','🩷','✨','🌸','🫧'];
-  for(var i=0;i<20;i++){
-    var h=document.createElement('span');
-    h.className='heart';
-    h.textContent=s[Math.floor(Math.random()*s.length)];
-    h.style.left=(Math.random()*100)+'vw';
-    h.style.fontSize=(.7+Math.random()*1.1)+'rem';
-    var d=9+Math.random()*13;
-    h.style.animationDuration=d+'s';
-    h.style.animationDelay=-(Math.random()*d)+'s';
-    bg.appendChild(h);
-  }
-})();
-
-/* ════════════════════════════════════════════════
-   SCRATCH CARD HTML HELPER
-   data-key links canvas to S.scratchedDone
-════════════════════════════════════════════════ */
 function scratchCardHTML(giftKey){
   var g=GIFTS[giftKey];
   if(!g) return '';
@@ -1943,9 +1675,6 @@ function scratchCardHTML(giftKey){
     +'</div>';
 }
 
-/* ════════════════════════════════════════════════
-   MINECRAFT BOOK & VIGNETTE ENGINE
-════════════════════════════════════════════════ */
 var VIGNETTE_PAGES = [
   /* Page 1 */
   `A Masterpiece in Real Time
@@ -2144,69 +1873,61 @@ Transforming, slowly and without permission, into a memory.
 And, annoyingly, she fucking can draw too.`
 ];
 
-/* current spread index (0 = pages 1-2, 1 = pages 3-4, etc.) */
-var bookSpread = 0;
+/* ════════════════════════════════════════════════
+   STORY VIEWER
+════════════════════════════════════════════════ */
+var storyCurrentPage = 0;
 
-function openBook(){
-  bookSpread = 0;
-  renderBookSpread();
-  document.getElementById('book-overlay').classList.add('open');
+function openStory(){
+  storyCurrentPage = 0;
+  renderStoryPage();
+  document.getElementById('story-overlay').classList.add('open');
   playClick();
 }
 
-function closeBook(){
-  document.getElementById('book-overlay').classList.remove('open');
+function closeStory(){
+  document.getElementById('story-overlay').classList.remove('open');
   playClick();
 }
 
-function bookTurnPage(dir){
-  var totalSpreads = Math.ceil(VIGNETTE_PAGES.length / 2);
-  bookSpread = Math.max(0, Math.min(bookSpread + dir, totalSpreads - 1));
-  renderBookSpread();
+function storyPage(dir){
+  var total = VIGNETTE_PAGES.length;
+  storyCurrentPage = Math.max(0, Math.min(storyCurrentPage + dir, total - 1));
+  renderStoryPage();
   playClick();
 }
 
-function renderBookSpread(){
-  var totalSpreads = Math.ceil(VIGNETTE_PAGES.length / 2);
-  var leftIdx  = bookSpread * 2;
-  var rightIdx = bookSpread * 2 + 1;
-
-  var leftText  = VIGNETTE_PAGES[leftIdx]  || '';
-  var rightText = VIGNETTE_PAGES[rightIdx] || '';
-
-  document.getElementById('book-left-text').textContent  = leftText;
-  document.getElementById('book-right-text').textContent = rightText;
-
-  /* page numbers */
-  var leftPageNum  = leftIdx  + 1;
-  var rightPageNum = rightIdx + 1;
-  document.getElementById('book-left-num').textContent  = leftText  ? leftPageNum  : '';
-  document.getElementById('book-right-num').textContent = rightText ? rightPageNum : '';
-
-  /* spread indicator */
-  document.getElementById('book-page-indicator').textContent =
-    'Spread ' + (bookSpread + 1) + ' / ' + totalSpreads;
-
-  /* button states */
-  document.getElementById('book-prev').disabled = (bookSpread === 0);
-  document.getElementById('book-next').disabled = (bookSpread >= totalSpreads - 1);
+function renderStoryPage(){
+  var total = VIGNETTE_PAGES.length;
+  var el = document.getElementById('story-page-text');
+  var num = document.getElementById('story-page-num');
+  var ind = document.getElementById('story-indicator');
+  if(el)  el.textContent  = VIGNETTE_PAGES[storyCurrentPage] || '';
+  if(num) num.textContent = (storyCurrentPage + 1) + ' / ' + total;
+  if(ind) ind.textContent = 'Page ' + (storyCurrentPage + 1) + ' of ' + total;
+  var prev = document.getElementById('story-prev');
+  var next = document.getElementById('story-next');
+  if(prev) prev.disabled = (storyCurrentPage === 0);
+  if(next) next.disabled = (storyCurrentPage >= total - 1);
+  /* scroll panel back to top on page turn */
+  var panel = document.getElementById('story-panel');
+  if(panel) panel.scrollTop = 0;
 }
 
-/* tap left/right half of the pages area to turn */
+/* swipe support */
 (function(){
-  document.addEventListener('DOMContentLoaded', function(){
-    var pages = document.getElementById('book-pages');
-    if(!pages) return;
-    pages.addEventListener('click', function(e){
-      var r = pages.getBoundingClientRect();
-      var mid = r.left + r.width / 2;
-      if(e.clientX < mid){
-        bookTurnPage(-1);
-      } else {
-        bookTurnPage(1);
-      }
-    });
-  });
+  var sx = null;
+  document.addEventListener('touchstart', function(e){
+    if(!document.getElementById('story-overlay').classList.contains('open')) return;
+    sx = e.touches[0].clientX;
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if(sx === null) return;
+    if(!document.getElementById('story-overlay').classList.contains('open')){ sx=null; return; }
+    var dx = e.changedTouches[0].clientX - sx;
+    if(Math.abs(dx) > 50) storyPage(dx < 0 ? 1 : -1);
+    sx = null;
+  }, {passive:true});
 })();
 
 /* ════════════════════════════════════════════════
