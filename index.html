@@ -826,7 +826,7 @@ canvas.scratch-canvas{
 </div>
 
 <!-- DATES OVERLAY -->
-<div id="dates-overlay" style="
+<div id="dates-overlay" onclick="if(event.target===this)closeDates()" style="
   display:none;position:fixed;inset:0;
   background:rgba(90,45,74,.28);z-index:200;
   align-items:center;justify-content:center;padding:20px;
@@ -871,6 +871,8 @@ canvas.scratch-canvas{
         </div>
       </div>
     </div>
+  </div><!-- /dates-panel -->
+</div><!-- /dates-overlay -->
 
 <!-- COMPLETION OVERLAY — shown when all 8 gifts unlocked -->
 <div id="complete-overlay" style="
@@ -912,7 +914,7 @@ canvas.scratch-canvas{
 <div id="story-overlay" onclick="if(event.target===this)closeStory()">
   <div id="story-panel">
     <button id="story-close" onclick="closeStory()">✕</button>
-    <h2 class="script" style="margin-bottom:6px;">✨ A Masterpiece in Real Time</h2>
+    <h2 class="script" style="margin-bottom:6px;padding-right:44px;">✨ A Masterpiece in Real Time</h2>
     <p id="story-indicator" style="text-align:left;margin-bottom:18px;font-style:italic;color:var(--soft);font-size:.85rem;"></p>
     <div id="story-page-text"></div>
     <div id="story-nav">
@@ -1129,9 +1131,17 @@ function openFromMe(){
   body.innerHTML = S.letterParts.length===0
     ? '<p class="soft">Nothing yet — get unlocking! 🔑</p>'
     : S.letterParts.map(function(p){ return '<div class="fragment">'+p+'</div>'; }).join('');
-  document.getElementById('vignette-locked').style.display  = S.vignetteOpen?'none':'block';
-  document.getElementById('vignette-content').style.display = S.vignetteOpen?'block':'none';
-  if(S.vignetteOpen) document.getElementById('vignette-content').classList.add('open');
+  /* hide the entire vignette section in flex/show-off mode */
+  var lockedEl  = document.getElementById('vignette-locked');
+  var contentEl = document.getElementById('vignette-content');
+  if(S.flexMode){
+    if(lockedEl)  lockedEl.style.display  = 'none';
+    if(contentEl) contentEl.style.display = 'none';
+  } else {
+    if(lockedEl)  lockedEl.style.display  = S.vignetteOpen ? 'none'  : 'block';
+    if(contentEl) contentEl.style.display = S.vignetteOpen ? 'block' : 'none';
+    if(S.vignetteOpen && contentEl) contentEl.classList.add('open');
+  }
   document.getElementById('fromme-overlay').classList.add('open');
 }
 function closeFromMe(){ document.getElementById('fromme-overlay').classList.remove('open'); }
@@ -1776,7 +1786,7 @@ The sort of thing philosophers argued about and artists chased.
 Then she arrived and ruined the discussion completely.
 The room smells faintly of her hair products now.
 Not enough to dominate the air.
-Just enough to announce its presence.?`,
+Just enough to announce its presence.`,
 
   /* Page 5 */
   `A soft sweetness drifting through the warmth left behind by the shower.
@@ -1870,7 +1880,9 @@ The girl standing before a mirror.
 And the overwhelming certainty that I was witnessing something infinitely more beautiful than somebody simply getting ready for the evening.
 An ordinary moment.
 Transforming, slowly and without permission, into a memory.
-And, annoyingly, she fucking can draw too.`
+And, annoyingly, she fucking can draw too.
+
+(I hope you didn't mind waiting that extra year for birthday poetry, i'm a better bloody writer than smelly sam anyway, even without a course tutors prize.)`
 ];
 
 /* ════════════════════════════════════════════════
