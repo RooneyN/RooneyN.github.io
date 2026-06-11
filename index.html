@@ -13,6 +13,9 @@
 <meta name="apple-mobile-web-app-title" content="Dani ❤️">
 <link rel="apple-touch-icon" href="images/icon-512.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 /* fonts loaded locally — no external requests */
 /* ── TOKENS ─────────────────────────────────── */
@@ -323,7 +326,7 @@ canvas.scratch-canvas{
 
 /* ── STORY BOOK ──────────────────────────────── */
 #book-overlay{
-  display:none;position:fixed;inset:0;z-index:400;
+  display:none;position:fixed;inset:0;z-index:600;
   background:rgba(90,45,74,.38);backdrop-filter:blur(6px);
   align-items:center;justify-content:center;padding:20px;
 }
@@ -661,7 +664,7 @@ canvas.scratch-canvas{
       <p class="soft" style="font-size:.8rem;margin-bottom:12px;">✨ Unlocked just for you</p>
       <div style="text-align:center;padding:8px 0 4px;">
         <button id="vignette-book-btn" onclick="openBook()">
-          <span class="book-icon">📖</span> Read My Story
+          <span class="book-icon">📖</span> A Masterpiece in Real Time
         </button>
         <p class="soft" style="font-size:.75rem;margin-top:10px;letter-spacing:.5px;">1,347 words — written just for you 💕</p>
       </div>
@@ -992,11 +995,11 @@ var GIFTS = {
    VERIFY QUESTIONS
 ════════════════════════════════════════════════ */
 var VERIFY_QS = [
-  { q:'What show have we spent hours watching together?', a:['f1','drive to survive','formula one','formula 1'] },
-  { q:'What game brought us together?', a:['fortnite'] },
-  { q:'What street was our first apartment?', a:['duke street','duke st','duke'] },
-  { q:'Whats our stim from taco bell?', a:['live mas'] },
-  { q:'What\'s Nialls favourite taste?', a:['me','my pussy','my vagina','dani','his girlfriend','cake'] }
+  { q:'What show have we spent hours watching together?', a:['f1','drive to survive','formula one','formula 1','.'] },
+  { q:'What game brought us together?', a:['fortnite','magic garden','new yorker crossword','.'] },
+  { q:'What street was our first apartment?', a:['duke street','duke st','duke','.'] },
+  { q:'Whats our stim from taco bell?', a:['live mas','.'] },
+  { q:'What\'s Nialls favourite taste?', a:['me','my pussy','my vagina','dani','his girlfriend','cake','.'] }
 ];
 
 /* ════════════════════════════════════════════════
