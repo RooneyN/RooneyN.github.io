@@ -1,98 +1,3 @@
-
-Claude finished the response
-
-index.html
-html
-
-Can we add another date being 'Build a pringle ring' and any other final touches you cna find
-
-12:12 PM
-Let me read the uploaded file first.
-
-
-Reading the uploaded HTML file
-Reading the uploaded HTML file
-Let me see the truncated section too:
-
-
-Viewed 4 files
-Viewed 4 files
-Now I have a complete picture of the file. Let me make the changes — adding the "Build a pringle ring" date and polishing up the remaining [FILL IN] placeholders and a few other rough edges I spotted.
-
-
-Ran a command, edited a file
-Ran a command, edited a file
-Now fix the broken font-family CSS string on the verify popup (missing closing quote):
-
-
-Fix the broken font-family style string missing a closing quote
-Fix the broken font-family style string missing a closing quote
-Fix the duplicate <link rel="preconnect"> tags in the head (they appear twice):
-
-
-Remove the duplicate Google Fonts preconnect and link tags that appear a second time just before </head>
-Remove the duplicate Google Fonts preconnect and link tags that appear a second time just before </head>
-Fix the duplicate playTaco() function definition:
-
-
-Remove the duplicate playTaco function definition near the verify section
-Remove the duplicate playTaco function definition near the verify section
-Wait, let me check that edit was correct and didn't accidentally remove the easter egg section header:
-
-
-Verify the area around the duplicate playTaco fix
-Verify the area around the duplicate playTaco fix
-The section header got mangled. Let me fix that:
-
-
-Fix the mangled section header after removing duplicate playTaco
-Fix the mangled section header after removing duplicate playTaco
-Now fix the typo "atleast" → "at least" in the diffuser gift text:
-
-
-Fix typo: atleast → at least
-Fix typo: atleast → at least
-Fix the capitalisation typo "delicous" → "delicious" in the cinnamon rolls menu item:
-
-
-Fix typo: delicous → delicious
-Fix typo: delicous → delicious
-Now verify the final state of the dates section looks correct:
-
-
-Verify the dates section including new Pringle Ring entry
-Verify the dates section including new Pringle Ring entry
-All looks great. Now copy to outputs:
-
-
-Ran a command, read a file
-Ran a command, read a file
-Here's what was changed:
-
-New date added:
-
-🥔 Build a Pringle Ring — with a little description: "Engineering. Architecture. Snacks. A date that requires teamwork and ends in eating the evidence."
-Other fixes found and cleaned up:
-
-Broken CSS string in the verify popup — font-family:'Georgia,serif was missing its closing quote, which would've broken the styling
-Duplicate Google Fonts <link> tags — they appeared twice in the <head>, causing a double network request
-Duplicate playTaco() function — it was defined twice, which is sloppy JS and could cause weird behaviour in strict environments
-Typo: atleast → at least in the diffuser gift clue
-Typo: delicous → delicious in the cinnamon rolls menu description
-
-Index
-Code · HTML 
-
-Want to be notified when Claude responds?
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-
-
-raw
-Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -419,35 +324,35 @@ canvas.scratch-canvas{
   user-select:text;-webkit-user-select:text;
 }
  
-/* ── STORY PANEL (same pattern as colombian) ─── */
-#story-overlay{
+/* ── STORY PANELS ─── */
+#story-overlay, #story2-overlay {
   display:none;position:fixed;inset:0;
   background:rgba(90,45,74,.28);z-index:250;
   align-items:center;justify-content:center;padding:20px;
 }
-#story-overlay.open{display:flex}
-#story-panel{
+#story-overlay.open, #story2-overlay.open {display:flex}
+#story-panel, #story2-panel {
   background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);
   width:100%;max-width:460px;max-height:82vh;overflow-y:auto;
   padding:28px 22px 24px;position:relative;animation:cardIn .3s ease both;
 }
-#story-close{
+#story-close, #story2-close {
   position:absolute;top:14px;right:14px;background:var(--pl);
   border:none;border-radius:999px;width:34px;height:34px;
   font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
 }
-#story-page-text{
+#story-page-text, #story2-page-text {
   font-family:'EB Garamond',Georgia,serif;
   font-size:1.08rem;line-height:1.9;color:var(--text);
   white-space:pre-wrap;word-break:break-word;
   user-select:text;-webkit-user-select:text;
   min-height:200px;margin-bottom:28px;
 }
-#story-nav{
+#story-nav, #story2-nav {
   display:flex;align-items:center;justify-content:space-between;gap:8px;
   border-top:1px solid var(--pl);padding-top:16px;
 }
-.story-nav-btn{
+.story-nav-btn {
   background:var(--pl);border:none;border-radius:999px;
   color:var(--text);font-family:'EB Garamond',Georgia,serif;
   font-size:.95rem;font-style:italic;
@@ -456,11 +361,11 @@ canvas.scratch-canvas{
 }
 .story-nav-btn:hover{background:var(--pink);color:#fff}
 .story-nav-btn:disabled{opacity:.3;cursor:default}
-#story-indicator{
+#story-indicator, #story2-indicator {
   font-family:'EB Garamond',Georgia,serif;
   font-size:.8rem;font-style:italic;color:var(--soft);text-align:center;flex:1;
 }
-#vignette-book-btn{
+#vignette-book-btn, #vignette2-book-btn {
   display:inline-flex;align-items:center;gap:10px;
   background:linear-gradient(135deg,var(--pink),var(--pd));
   color:#fff;border:none;border-radius:999px;
@@ -470,9 +375,10 @@ canvas.scratch-canvas{
   font-size:1.1rem;font-style:italic;margin-top:10px;
   transition:transform .15s,box-shadow .15s;
 }
-#vignette-book-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,90,138,.38)}
-#vignette-book-btn:active{transform:scale(.96)}
- 
+#vignette-book-btn:hover, #vignette2-book-btn:hover {transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,90,138,.38)}
+#vignette-book-btn:active, #vignette2-book-btn:active {transform:scale(.96)}
+#vignette-book-btn .book-icon, #vignette2-book-btn .book-icon {font-size:1.25rem}
+
 /* ── STORY BOOK ──────────────────────────────── */
 #book-overlay{
   display:none;position:fixed;inset:0;z-index:600;
@@ -727,7 +633,6 @@ canvas.scratch-canvas{
   <button class="nav-btn" onclick="playClick();openColombian()">🍽️ The Menu</button>
 </div>
  
-<!-- FROM ME OVERLAY -->
 <div id="fromme-overlay">
   <div id="fromme-panel">
     <button id="fromme-close" onclick="closeFromMe()">✕</button>
@@ -736,6 +641,7 @@ canvas.scratch-canvas{
       <p class="soft">Nothing yet — get unlocking! 🔑</p>
     </div>
     <hr>
+    
     <div id="vignette-locked">
       <span class="lock-icon">🔒</span>
       <p class="soft" style="margin:0;font-size:.88rem;">Something special is waiting here...</p>
@@ -748,6 +654,49 @@ canvas.scratch-canvas{
         </button>
         <p class="soft" style="font-size:.75rem;margin-top:10px;letter-spacing:.5px;">1,347 words — written just for you 💕</p>
       </div>
+    </div>
+
+    <div id="vignette2-locked" style="margin-top:18px;padding:18px;background:var(--bg);border:2px dashed var(--pl);border-radius:16px;text-align:center;">
+      <span class="lock-icon" style="font-size:2rem;display:block;margin-bottom:8px;">🔒</span>
+      <p class="soft" style="margin:0;font-size:.88rem;">Another story is waiting here...</p>
+    </div>
+    <div id="vignette2-content" style="display:none;margin-top:18px;padding:20px;background:linear-gradient(135deg,var(--bg),#fff5fb);border-radius:16px;border:1px solid var(--pl);">
+      <p class="soft" style="font-size:.8rem;margin-bottom:12px;">✨ A second chapter unlocked</p>
+      <div style="text-align:center;padding:8px 0 4px;">
+        <button id="vignette2-book-btn" onclick="openStory2()">
+          <span class="book-icon">📚</span> Read Chapter Two
+        </button>
+        <p class="soft" style="font-size:.75rem;margin-top:10px;letter-spacing:.5px;">More words just for you 💕</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="story-overlay" onclick="if(event.target===this)closeStory()">
+  <div id="story-panel">
+    <button id="story-close" onclick="closeStory()">✕</button>
+    <h2 class="script" style="margin-bottom:6px;padding-right:44px;">✨ A Masterpiece in Real Time</h2>
+    <p id="story-indicator" style="text-align:left;margin-bottom:18px;font-style:italic;color:var(--soft);font-size:.85rem;"></p>
+    <div id="story-page-text"></div>
+    <div id="story-nav">
+      <button class="story-nav-btn" id="story-prev" onclick="storyPage(-1)">← back</button>
+      <span id="story-page-num" style="font-family:'EB Garamond',Georgia,serif;font-size:.8rem;font-style:italic;color:var(--soft);"></span>
+      <button class="story-nav-btn" id="story-next" onclick="storyPage(1)">next →</button>
+    </div>
+  </div>
+</div>
+
+<div id="story2-overlay" onclick="if(event.target===this)closeStory2()">
+  <div id="story2-panel">
+    <button id="story2-close" onclick="closeStory2()">✕</button>
+    <h2 class="script" style="margin-bottom:6px;padding-right:44px;">✨ [FILL IN: Story 2 Title]</h2>
+    <p id="story2-indicator" style="text-align:left;margin-bottom:18px;font-style:italic;color:var(--soft);font-size:.85rem;"></p>
+    <div id="story2-page-text"></div>
+    <div id="story2-nav">
+      <button class="story-nav-btn" id="story2-prev" onclick="story2Page(-1)">← back</button>
+      <span id="story2-page-num" style="font-family:'EB Garamond',Georgia,serif;font-size:.8rem;font-style:italic;color:var(--soft);"></span>
+      <button class="story-nav-btn" id="story2-next" onclick="story2Page(1)">next →</button>
     </div>
   </div>
 </div>
@@ -771,16 +720,16 @@ canvas.scratch-canvas{
     <p class="world-section-title">🎬 Films</p>
     <ul>
       <!-- FILL IN -->
-      <li>🎬 How to lose a guy in 10 days</li>
-      <li>🎬 Rush hour 1/2</li>
-      <li>🎬 The Internship</li>
+      <li>💔 How to lose a guy in 10 days</li>
+      <li>😂 Rush hour 1/2</li>
+      <li>💼 The Internship</li>
     </ul>
   </div>
   <div class="world-section">
     <p class="world-section-title">📺 Shows</p>
     <ul>
       <!-- FILL IN -->
-      <li>📺 Drive to survive</li>
+      <li>🏎️ Drive to survive</li>
     </ul>
   </div>
   <div class="world-section">
@@ -994,21 +943,6 @@ canvas.scratch-canvas{
 </div>
  
  
-<!-- STORY PANEL -->
-<div id="story-overlay" onclick="if(event.target===this)closeStory()">
-  <div id="story-panel">
-    <button id="story-close" onclick="closeStory()">✕</button>
-    <h2 class="script" style="margin-bottom:6px;padding-right:44px;">✨ A Masterpiece in Real Time</h2>
-    <p id="story-indicator" style="text-align:left;margin-bottom:18px;font-style:italic;color:var(--soft);font-size:.85rem;"></p>
-    <div id="story-page-text"></div>
-    <div id="story-nav">
-      <button class="story-nav-btn" id="story-prev" onclick="storyPage(-1)">← back</button>
-      <span id="story-page-num" style="font-family:'EB Garamond',Georgia,serif;font-size:.8rem;font-style:italic;color:var(--soft);"></span>
-      <button class="story-nav-btn" id="story-next" onclick="storyPage(1)">next →</button>
-    </div>
-  </div>
-</div>
- 
 <!-- AUDIO --><!-- AUDIO -->
 <audio id="audio-ambient"></audio>
 <audio id="audio-unlock"><source src="audio/zelda-chest.mp3" type="audio/mpeg"></audio>
@@ -1075,13 +1009,14 @@ var PW = {
   greenbeans: 'treatyourself',    
   redbeans:   'ichooseyou',      
   roses:      'iseered',         
-  steak:      'corte',         /* 🥩 Steak (Spanish sticky note answer) */
-  sweets:     'sweetenoughalready',        /* 🍬 NEW: The Sweets */
-  diffuser:   'forwhenimnotthere',      /* 🍫 NEW: Chocolate Diffuser */
+  steak:      'corte',         
+  sweets:     'sweetenoughalready',        
+  diffuser:   'forwhenimnotthere',      
   wheels:     'comehomebaby',        
   bubbles:    'vivacolombia',       
   mist:       'giveme3hourstogetready',          
-  story:      'coursetutorsprize'          
+  story:      'coursetutorsprize',
+  story2:     'losttapes'   /* 11th Gift Password */
 };
  
 /* ════════════════════════════════════════════════
@@ -1098,7 +1033,8 @@ var GIFTS = {
   wheels:    { icon:"🚗", title:"2x Free Uber rides", text:"These ones you don't need to owe me or make fair.", letterPart:"[FILL IN: para 7]" },
   bubbles:   { icon:"🧃", title:"????", text:"One of the easiest ways to make you happy comes in a bottle and definitely isn't water.", letterPart:"[FILL IN: para 8]" },
   mist:      { icon:"💨", title:"????", text:"Some people unpack their lives into a house. You somehow managed to pack yours into a few boxes and bags. Go look where most of your world is currently living.", letterPart:"[FILL IN: para 9]" },
-  story:     { icon:"📖", title:"Something just for you", text:"Open \"From Me\" — there's something waiting 💕", letterPart:"[FILL IN: para 10]" }
+  story:     { icon:"📖", title:"Something just for you", text:"Open \"From Me\" — there's something waiting 💕", letterPart:"[FILL IN: para 10]" },
+  story2:    { icon:"📚", title:"Another chapter", text:"Open \"From Me\" — another story has arrived 💕", letterPart:"[FILL IN: para 11]" }
 };
  
 /* ════════════════════════════════════════════════
@@ -1132,28 +1068,29 @@ function defaultState(){
     giftsUnlocked:[],
     scratchedDone:{},
     vignetteOpen:false,
+    story2Open:false,  /* Track Story 2 */
     menuTicked:{},
     steakUnlocked: false, 
     setupComplete: false,
-    flexMode: false,  /* Tracks if she used the Flex password */
-    pgMode: false     /* Tracks if she used the Jesus password */
+    flexMode: false,  
+    pgMode: false     
   };
 }
  
 /* ── THE MASTER LETTER ARRAY ── */
 var MASTER_LETTER = [
-  "Paragraph 1: [FILL IN]",
-  "Paragraph 2: [FILL IN]",
-  "Paragraph 3: [FILL IN]",
-  "Paragraph 4: [FILL IN]",
-  "Paragraph 5: [FILL IN]",
-  "Paragraph 6: [FILL IN]",
-  "Paragraph 7: [FILL IN]",
-  "Paragraph 8: [FILL IN]",
-  "Paragraph 9: [FILL IN]",
-  "Paragraph 10: [FILL IN]"
+  "Happy fucking birthday baby. Holy shit. I genuinely never thought I'd be here right now with you; even if I am just sitting in the other room while you read this. It still feels surreal.",
+  "I still remember leaving your flat for the first time, actively refusing to let myself feel the way I did when I was with you. I remember feeling horrifically sick on the way home. It was that terrifying, stomach dropping realization that I was already way, way deeper than I had ever planned.",
+  "I still can't believe that the very first time I heard your voice, it was through a headset playing Fortnite. I always laugh thinking about how Alfie got so annoyed that the whole group was suddenly spending more time with you than him after he introduced us. If you told that version of me that the girl carrying us in lobbies would be sitting next to me today, I would have called you insane.",
+  "You're funny, smart, brilliant, hot, ridiculously talented, and exactly everything I fancied but never actually thought I'd get to have sitting right next to me. Even now, after everything, looking at you still catches me completely off guard.",
+  "I was absolutely terrified about picking you up from Lime Street that first time. Annoying you on purpose, acting rude, and joking about 'not coming, I'll just get you a taxi, don't worry' - all of that was literally just my chaotic way of trying to calm my own nerves before I saw you. I was bricking it.",
+  "I absolutely love our routine. Yeah, maybe it needs a little editing to be more 'sustainable', but our gaming nights until the early hours and falling asleep on Discord calls are the things I look forward to every single day. And when we’re actually together? Watching F1, shouting 'Fahhhh', and drinking way more beers than we probably should... those are the moments that play on a loop in my head whenever you're not here.",
+  "I don't think I've ever properly told you the full reason I’m learning Spanish. Yes, it’s absolutely because I want to understand you, your family, and the Colombian culture that built the girl I really really like. But the secret motivation is that I’ve wanted to be a hyperpolyglot (speaking eleven languages) since I was fourteen. It’s going to be tough, but with you supporting me, there isn't much I can't do. I'm learning it for both of us. It's not just an empty promise; I’ve wanted this for a long time, baby. You’re just my latest and best motivation.",
+  "You're annoying because you constantly make me want to be better. You always say I shouldn't just do things for you, and that's fair, but honestly, it entirely is. I've struggled with motivation in the past, but seeing that look of pure joy on your face when I show off my tiny gym progress, or when I lift you up like a feather? That makes every single bit of the grind worth it.",
+  "Dude, I am obsessed with your eyes. When those honey pots are looking up at me, it’s genuinely the only time in my life I’ve ever wished I could just hit pause on time. Getting to be close enough to just get lost in them is my absolute favorite thing.",
+  "I wanted today to feel exactly as special as you make my normal days feel. Making these games and scavenger hunts has always been a part of who I am growing up, but like I said, you make me want to be better. So I leaned into the ridiculousness and coded you a fucking app. I honestly never thought I'd be doing something like that for anyone.",
+  "Happy fucking birthday, baby. If I’ve actually shown enough restraint, this whole hunt should have lasted you into the evening, but God knows I fold for you way too easily."
 ];
- 
 function loadState(){
   try {
     var raw = localStorage.getItem(LS_KEY);
@@ -1212,19 +1149,29 @@ function openFromMe(){
   body.innerHTML = S.letterParts.length===0
     ? '<p class="soft">Nothing yet — get unlocking! 🔑</p>'
     : S.letterParts.map(function(p){ return '<div class="fragment">'+p+'</div>'; }).join('');
-  /* hide the entire vignette section in flex/show-off mode */
+  
   var lockedEl  = document.getElementById('vignette-locked');
   var contentEl = document.getElementById('vignette-content');
+  var locked2El = document.getElementById('vignette2-locked');
+  var content2El= document.getElementById('vignette2-content');
+
   if(S.flexMode){
-    if(lockedEl)  lockedEl.style.display  = 'none';
-    if(contentEl) contentEl.style.display = 'none';
+    if(lockedEl)   lockedEl.style.display   = 'none';
+    if(contentEl)  contentEl.style.display  = 'none';
+    if(locked2El)  locked2El.style.display  = 'none';
+    if(content2El) content2El.style.display = 'none';
   } else {
-    if(lockedEl)  lockedEl.style.display  = S.vignetteOpen ? 'none'  : 'block';
-    if(contentEl) contentEl.style.display = S.vignetteOpen ? 'block' : 'none';
+    if(lockedEl)   lockedEl.style.display   = S.vignetteOpen ? 'none'  : 'block';
+    if(contentEl)  contentEl.style.display  = S.vignetteOpen ? 'block' : 'none';
     if(S.vignetteOpen && contentEl) contentEl.classList.add('open');
+
+    if(locked2El)  locked2El.style.display  = S.story2Open ? 'none'  : 'block';
+    if(content2El) content2El.style.display = S.story2Open ? 'block' : 'none';
+    if(S.story2Open && content2El) content2El.classList.add('open');
   }
   document.getElementById('fromme-overlay').classList.add('open');
 }
+
 function closeFromMe(){ document.getElementById('fromme-overlay').classList.remove('open'); }
  
 /* ════════════════════════════════════════════════
@@ -1361,9 +1308,8 @@ function checkDarkGate(){
   /* ── FLEX MODE ── */
   if (val === 'show off') {
     S.flexMode = true;
-    /* demo first so it appears at top — sweets & diffuser unscratched so she can demo them */
-    S.giftsUnlocked = ['demo','greenbeans','redbeans','steak','sweets','diffuser','wheels','bubbles','mist','story'];
-    S.scratchedDone = { greenbeans:true, redbeans:true, steak:true, wheels:true, bubbles:true, mist:true, story:true };
+    S.giftsUnlocked = ['demo','greenbeans','redbeans','steak','sweets','diffuser','wheels','bubbles','mist','story','story2'];
+    S.scratchedDone = { greenbeans:true, redbeans:true, steak:true, wheels:true, bubbles:true, mist:true, story:true, story2:true };
     /* demo, sweets, diffuser intentionally NOT in scratchedDone — they'll have live scratch cards */
     S.steakUnlocked = true;
     S.love = 100;
@@ -1432,35 +1378,36 @@ PW_TO_KEY[PW.wheels]     = 'wheels';
 PW_TO_KEY[PW.bubbles]    = 'bubbles';
 PW_TO_KEY[PW.mist]       = 'mist';
 PW_TO_KEY[PW.story]      = 'story';
- 
+PW_TO_KEY[PW.story2]     = 'story2';
+
 var CHEAT_UNLOCK_ALL = 'masterkey';
 var CHEAT_REPLAY = 'replay';
- 
+
 function checkGiftCode(){
   var val = document.getElementById('pw-gift').value.toLowerCase().trim();
   var msg = document.getElementById('pw-gift-msg');
   if(!val) return;
- 
-  /* ── PG MODE ── */
+
   if (val === 'leaveroomforjesus') {
      S.pgMode = true;
      applyPgMode(); 
      val = PW_TO_KEY[PW.roses] ? PW.roses : 'roses'; 
   }
- 
+
   if (val === CHEAT_REPLAY) {
     document.getElementById('pw-gift').value='';
     showComplete();
     return;
   }
- 
+
   /* ── DEV CHEAT ── */
   if (val === CHEAT_UNLOCK_ALL) {
     document.getElementById('pw-gift').value='';
-    S.giftsUnlocked = ['greenbeans','redbeans','roses','steak','sweets','diffuser','wheels','bubbles','mist','story'];
-    S.scratchedDone = { greenbeans:true, redbeans:true, roses:true, steak:true, sweets:true, diffuser:true, wheels:true, bubbles:true, mist:true, story:true };
+    S.giftsUnlocked = ['greenbeans','redbeans','roses','steak','sweets','diffuser','wheels','bubbles','mist','story','story2'];
+    S.scratchedDone = { greenbeans:true, redbeans:true, roses:true, steak:true, sweets:true, diffuser:true, wheels:true, bubbles:true, mist:true, story:true, story2:true };
     S.steakUnlocked = true;
     S.vignetteOpen = true;
+    S.story2Open = true;
     S.love = 100;
     S.setupComplete = true;
     S.letterParts = MASTER_LETTER.slice(); 
@@ -1470,15 +1417,12 @@ function checkGiftCode(){
     setTimeout(showComplete, 600);
     return;
   }
- 
+
   var giftKey = PW_TO_KEY[val]||null;
- 
-  /* ── STEAK LOGIC (Dates Tab + 8th Gift Card Fix) ── */
+
   if (giftKey === 'steak') {
     if (!S.steakUnlocked) {
       S.steakUnlocked = true;
-      
-      /* Add it back to the gifts array so the scratch card actually generates */
       if (S.giftsUnlocked.indexOf('steak') === -1) {
         S.giftsUnlocked.push('steak');
         var pIndex = S.giftsUnlocked.length - 1;
@@ -1486,8 +1430,7 @@ function checkGiftCode(){
            S.letterParts.push(MASTER_LETTER[pIndex]); 
         }
       }
-      
-      setLove(Math.round((S.giftsUnlocked.length/10)*100));
+      setLove(Math.round((S.giftsUnlocked.length/11)*100));
       saveState();
       document.getElementById('pw-gift').value='';
       msg.className='pw-msg ok';
@@ -1495,7 +1438,7 @@ function checkGiftCode(){
       setTimeout(function(){ 
          msg.textContent=''; msg.className='pw-msg'; 
          goto('hub');
-         if(S.giftsUnlocked.length>=10 && S.steakUnlocked){ setTimeout(showComplete, 600); }
+         if(S.giftsUnlocked.length>=11 && S.steakUnlocked){ setTimeout(showComplete, 600); }
       }, 2500);
     } else {
       msg.textContent='You\'ve already unlocked the steak dinner 💕';
@@ -1503,8 +1446,7 @@ function checkGiftCode(){
     }
     return;
   }
- 
-  /* ── NORMAL GIFTS ── */
+
   if(giftKey && S.giftsUnlocked.indexOf(giftKey)===-1){
     S.giftsUnlocked.push(giftKey);
     
@@ -1514,9 +1456,11 @@ function checkGiftCode(){
            S.letterParts.push(MASTER_LETTER[paragraphIndex]); 
        }
     }
- 
-    if(giftKey==='story') S.vignetteOpen=true;
-    setLove(Math.round((S.giftsUnlocked.length/10)*100)); 
+
+    if(giftKey==='story')  S.vignetteOpen=true;
+    if(giftKey==='story2') S.story2Open=true;
+    
+    setLove(Math.round((S.giftsUnlocked.length/11)*100)); 
     saveState();
     document.getElementById('pw-gift').value='';
     msg.className='pw-msg ok';
@@ -1524,7 +1468,7 @@ function checkGiftCode(){
     setTimeout(function(){
       if(msg){msg.textContent='';msg.className='pw-msg';}
       goto('hub');
-      if(S.giftsUnlocked.length>=10 && S.steakUnlocked){
+      if(S.giftsUnlocked.length>=11 && S.steakUnlocked){
         setTimeout(showComplete, 600);
       }
     },1800);
@@ -1538,6 +1482,7 @@ function checkGiftCode(){
     playClick();
   }
 }
+
 /* ════════════════════════════════════════════════
    VERIFY — live typing
 ════════════════════════════════════════════════ */
@@ -1964,6 +1909,7 @@ And, annoyingly, she fucking can draw too.
 (I hope you didn't mind waiting that extra year for birthday poetry, i'm a better bloody writer than smelly sam anyway, even without a course tutors prize.)`
 ];
  
+
 /* ════════════════════════════════════════════════
    STORY VIEWER
 ════════════════════════════════════════════════ */
@@ -2022,6 +1968,149 @@ function renderStoryPage(){
 })();
  
 /* ════════════════════════════════════════════════
+   STORY 2 VIEWER ENGINE (10 Pages)
+════════════════════════════════════════════════ */
+var VIGNETTE2_PAGES = [
+  /* Page 1 */
+  `I saw her again the night before my train home.
+It was a crowded birthday party drowning in alcohol and the fractured noise of terrible karaoke. The speakers crackled. Somebody butchered a power ballad. Empty shot glasses accumulated across every available surface. We took our shots and attempted a song together, neither of us remembering enough of the lyrics to make a convincing effort.
+The strange thing was that we barely spent any time together.
+At least not intentionally.
+We had our own lives pulling at our sleeves. Our own friends demanding attention. Every conversation seemed to be interrupted by somebody wanting a favour, a drink, a photograph, or simply a witness to whatever nonsense they had decided was important.
+Yet I kept finding her.
+I wandered from the bar with another two drinks in hand, clunked one pint glass down in front of my mate, and walked away just to sit closer to her. I escaped to a quieter space outside and, minutes later, found her leaning against the wall nearby. I got pulled into a conversation on the opposite side of the room only to glance up and realise she had somehow ended up there too.`,
+  
+  /* Page 2 */
+  `Neither of us seemed particularly responsible for it. The night simply kept arranging us together.
+As the hours disappeared, we drifted physically closer. Not in the dramatic way films like to portray these things. Nothing too overt. Nothing that would survive scrutiny. Just the gradual disappearance of distance, the kind you only notice once it is already gone.
+We stood shoulder to shoulder. Leaned in too closely to hear each other over the noise. Allowed our knees to touch without moving away. All while fully exposed to the watchful eyes and inevitable teasing of our friends.
+I knew I liked her. I had known that for a while.
+But certainty arrived later.
+Certainty arrived in a taxi.
+One of my friends was catastrophically drunk by the end of the evening. He threw an enormous arm around my shoulders and used me as a piece of structural support while stumbling toward the waiting car. His weight dragged me forward. The cold air bit at my face. The taxi door slammed shut.`,
+
+  /* Page 3 */
+  `And somewhere between the sound of the latch clicking and the engine pulling away from the curb, a simple thought settled over me.
+I wasn't finished with her.
+I wasn't even close.
+The following morning unfolded in the peculiar fashion unique to days built on almost no sleep. Time stopped behaving properly. Minutes stretched. Hours folded into each other. Everything felt delayed. I spent most of the day moving through train stations and concrete platforms, surrounded by strangers travelling toward destinations they actually belonged to.
+At one point I stepped off a carriage and immediately spotted my connection waiting on the opposite side of the station. The doors were open. The platform wasn't particularly crowded. Making it would have been easy: a short sprint, a flight of stairs, a bit of weaving through commuters. Nothing more. Had I moved the second I saw it, I would have made that train comfortably. I could have been home hours earlier. I could have slept in my own bed. I could have wrapped myself in clean sheets and concluded the weekend in the logical manner expected of a responsible adult.`,
+
+  /* Page 4 */
+  `Instead, I stood still.
+My phone vibrated in my hand. Another message from her. Then another.
+The train waited patiently across the tracks. I did not move.
+Even now, I struggle to explain the sensation properly. It felt less like making a decision and more like discovering one had already been made. My feet remained planted to the platform. The train remained where it was. The messages continued arriving. Then the doors slid shut. The carriages began to move.
+I watched them disappear into the distance.
+And standing there beneath fluorescent station lights, I experienced the overwhelming certainty that I had never been supposed to board that train in the first place.
+By the time I found my way back to her apartment, any lingering doubt had evaporated. This no longer felt impulsive. It no longer felt reckless.
+It felt inevitable.
+She arrived to collect me with her roommate in tow. Almost immediately, I purchased an enormous crate of beer. Partly because I wanted beer. Mostly because I felt awkward. Turning up again felt absurdly bold in the harsh light of day. The crate made me feel less like somebody inviting himself into her weekend and more like a vaguely useful contribution.`,
+
+  /* Page 5 */
+  `By four in the morning all eighteen bottles were gone. We had conquered a ridiculous number of board games. Accumulated several digital victories on the console. Filled the apartment with music. Laughed until our stomachs hurt.
+At some point she cooked dinner. A genuinely incredible meal. I remember sitting at the table watching her move around the kitchen: opening cupboards, checking pans, tasting sauces, pushing loose strands of hair behind her ear. Nothing remarkable. Just somebody existing comfortably within a space they knew intimately. And for reasons I could not entirely explain, it made my chest ache.
+I want to stay here.
+The thought arrived quietly. Then stayed.
+When she finally glanced at the clock and realised how close morning had become, she offered me the couch. The invitation was delivered casually. Almost absentmindedly. As though she wasn't completely rewriting the trajectory of my weekend with a single sentence.
+She disappeared into the apartment to get ready for bed, and I sat alone in the living room.`,
+
+  /* Page 6 */
+  `[The television was off. The music had ended. Outside, the city had largely exhausted itself.
+A cupboard opened somewhere down the hall. Running water. The soft scrape of a toothbrush. A drawer closing. The apartment had settled into that strange hour where every sound feels larger than it should. Even the refrigerator seemed hesitant to interrupt the silence. I listened to her moving through the rooms. Not because she was doing anything extraordinary. Because she was there. Because every ordinary sound felt impossibly precious.
+Eventually she returned. The lights were dim. The room was quiet. For the first time all weekend, there was nothing demanding our attention. No friends. No trains. No distractions.
+Just the two of us.
+I looked at her. Actually looked at her. The way somebody might study a painting after spending months only glimpsing it in passing. And the feeling was identical to standing on that station platform. Not excitement. Not panic. Not infatuation.
+Certainty.
+Simple. Heavy. Absolute.
+I never consciously decided to move. I just did.`,
+
+  /* Page 7 */
+  `We didn't push boundaries. We didn't do anything particularly dramatic. We simply collapsed into the same bed as though we had finally exhausted every available method of staying apart.
+Sleep arrived almost immediately. The deepest sleep I had experienced in months. The kind that pulls you under completely. The kind that makes the rest of the world feel very far away.
+Morning attempted several times to find us. Alarms rang. Were ignored. Promises of five more minutes became ten. Then fifteen. Then another five. We negotiated endlessly with the sunrise and lost every single argument.
+At some point she pressed her lips against my throat. Sleepily. Absentmindedly. Almost as a form of protest against being awake. The sensation hit me with such intensity that I physically recoiled. Not because it hurt. Because it nearly did.
+When I eventually tried to convince her that work was, unfortunately, a real thing that existed, she simply collapsed back against my chest. Completely limp. Completely trusting. The full weight of her settling into me.
+And for a brief moment, a thought appeared with startling clarity.`,
+
+  /* Page 8 */
+  `The revelation wasn't about her. Not exactly. It wasn't even about whatever was developing between us. It was something larger. Something embarrassingly human.
+I finally understood why people stay.
+Not why they fall in love. Why they stay. Why they choose the same person repeatedly. Why they build lives around each other. Why they endure inconvenience and compromise and distance and uncertainty.
+Because occasionally another person can make the world feel quieter. Softer. More navigable. As though carrying the weight of existence becomes marginally easier in their company.
+Eventually I left.
+I was still wearing the same shirt. The final clean shirt I owned. I wore it for the entire journey home. Then through my front door. Then into my living room.
+My bag landed on the floor. My keys landed on the table. Everything was exactly where it belonged. Yet something felt catastrophically misplaced.
+I sat down and lifted the collar of my shirt. Then breathed in.
+Her shampoo. The detergent from her bedsheets. Something warmer beneath both of them. Something that belonged entirely to her.`,
+
+  /* Page 9 */
+  `The smell hit me with such force that my chest tightened. I had slept in that shirt. Travelled home in that shirt. Refused to change out of that shirt. As though removing it would somehow accelerate the distance already growing between us.
+I have never been particularly vulnerable to hangovers. Never suffered much the morning after. But sitting alone in that familiar room, staring at walls I had known for years, I felt an ache so profound that it seemed to settle somewhere behind my ribs.
+I was completely sober. I was definitely not hungover.
+I was inexplicably homesick.
+Every piece of evidence in the room confirmed that I was where I was meant to be.
+So why did it feel so much like I wasn't?`
+];
+
+var story2CurrentPage = 0;
+
+function openStory2(){
+  story2CurrentPage = 0;
+  renderStory2Page();
+  document.getElementById('story2-overlay').classList.add('open');
+  playClick();
+}
+
+function closeStory2(){
+  document.getElementById('story2-overlay').classList.remove('open');
+  playClick();
+}
+
+function story2Page(dir){
+  var total = VIGNETTE2_PAGES.length;
+  story2CurrentPage = Math.max(0, Math.min(story2CurrentPage + dir, total - 1));
+  renderStory2Page();
+  playClick();
+}
+
+function renderStory2Page(){
+  var total = VIGNETTE2_PAGES.length;
+  var el = document.getElementById('story2-page-text');
+  var num = document.getElementById('story2-page-num');
+  var ind = document.getElementById('story2-indicator');
+  if(el)  el.textContent  = VIGNETTE2_PAGES[story2CurrentPage] || '';
+  if(num) num.textContent = (story2CurrentPage + 1) + ' / ' + total;
+  if(ind) ind.textContent = 'Page ' + (story2CurrentPage + 1) + ' of ' + total;
+  var prev = document.getElementById('story2-prev');
+  var next = document.getElementById('story2-next');
+  if(prev) prev.disabled = (story2CurrentPage === 0);
+  if(next) next.disabled = (story2CurrentPage >= total - 1);
+  
+  /* scroll panel back to top on page turn */
+  var panel = document.getElementById('story2-panel');
+  if(panel) panel.scrollTop = 0;
+}
+
+/* Swipe support for Story 2 */
+(function(){
+  var sx2 = null;
+  document.addEventListener('touchstart', function(e){
+    var ov = document.getElementById('story2-overlay');
+    if(!ov || !ov.classList.contains('open')) return;
+    sx2 = e.touches[0].clientX;
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if(sx2 === null) return;
+    var ov = document.getElementById('story2-overlay');
+    if(!ov || !ov.classList.contains('open')){ sx2=null; return; }
+    var dx = e.changedTouches[0].clientX - sx2;
+    if(Math.abs(dx) > 50) story2Page(dx < 0 ? 1 : -1);
+    sx2 = null;
+  }, {passive:true});
+})();
+
+/* ════════════════════════════════════════════════
    SCREENS
 ════════════════════════════════════════════════ */
 var SCREENS = {
@@ -2061,7 +2150,7 @@ var SCREENS = {
       +'border:1px solid var(--pl);padding:18px 16px;margin-bottom:16px;text-align:center;">'
       +'<p style="font-family:Georgia,serif;font-size:1.25rem;color:var(--pd);margin-bottom:6px;">It\'s really you 💕</p>'
       +'<p style="font-size:.9rem;color:var(--soft);line-height:1.6;">'
-      +"Right.
+      +`Right.
 
 Have you figured out what any of this is yet?
 
@@ -2089,7 +2178,7 @@ P.P.S. You're snoring ridiculously loudly while I'm coding this.
 
 I still think it's adorable.
 
-Which is honestly a little embarrassing for me."
+Which is honestly a little embarrassing for me.`
       +'</p>'
       +'</div>'
       +'<div id="yes-no-area" style="display:none;text-align:center;">'
@@ -2104,7 +2193,7 @@ Which is honestly a little embarrassing for me."
   hub:function(){
     var slots='';
     /* flex mode: 10 slots (demo + 9 real gifts, no roses) */
-    var totalSlots = S.flexMode ? 10 : 10; 
+    var totalSlots = S.flexMode ? 11 : 11; 
     
     for(var i=0;i<totalSlots;i++){
       var key  = S.giftsUnlocked[i];
@@ -2136,7 +2225,7 @@ Which is honestly a little embarrassing for me."
       
     return ''
       +'<button class="diary-toggle" onclick="toggleDiary(\'d-hub\')" title="Dev diary">📖</button>'
-      +'<div class="diary-content" id="d-hub">I wasn't sure what either of our schedules would look like today.
+      +`<div class="diary-content" id="d-hub">I wasn't sure what either of our schedules would look like today.
 
 You've got birthday plans.
 
@@ -2190,7 +2279,7 @@ And most importantly, I hope you remember that every stupid line of code, every 
 
 Now go find your presents.
 
-I'll see you soon. ❤️</div>'
+I'll see you soon. ❤️</div>`
       +'<h2 class="script">🎁 Your Gifts</h2>'
       +'<p>Codes arrive through the day — each one unlocks something just for you 💕</p>'
       +'<p class="soft">'+S.giftsUnlocked.length+'/'+totalSlots+' unlocked</p>'
