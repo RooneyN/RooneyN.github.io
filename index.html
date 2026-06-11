@@ -1,9 +1,104 @@
+
+Claude finished the response
+
+index.html
+html
+
+Can we add another date being 'Build a pringle ring' and any other final touches you cna find
+
+12:12 PM
+Let me read the uploaded file first.
+
+
+Reading the uploaded HTML file
+Reading the uploaded HTML file
+Let me see the truncated section too:
+
+
+Viewed 4 files
+Viewed 4 files
+Now I have a complete picture of the file. Let me make the changes — adding the "Build a pringle ring" date and polishing up the remaining [FILL IN] placeholders and a few other rough edges I spotted.
+
+
+Ran a command, edited a file
+Ran a command, edited a file
+Now fix the broken font-family CSS string on the verify popup (missing closing quote):
+
+
+Fix the broken font-family style string missing a closing quote
+Fix the broken font-family style string missing a closing quote
+Fix the duplicate <link rel="preconnect"> tags in the head (they appear twice):
+
+
+Remove the duplicate Google Fonts preconnect and link tags that appear a second time just before </head>
+Remove the duplicate Google Fonts preconnect and link tags that appear a second time just before </head>
+Fix the duplicate playTaco() function definition:
+
+
+Remove the duplicate playTaco function definition near the verify section
+Remove the duplicate playTaco function definition near the verify section
+Wait, let me check that edit was correct and didn't accidentally remove the easter egg section header:
+
+
+Verify the area around the duplicate playTaco fix
+Verify the area around the duplicate playTaco fix
+The section header got mangled. Let me fix that:
+
+
+Fix the mangled section header after removing duplicate playTaco
+Fix the mangled section header after removing duplicate playTaco
+Now fix the typo "atleast" → "at least" in the diffuser gift text:
+
+
+Fix typo: atleast → at least
+Fix typo: atleast → at least
+Fix the capitalisation typo "delicous" → "delicious" in the cinnamon rolls menu item:
+
+
+Fix typo: delicous → delicious
+Fix typo: delicous → delicious
+Now verify the final state of the dates section looks correct:
+
+
+Verify the dates section including new Pringle Ring entry
+Verify the dates section including new Pringle Ring entry
+All looks great. Now copy to outputs:
+
+
+Ran a command, read a file
+Ran a command, read a file
+Here's what was changed:
+
+New date added:
+
+🥔 Build a Pringle Ring — with a little description: "Engineering. Architecture. Snacks. A date that requires teamwork and ends in eating the evidence."
+Other fixes found and cleaned up:
+
+Broken CSS string in the verify popup — font-family:'Georgia,serif was missing its closing quote, which would've broken the styling
+Duplicate Google Fonts <link> tags — they appeared twice in the <head>, causing a double network request
+Duplicate playTaco() function — it was defined twice, which is sloppy JS and could cause weird behaviour in strict environments
+Typo: atleast → at least in the diffuser gift clue
+Typo: delicous → delicious in the cinnamon rolls menu description
+
+Index
+Code · HTML 
+
+Want to be notified when Claude responds?
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+
+
+raw
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-
+ 
+ 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Dani ❤️</title>
 <link rel="manifest" href="manifest.json">
@@ -12,7 +107,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Dani ❤️">
 <link rel="apple-touch-icon" href="images/icon-512.png">
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -25,7 +120,7 @@
   --text:#5a2d4a;--soft:#b07090;
   --shadow:0 4px 28px rgba(224,90,138,.13);--r:22px;
 }
-
+ 
 /* ── RESET ───────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px}
@@ -41,7 +136,7 @@ body{
 input,textarea,.vignette-text,.fragment,.prize-text{
   user-select:text;-webkit-user-select:text;
 }
-
+ 
 /* ── DARK GATE ───────────────────────────────── */
 #dark-gate{
   display:none;position:fixed;inset:0;z-index:999;
@@ -52,7 +147,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
     radial-gradient(ellipse at 50% 40%, #1e1218 0%, #0d0a0d 70%);
 }
 #dark-gate.visible{display:flex}
-
+ 
 /* film grain overlay via SVG filter */
 #dark-gate::before{
   content:'';position:absolute;inset:0;z-index:0;
@@ -61,9 +156,9 @@ input,textarea,.vignette-text,.fragment,.prize-text{
   background-repeat:repeat;background-size:160px 160px;
 }
 #dark-gate > *{position:relative;z-index:1}
-
+ 
 .ghost-wrap{width:110px;height:130px;margin-bottom:44px;opacity:.82}
-
+ 
 #dark-gate input{
   width:100%;max-width:280px;background:transparent;border:none;
   border-bottom:1px solid rgba(255,255,255,.16);
@@ -85,7 +180,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 }
 #dark-gate button:hover{border-color:rgba(255,255,255,.48);color:rgba(255,255,255,.82)}
 #dark-gate button:active{transform:scale(.97)}
-
+ 
 /* ── HEARTS ──────────────────────────────────── */
 #hearts-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .heart{position:absolute;bottom:-40px;opacity:0;animation:floatUp linear infinite;user-select:none}
@@ -94,7 +189,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
   8%{opacity:.55}92%{opacity:.28}
   100%{transform:translateY(-105vh) rotate(14deg) scale(.5);opacity:0}
 }
-
+ 
 /* ── LOVE METER ──────────────────────────────── */
 #meter-bar{
   position:fixed;top:0;left:0;right:0;z-index:90;height:48px;
@@ -106,7 +201,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 #meter-track{flex:1;height:12px;background:var(--pl);border-radius:999px;overflow:hidden}
 #meter-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--pd));border-radius:999px;transition:width .9s cubic-bezier(.4,2,.4,1)}
 #meter-pct{font-size:.72rem;font-weight:700;color:var(--soft);min-width:32px;text-align:right}
-
+ 
 /* ── BOTTOM NAV ──────────────────────────────── */
 #bottom-nav{
   position:fixed;bottom:0;left:0;right:0;z-index:90;
@@ -129,14 +224,14 @@ input,textarea,.vignette-text,.fragment,.prize-text{
 }
 .nav-btn:active{transform:scale(.93)}
 .nav-btn:hover{background:var(--pink);color:#fff}
-
+ 
 /* ── SCREEN ──────────────────────────────────── */
 #screen-wrap{
   position:relative;z-index:1;min-height:100vh;
   padding:64px 16px 100px;
   display:flex;justify-content:center;align-items:flex-start;
 }
-
+ 
 /* ── CARD ────────────────────────────────────── */
 .card{
   width:100%;max-width:460px;background:var(--card);
@@ -145,7 +240,7 @@ input,textarea,.vignette-text,.fragment,.prize-text{
   animation:cardIn .35s ease both;
 }
 @keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
+ 
 /* ── TYPE ────────────────────────────────────── */
 .script{font-family:Georgia,serif;color:var(--pd)}
 h1.script{font-size:2.2rem;margin-bottom:6px}
@@ -153,7 +248,7 @@ h2.script{font-size:1.6rem;margin-bottom:10px}
 p{line-height:1.75;color:var(--text);font-size:.97rem;margin-bottom:12px}
 .soft{color:var(--soft);font-size:.9rem}
 hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
-
+ 
 /* ── BUTTONS ─────────────────────────────────── */
 .btn{
   display:inline-block;
@@ -170,7 +265,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 .btn-ghost{background:var(--pl);color:var(--text);box-shadow:none}
 .btn-ghost:hover{background:var(--pl);transform:translateY(-1px)}
 .center{text-align:center}
-
+ 
 /* ── PASSWORD INPUT ──────────────────────────── */
 .pw-wrap{margin:14px 0}
 .pw-input{
@@ -184,7 +279,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 .pw-input:focus{border-color:var(--pink)}
 .pw-msg{min-height:1.3em;font-size:.88rem;text-align:center;color:#d05050;transition:color .2s}
 .pw-msg.ok{color:var(--pd)}
-
+ 
 /* ── YES / NO ────────────────────────────────── */
 #no-btn{
   display:inline-block;background:var(--pl);color:var(--soft);
@@ -200,7 +295,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
   cursor:pointer;box-shadow:0 4px 16px rgba(224,90,138,.28);
   transition:all .4s cubic-bezier(.4,2,.4,1);margin:5px 4px;
 }
-
+ 
 /* ── VERIFY ──────────────────────────────────── */
 .verify-item{
   background:var(--bg);border-radius:14px;padding:14px 16px;
@@ -221,7 +316,7 @@ hr{border:none;border-top:1px solid var(--pl);margin:18px 0}
 .verify-tick.show{opacity:1}
 #yes-no-area{display:none;animation:fadeUp .5s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
+ 
 /* ── SCRATCH CARD ────────────────────────────── */
 .scratch-wrap{
   position:relative;width:100%;border-radius:16px;
@@ -244,7 +339,7 @@ canvas.scratch-canvas{
 }
 /* already-scratched state — show prize directly with no canvas */
 .scratch-wrap.done canvas{display:none}
-
+ 
 /* ── GIFT SLOTS ──────────────────────────────── */
 .gift-slot{
   background:var(--bg);border:2px dashed var(--pl);
@@ -252,7 +347,7 @@ canvas.scratch-canvas{
 }
 .gift-slot.filled{border-style:solid;border-color:var(--pink);background:var(--card)}
 .gift-slot.empty-slot{color:var(--soft);font-style:italic;font-size:.9rem;padding:20px}
-
+ 
 /* ── POLAROIDS ───────────────────────────────── */
 .scrapbook{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;padding:8px 0 12px}
 .polaroid{
@@ -265,7 +360,7 @@ canvas.scratch-canvas{
 @keyframes pinDrop{from{transform:scale(0) rotate(var(--rot,-2deg));opacity:0}to{transform:scale(1) rotate(var(--rot,-2deg));opacity:1}}
 .pol-pic{font-size:2.6rem;display:block;background:var(--bg);padding:8px 0;margin-bottom:8px}
 .pol-cap{font-family:Georgia,serif;font-size:.88rem;color:var(--soft);line-height:1.3}
-
+ 
 /* ── DEV DIARY ───────────────────────────────── */
 .diary-toggle{
   position:absolute;top:14px;right:14px;background:var(--pl);
@@ -281,7 +376,7 @@ canvas.scratch-canvas{
   color:var(--soft);font-style:italic;line-height:1.6;
 }
 .diary-content.open{display:block}
-
+ 
 /* ── FROM ME OVERLAY ─────────────────────────── */
 #fromme-overlay{
   display:none;position:fixed;inset:0;
@@ -305,7 +400,7 @@ canvas.scratch-canvas{
   border:none;border-radius:999px;width:34px;height:34px;
   font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
 }
-
+ 
 /* ── VIGNETTE ────────────────────────────────── */
 #vignette-locked{
   margin-top:18px;padding:18px;background:var(--bg);
@@ -323,7 +418,7 @@ canvas.scratch-canvas{
   line-height:1.9;color:var(--text);letter-spacing:.02em;
   user-select:text;-webkit-user-select:text;
 }
-
+ 
 /* ── STORY PANEL (same pattern as colombian) ─── */
 #story-overlay{
   display:none;position:fixed;inset:0;
@@ -377,7 +472,7 @@ canvas.scratch-canvas{
 }
 #vignette-book-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,90,138,.38)}
 #vignette-book-btn:active{transform:scale(.96)}
-
+ 
 /* ── STORY BOOK ──────────────────────────────── */
 #book-overlay{
   display:none;position:fixed;inset:0;z-index:600;
@@ -385,7 +480,7 @@ canvas.scratch-canvas{
   align-items:center;justify-content:center;padding:20px;
 }
 #book-overlay.open{display:flex}
-
+ 
 #book-wrap{
   position:relative;width:100%;max-width:440px;
   animation:bookOpen .35s cubic-bezier(.4,2,.4,1) both;
@@ -394,7 +489,7 @@ canvas.scratch-canvas{
   from{opacity:0;transform:scale(.92) translateY(16px)}
   to{opacity:1;transform:scale(1) translateY(0)}
 }
-
+ 
 #book-inner{
   background:var(--card);
   border-radius:var(--r);
@@ -402,7 +497,7 @@ canvas.scratch-canvas{
   overflow:hidden;
   position:relative;
 }
-
+ 
 #book-header{
   padding:20px 22px 14px;
   border-bottom:1px solid var(--pl);
@@ -421,7 +516,7 @@ canvas.scratch-canvas{
   transition:background .18s;flex-shrink:0;
 }
 #book-close-btn:hover{background:var(--pink);color:#fff}
-
+ 
 #book-pages{
   display:flex;min-height:300px;position:relative;
 }
@@ -450,7 +545,7 @@ canvas.scratch-canvas{
 }
 .book-page:first-child .book-page-num{right:16px}
 .book-page:last-child  .book-page-num{left:16px}
-
+ 
 #book-nav{
   border-top:1px solid var(--pl);
   padding:12px 18px;
@@ -469,7 +564,7 @@ canvas.scratch-canvas{
 .book-nav-btn:active{transform:scale(.95)}
 .book-nav-btn:disabled{opacity:.35;cursor:default;background:var(--pl)}
 .book-nav-btn:disabled:hover{background:var(--pl);color:var(--text)}
-
+ 
 #book-page-indicator{
   font-family:'EB Garamond',Georgia,serif;
   font-size:.82rem;font-style:italic;
@@ -494,7 +589,7 @@ canvas.scratch-canvas{
 #vignette-book-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,90,138,.38)}
 #vignette-book-btn:active{transform:scale(.96)}
 #vignette-book-btn .book-icon{font-size:1.25rem}
-
+ 
 /* ── OUR WORLD ───────────────────────────────── */
 #world-overlay{display:none;position:fixed;inset:0;background:rgba(90,45,74,.2);z-index:200}
 #world-overlay.open{display:block}
@@ -522,7 +617,7 @@ canvas.scratch-canvas{
   font-size:.91rem;display:flex;align-items:center;gap:8px;color:var(--text);
 }
 #world-panel li:last-child{border-bottom:none}
-
+ 
 /* ── COLOMBIAN MENU ──────────────────────────── */
 #colombian-overlay{
   display:none;position:fixed;inset:0;
@@ -554,22 +649,19 @@ canvas.scratch-canvas{
 .menu-item.ticked .menu-check{background:var(--pd);border-color:var(--pd);color:#fff}
 .menu-name{font-size:.93rem;font-weight:600;color:var(--text)}
 .menu-desc{font-size:.8rem;color:var(--soft);margin-top:2px}
-
+ 
 /* ── LOCKED LABEL ────────────────────────────── */
 .locked-label{color:var(--soft);font-style:italic;font-size:.9rem;padding:10px 0;display:flex;align-items:center;gap:6px}
-
+ 
 /* ── SPLASH ──────────────────────────────────── */
 .big-heart{font-size:5rem;display:block;text-align:center;margin:16px 0;animation:hbeat 1.9s ease-in-out infinite}
 @keyframes hbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.13)}}
 .splash-gif{width:100%;max-width:320px;border-radius:16px;margin:12px auto;display:block}
-
+ 
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-
+ 
 <!-- ═══════════════════════════════════════════
      DARK GATE
 ═══════════════════════════════════════════ -->
@@ -582,7 +674,7 @@ canvas.scratch-canvas{
     letter-spacing:.5px;text-shadow:0 0 24px rgba(255,133,179,.3);
   ">A special something, for a special someone.</p>
   <p style="font-family:Georgia,serif;font-style:italic;font-size:.95rem;color:rgba(255,200,220,.35);text-align:center;margin-bottom:32px;letter-spacing:.5px;">a little door, just for you ❤️</p>
-
+ 
   <!-- NR monogram — replaces ghost -->
   <div class="ghost-wrap" style="width:120px;height:120px;margin-bottom:36px;">
     <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -609,24 +701,24 @@ canvas.scratch-canvas{
       <circle cx="60" cy="60" r="2" fill="rgba(255,133,179,.4)"/>
     </svg>
   </div>
-
+ 
   <input id="dark-pw" type="password" placeholder="••••••••"
          autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
          onkeydown="if(event.key==='Enter')checkDarkGate()">
   <p id="dark-gate-msg"></p>
   <button onclick="checkDarkGate()">Enter</button>
 </div>
-
+ 
 <!-- HEARTS -->
 <div id="hearts-bg"></div>
-
+ 
 <!-- LOVE METER -->
 <div id="meter-bar" style="display:none">
 <span id="meter-icon" onclick="tapHeart()" style="cursor:pointer; user-select:none; -webkit-user-select:none;">🤍</span>
   <div id="meter-track"><div id="meter-fill"></div></div>
   <span id="meter-pct">0%</span>
 </div>
-
+ 
 <!-- BOTTOM NAV -->
 <div id="bottom-nav" style="display:none">
   <button class="nav-btn" onclick="playClick();openFromMe()">💌 From Me</button>
@@ -634,7 +726,7 @@ canvas.scratch-canvas{
   <button class="nav-btn" onclick="playClick();openWorld()">🌍 Our World</button>
   <button class="nav-btn" onclick="playClick();openColombian()">🍽️ The Menu</button>
 </div>
-
+ 
 <!-- FROM ME OVERLAY -->
 <div id="fromme-overlay">
   <div id="fromme-panel">
@@ -659,7 +751,7 @@ canvas.scratch-canvas{
     </div>
   </div>
 </div>
-
+ 
 <!-- OUR WORLD PANEL -->
 <div id="world-overlay" onclick="closeWorld()"></div>
 <div id="world-panel">
@@ -700,7 +792,7 @@ canvas.scratch-canvas{
     </ul>
   </div>
 </div>
-
+ 
 <!-- COLOMBIAN MENU OVERLAY -->
 <div id="colombian-overlay">
   <div id="colombian-panel">
@@ -715,7 +807,7 @@ canvas.scratch-canvas{
       </div>
       <div class="menu-item" onclick="tickMenu(this,'Homemade Cinnamon Rolls')">
         <div class="menu-check"></div>
-        <div><div class="menu-name">Homemade Cinnamon Rolls</div><div class="menu-desc">Thick, creamy and delicous - Reminds me of someone don't you agree?</div></div>
+        <div><div class="menu-name">Homemade Cinnamon Rolls</div><div class="menu-desc">Thick, creamy and delicious - Reminds me of someone don't you agree?</div></div>
       </div>
       <div class="menu-item" onclick="tickMenu(this,'Sancocho')">
         <div class="menu-check"></div>
@@ -737,12 +829,12 @@ canvas.scratch-canvas{
     </div>
   </div>
 </div>
-
+ 
 <!-- SCREEN -->
 <div id="screen-wrap" style="display:none">
   <div id="app"></div>
 </div>
-
+ 
 <!-- RESET CONFIRM OVERLAY (secret kill switch) -->
 <div id="reset-overlay" style="
   display:none;position:fixed;inset:0;z-index:500;
@@ -771,7 +863,7 @@ canvas.scratch-canvas{
     ">Cancel</button>
   </div>
 </div>
-
+ 
 <!-- DATES OVERLAY -->
 <div id="dates-overlay" onclick="if(event.target===this)closeDates()" style="
   display:none;position:fixed;inset:0;
@@ -791,7 +883,7 @@ canvas.scratch-canvas{
     <h2 class="script">📅 Our Dates</h2>
     <p class="soft" style="margin-bottom:16px;">Things to look forward to 🌸</p>
    <div id="dates-list">
-
+ 
       <!-- Steak Night — unlocked via code -->
       <div id="steak-locked" style="text-align:center;padding:20px;background:var(--bg);border:2px dashed var(--pl);border-radius:16px;margin-bottom:14px;">
         <span style="font-size:2rem;display:block;margin-bottom:8px;">🔒</span>
@@ -806,7 +898,7 @@ canvas.scratch-canvas{
           <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">Romantic dinner for 2 in casa Rooney</p>
         </div>
       </div>
-
+ 
       <!-- Scooby Doo date -->
       <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--pl);">
         <div style="background:var(--pl);border-radius:12px;padding:8px 10px;text-align:center;min-width:48px;flex-shrink:0;">
@@ -814,10 +906,10 @@ canvas.scratch-canvas{
         </div>
         <div>
           <p style="font-weight:700;margin-bottom:2px;font-size:.95rem;">Scooby-Doo Movie Night</p>
-          <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">Blankets, snacks, and the gang solving mysteries.</p>
+          <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">Blankets, sandwiches, Scoobysnacks, and the gang solving mysteries.</p>
         </div>
       </div>
-
+ 
       <!-- Japanese restaurant -->
       <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--pl);">
         <div style="background:var(--pl);border-radius:12px;padding:8px 10px;text-align:center;min-width:48px;flex-shrink:0;">
@@ -828,7 +920,7 @@ canvas.scratch-canvas{
           <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">The one across the road from mine — been meaning to go since it opened.</p>
         </div>
       </div>
-
+ 
       <!-- Drunk Maccies -->
       <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--pl);">
         <div style="background:var(--pl);border-radius:12px;padding:8px 10px;text-align:center;min-width:48px;flex-shrink:0;">
@@ -836,12 +928,12 @@ canvas.scratch-canvas{
         </div>
         <div>
           <p style="font-weight:700;margin-bottom:2px;font-size:.95rem;">Drunk Maccies</p>
-          <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">A tradition that needs no explanation.</p>
+          <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">A dinner that needs no explanation.</p>
         </div>
       </div>
-
+ 
       <!-- Colombian restaurant Liverpool -->
-      <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;">
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--pl);">
         <div style="background:var(--pl);border-radius:12px;padding:8px 10px;text-align:center;min-width:48px;flex-shrink:0;">
           <span style="font-size:1.6rem;">🇨🇴</span>
         </div>
@@ -850,11 +942,22 @@ canvas.scratch-canvas{
           <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">Liverpool called, it wants us back.</p>
         </div>
       </div>
-
+ 
+      <!-- Build a pringle ring -->
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;">
+        <div style="background:var(--pl);border-radius:12px;padding:8px 10px;text-align:center;min-width:48px;flex-shrink:0;">
+          <span style="font-size:1.6rem;">🥔</span>
+        </div>
+        <div>
+          <p style="font-weight:700;margin-bottom:2px;font-size:.95rem;">Build a Pringle Ring</p>
+          <p style="font-size:.83rem;color:var(--soft);margin:0;line-height:1.5;">Engineering. Architecture. Snacks. A date that requires teamwork and ends in eating the evidence.</p>
+        </div>
+      </div>
+ 
     </div>
   </div><!-- /dates-panel -->
 </div><!-- /dates-overlay -->
-
+ 
 <!-- COMPLETION OVERLAY — shown when all 8 gifts unlocked -->
 <div id="complete-overlay" style="
   display:none;position:fixed;inset:0;z-index:300;
@@ -889,8 +992,8 @@ canvas.scratch-canvas{
     ">Back to your gifts</button>
   </div>
 </div>
-
-
+ 
+ 
 <!-- STORY PANEL -->
 <div id="story-overlay" onclick="if(event.target===this)closeStory()">
   <div id="story-panel">
@@ -905,20 +1008,20 @@ canvas.scratch-canvas{
     </div>
   </div>
 </div>
-
+ 
 <!-- AUDIO --><!-- AUDIO -->
 <audio id="audio-ambient"></audio>
 <audio id="audio-unlock"><source src="audio/zelda-chest.mp3" type="audio/mpeg"></audio>
 <audio id="audio-click"><source src="audio/cute-pop.mp3" type="audio/mpeg"></audio>
 <audio id="audio-taco"><source src="audio/taco-bong.mp3" type="audio/mpeg"></audio>
-
+ 
 <script>
-
+ 
 /* ════════════════════════════════════════════════
    AUTO-LOGIN BYPASS
 ════════════════════════════════════════════════ */
 function startExperience(){ /* no-op — kept for safety */ }
-
+ 
 window.addEventListener('DOMContentLoaded', function(){
   if(S.setupComplete){
     document.getElementById('dark-gate').style.display='none';
@@ -938,7 +1041,7 @@ window.addEventListener('DOMContentLoaded', function(){
     }, 150);
   }
 });
-
+ 
 function applyFlexMode() {
   if (S.flexMode) {
     var style = document.createElement('style');
@@ -946,7 +1049,7 @@ function applyFlexMode() {
     document.head.appendChild(style);
   }
 }
-
+ 
 function applyPgMode() {
   if (S.pgMode) {
     GIFTS.roses.title = 'A sweet surprise';
@@ -954,7 +1057,7 @@ function applyPgMode() {
     GIFTS.roses.icon  = '🌸';
   }
 }
-
+ 
 /* ════════════════════════════════════════════════
    PWA — register service worker if supported
 ════════════════════════════════════════════════ */
@@ -963,7 +1066,7 @@ if('serviceWorker' in navigator){
     navigator.serviceWorker.register('sw.js').catch(function(){});
   });
 }
-
+ 
 /* ════════════════════════════════════════════════
    PASSWORDS  ← FILL THESE IN
 ════════════════════════════════════════════════ */
@@ -980,24 +1083,24 @@ var PW = {
   mist:       'giveme3hourstogetready',          
   story:      'coursetutorsprize'          
 };
-
+ 
 /* ════════════════════════════════════════════════
    GIFTS  ← FILL IN text & letterPart for each
 ════════════════════════════════════════════════ */
 var GIFTS = {
   demo:      { icon:"🎁", title:"Scratch to reveal!", text:"This is what your gifts look like — scratch away 💅" },
-  greenbeans:{ icon:"☕", title:"Your first drink of the evening on me", text:"I/'ll actually physically fight for this", letterPart:"[FILL IN: para 1]" },
+  greenbeans:{ icon:"☕", title:"Your first drink of the evening on me", text:"I'll actually physically fight for this", letterPart:"[FILL IN: para 1]" },
   redbeans:  { icon:"🃏", title:"????", text:"Some battlefields are made of mud. Ours are made of dropped loot, missed shots, and me getting distracted talking to you. Go to your personal landing spot before we dominate as a dream team.", letterPart:"[FILL IN: para 2]" },
   roses:     { icon:"🎀", title:"????", text:"Not every memory lives in your head. Some are hidden away, kept safe for another day. Go look beneath the surface.", letterPart:"[FILL IN: para 3]" },
   steak:     { icon:"🥩", title:"Steak dinner", text:"With a drink of your choice, sides and a movie included. (You're the dessert)", letterPart:"[FILL IN: para 4]" },
   sweets:    { icon:"🍬", title:"????", text:"Before birthdays, before dates, before all of this, there was a moment I didn't realise would matter so much. Find the place hiding the evidence that I was always going to come back.", letterPart:"[FILL IN: para 5]" },
-  diffuser:  { icon:"🍫", title:"????", text:"I know you don't eat as much when you're not with me, so atleast try find this so you can still enjoy the smell.", letterPart:"[FILL IN: para 6]" },
+  diffuser:  { icon:"🍫", title:"????", text:"I know you don't eat as much when you're not with me, so at least try find this so you can still enjoy the smell.", letterPart:"[FILL IN: para 6]" },
   wheels:    { icon:"🚗", title:"2x Free Uber rides", text:"These ones you don't need to owe me or make fair.", letterPart:"[FILL IN: para 7]" },
   bubbles:   { icon:"🧃", title:"????", text:"One of the easiest ways to make you happy comes in a bottle and definitely isn't water.", letterPart:"[FILL IN: para 8]" },
   mist:      { icon:"💨", title:"????", text:"Some people unpack their lives into a house. You somehow managed to pack yours into a few boxes and bags. Go look where most of your world is currently living.", letterPart:"[FILL IN: para 9]" },
   story:     { icon:"📖", title:"Something just for you", text:"Open \"From Me\" — there's something waiting 💕", letterPart:"[FILL IN: para 10]" }
 };
-
+ 
 /* ════════════════════════════════════════════════
    VERIFY QUESTIONS  ← FILL THESE IN
    a: array of accepted answers (all lowercase)
@@ -1012,13 +1115,13 @@ var VERIFY_QS = [
   { q:'Whats our stim from taco bell?', a:['live mas','.'] },
   { q:'What\'s Nialls favourite taste?', a:['me','my pussy','my vagina','dani','his girlfriend','cake','.'] }
 ];
-
+ 
 /* ════════════════════════════════════════════════
    STATE  — synced to localStorage
 ════════════════════════════════════════════════ */
 var LS_KEY = 'bday_hunt_v1';
-
-
+ 
+ 
 /* ════════════════════════════════════════════════
    STATE & DECOUPLED LETTERS
 ════════════════════════════════════════════════ */
@@ -1036,7 +1139,7 @@ function defaultState(){
     pgMode: false     /* Tracks if she used the Jesus password */
   };
 }
-
+ 
 /* ── THE MASTER LETTER ARRAY ── */
 var MASTER_LETTER = [
   "Paragraph 1: [FILL IN]",
@@ -1050,7 +1153,7 @@ var MASTER_LETTER = [
   "Paragraph 9: [FILL IN]",
   "Paragraph 10: [FILL IN]"
 ];
-
+ 
 function loadState(){
   try {
     var raw = localStorage.getItem(LS_KEY);
@@ -1062,14 +1165,14 @@ function loadState(){
   } catch(e){}
   return defaultState();
 }
-
+ 
 function saveState(){
   try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch(e){}
 }
-
+ 
 /* initialise state after functions are defined */
 var S = loadState();
-
+ 
 /* ════════════════════════════════════════════════
    ROUTER
 ════════════════════════════════════════════════ */
@@ -1083,7 +1186,7 @@ function goto(name){
   window.scrollTo(0,0);
   setTimeout(initScratchCards, 80);
 }
-
+ 
 /* ════════════════════════════════════════════════
    LOVE METER
 ════════════════════════════════════════════════ */
@@ -1096,14 +1199,14 @@ function setLove(v){
     S.love<25?icons[0]:S.love<55?icons[1]:S.love<85?icons[2]:icons[3];
   saveState();
 }
-
+ 
 /* ════════════════════════════════════════════════
    FROM ME
 ════════════════════════════════════════════════ */
 function addLetter(text){
   if(S.letterParts.indexOf(text)===-1){ S.letterParts.push(text); saveState(); }
 }
-
+ 
 function openFromMe(){
   var body = document.getElementById('fromme-body');
   body.innerHTML = S.letterParts.length===0
@@ -1123,26 +1226,26 @@ function openFromMe(){
   document.getElementById('fromme-overlay').classList.add('open');
 }
 function closeFromMe(){ document.getElementById('fromme-overlay').classList.remove('open'); }
-
+ 
 /* ════════════════════════════════════════════════
    OUR WORLD
 ════════════════════════════════════════════════ */
 function openWorld() { document.getElementById('world-panel').classList.add('open');  document.getElementById('world-overlay').classList.add('open'); }
 function closeWorld(){ document.getElementById('world-panel').classList.remove('open'); document.getElementById('world-overlay').classList.remove('open'); }
-
+ 
 /* ════════════════════════════════════════════════
    COLOMBIAN MENU
 ════════════════════════════════════════════════ */
 function openColombian() { restoreMenuTicks(); document.getElementById('colombian-overlay').classList.add('open'); }
 function closeColombian(){ document.getElementById('colombian-overlay').classList.remove('open'); }
-
+ 
 function tickMenu(el, name){
   el.classList.toggle('ticked');
   S.menuTicked[name] = el.classList.contains('ticked');
   el.querySelector('.menu-check').textContent = S.menuTicked[name] ? '✓' : '';
   saveState();
 }
-
+ 
 function restoreMenuTicks(){
   /* run after overlay opens so DOM is ready */
   setTimeout(function(){
@@ -1157,7 +1260,7 @@ function restoreMenuTicks(){
     });
   }, 20);
 }
-
+ 
 /* ════════════════════════════════════════════════
    DATES
 ════════════════════════════════════════════════ */
@@ -1169,7 +1272,7 @@ function openDates() {
   }
 }
 function closeDates(){ document.getElementById('dates-overlay').style.display='none'; }
-
+ 
 /* ════════════════════════════════════════════════
    COMPLETION
 ════════════════════════════════════════════════ */
@@ -1193,7 +1296,7 @@ function showComplete(){
   }
 }
 function closeComplete(){ document.getElementById('complete-overlay').style.display='none'; }
-
+ 
 /* ════════════════════════════════════════════════
    SECRET RESET
 ════════════════════════════════════════════════ */
@@ -1215,7 +1318,7 @@ function confirmReset(){
   setLove(0);
   goto('hub');
 }
-
+ 
 /* ════════════════════════════════════════════════
    AUDIO ENGINE & RANDOM PLAYLIST
 ════════════════════════════════════════════════ */
@@ -1224,7 +1327,7 @@ var playlist = [
   'audio/rain-track-2.mp3'
 ];
 var currentTrack = Math.floor(Math.random() * playlist.length);
-
+ 
 function startAudio(){
   var a=document.getElementById('audio-ambient');
   if(a){
@@ -1246,15 +1349,15 @@ function playTaco(){ var a=document.getElementById('audio-taco'); if(a){a.curren
    DEV DIARY
 ════════════════════════════════════════════════ */
 function toggleDiary(id){ var e=document.getElementById(id); if(e) e.classList.toggle('open'); }
-
-
+ 
+ 
 /* ════════════════════════════════════════════════
    DARK GATE (With "show off" Flex Mode)
 ════════════════════════════════════════════════ */
 function checkDarkGate(){
   var val = document.getElementById('dark-pw').value.toLowerCase().trim();
   var msg = document.getElementById('dark-gate-msg');
-
+ 
   /* ── FLEX MODE ── */
   if (val === 'show off') {
     S.flexMode = true;
@@ -1290,7 +1393,7 @@ function checkDarkGate(){
     }, 650);
     return;
   }
-
+ 
   /* ── NORMAL LOGIN ── */
   if(val===PW.gate){
     var gate = document.getElementById('dark-gate');
@@ -1314,7 +1417,7 @@ function checkDarkGate(){
     document.getElementById('dark-pw').focus();
   }
 }
-
+ 
 /* ════════════════════════════════════════════════
    GIFT PASSWORDS & CHEAT CODES
 ════════════════════════════════════════════════ */
@@ -1329,28 +1432,28 @@ PW_TO_KEY[PW.wheels]     = 'wheels';
 PW_TO_KEY[PW.bubbles]    = 'bubbles';
 PW_TO_KEY[PW.mist]       = 'mist';
 PW_TO_KEY[PW.story]      = 'story';
-
+ 
 var CHEAT_UNLOCK_ALL = 'masterkey';
 var CHEAT_REPLAY = 'replay';
-
+ 
 function checkGiftCode(){
   var val = document.getElementById('pw-gift').value.toLowerCase().trim();
   var msg = document.getElementById('pw-gift-msg');
   if(!val) return;
-
+ 
   /* ── PG MODE ── */
   if (val === 'leaveroomforjesus') {
      S.pgMode = true;
      applyPgMode(); 
      val = PW_TO_KEY[PW.roses] ? PW.roses : 'roses'; 
   }
-
+ 
   if (val === CHEAT_REPLAY) {
     document.getElementById('pw-gift').value='';
     showComplete();
     return;
   }
-
+ 
   /* ── DEV CHEAT ── */
   if (val === CHEAT_UNLOCK_ALL) {
     document.getElementById('pw-gift').value='';
@@ -1367,9 +1470,9 @@ function checkGiftCode(){
     setTimeout(showComplete, 600);
     return;
   }
-
+ 
   var giftKey = PW_TO_KEY[val]||null;
-
+ 
   /* ── STEAK LOGIC (Dates Tab + 8th Gift Card Fix) ── */
   if (giftKey === 'steak') {
     if (!S.steakUnlocked) {
@@ -1400,7 +1503,7 @@ function checkGiftCode(){
     }
     return;
   }
-
+ 
   /* ── NORMAL GIFTS ── */
   if(giftKey && S.giftsUnlocked.indexOf(giftKey)===-1){
     S.giftsUnlocked.push(giftKey);
@@ -1411,7 +1514,7 @@ function checkGiftCode(){
            S.letterParts.push(MASTER_LETTER[paragraphIndex]); 
        }
     }
-
+ 
     if(giftKey==='story') S.vignetteOpen=true;
     setLove(Math.round((S.giftsUnlocked.length/10)*100)); 
     saveState();
@@ -1438,8 +1541,7 @@ function checkGiftCode(){
 /* ════════════════════════════════════════════════
    VERIFY — live typing
 ════════════════════════════════════════════════ */
-function playTaco(){ var a=document.getElementById('audio-taco'); if(a){a.currentTime=0;a.play().catch(function(){});} }
-
+ 
 /* ════════════════════════════════════════════════
    EASTER EGG: LOVE METER OVERLOAD (BOMB ENGINE)
 ════════════════════════════════════════════════ */
@@ -1465,7 +1567,7 @@ function tapHeart() {
         s.innerHTML = '@keyframes bombFly { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(-130vh) scale(1.5) rotate(360deg); opacity: 0; } }';
         document.head.appendChild(s);
     }
-
+ 
     /* iPhone safe emojis */
     var emojis = ['🌮','🏎️','🦊','🤪','💕','🎮','🇨🇴']; 
     
@@ -1489,7 +1591,7 @@ function tapHeart() {
     }, 12000);
   }
 }
-
+ 
 function checkVerifyInput(inputEl, qIndex){
   var val      = inputEl.value.toLowerCase().trim();
   var accepted = VERIFY_QS[qIndex].a;
@@ -1520,12 +1622,12 @@ function checkVerifyInput(inputEl, qIndex){
   if(area)  area.style.display  = allOk ? 'block' : 'none';
   if(popup) popup.style.display = allOk ? 'block' : 'none';
 }
-
+ 
 /* YES / NO */
 var yesStage=0;
 var yesTexts=['Yes! 🎀','Please? 🥺','Pretty please? 💕','I\'ll give you a kiss! 😘'];
 var yesPad=[14,18,24,32], yesPx=[34,44,60,80], yesFs=[1,1.3,1.7,2.1];
-
+ 
 function pressNo(){
   playClick();
   yesStage=Math.min(yesStage+1,yesTexts.length-1);
@@ -1540,7 +1642,7 @@ function pressNo(){
   yb.style.padding=yesPad[yesStage]+'px '+yesPx[yesStage]+'px';
 }
 function pressYes(){ playClick(); yesStage=0; S.setupComplete = true; saveState(); goto('hub'); }
-
+ 
 /* ════════════════════════════════════════════════
    SCRATCH CARD
    — threshold: 75% (more scratching required)
@@ -1555,19 +1657,19 @@ function initScratchCards(){
   document.querySelectorAll('.scratch-wrap').forEach(function(wrap){
     if(wrap.dataset.init) return;
     wrap.dataset.init='1';
-
+ 
     var key    = wrap.dataset.key;
     var canvas = wrap.querySelector('.scratch-canvas');
-
+ 
     if(key && S.scratchedDone[key]){
       if(canvas) canvas.parentNode.removeChild(canvas);
       wrap.classList.add('done');
       return;
     }
-
+ 
     if(!canvas) return;
     var prize = wrap.querySelector('.scratch-prize');
-
+ 
     function sizeCanvas(){
       var w = wrap.offsetWidth;
       var h = prize.offsetHeight||120;
@@ -1577,11 +1679,11 @@ function initScratchCards(){
       canvas.style.height = h+'px';
       return {w:w, h:h};
     }
-
+ 
     var dim = sizeCanvas();
     var ctx = canvas.getContext('2d');
     ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
-
+ 
     ctx.fillStyle='#b898aa';
     ctx.fillRect(0,0,dim.w,dim.h);
     ctx.fillStyle='rgba(255,255,255,.22)';
@@ -1592,7 +1694,7 @@ function initScratchCards(){
       }
     }
     ctx.globalCompositeOperation='destination-out';
-
+ 
     var painting = false;
     var totalArea = dim.w * dim.h;
     var cleared   = 0;
@@ -1601,13 +1703,13 @@ function initScratchCards(){
     /* Track previous mouse position to stop the wiggle exploit */
     var lastX = -999; 
     var lastY = -999;
-
+ 
     function getPos(e){
       var r=canvas.getBoundingClientRect();
       if(e.touches) return {x:e.touches[0].clientX-r.left, y:e.touches[0].clientY-r.top};
       return {x:e.clientX-r.left, y:e.clientY-r.top};
     }
-
+ 
     function scratch(x,y){
       var radius = Math.min(dim.w, dim.h) * 0.08; /* Slightly smaller brush */
       
@@ -1617,7 +1719,7 @@ function initScratchCards(){
       
       lastX = x; 
       lastY = y;
-
+ 
       ctx.beginPath();
       ctx.arc(x,y,radius,0,Math.PI*2);
       ctx.fill();
@@ -1639,7 +1741,7 @@ function initScratchCards(){
         }
       }
     }
-
+ 
     canvas.addEventListener('mousedown', function(e){ painting=true; var p=getPos(e); scratch(p.x,p.y); });
     canvas.addEventListener('mousemove', function(e){ if(!painting)return; var p=getPos(e); scratch(p.x,p.y); });
     canvas.addEventListener('mouseup',   function(){ painting=false; });
@@ -1649,7 +1751,7 @@ function initScratchCards(){
     canvas.addEventListener('touchend',  function(){ painting=false; });
   });
 }
-
+ 
 function scratchCardHTML(giftKey){
   var g=GIFTS[giftKey];
   if(!g) return '';
@@ -1662,7 +1764,7 @@ function scratchCardHTML(giftKey){
     +(S.scratchedDone[giftKey]?'':'<canvas class="scratch-canvas"></canvas>')
     +'</div>';
 }
-
+ 
 var VIGNETTE_PAGES = [
   /* Page 1 */
   `I've always thought writing was boring.
@@ -1687,7 +1789,7 @@ I'm writing this sat on the floor with my back against the foot of the bed, tryi
 It's not going well.
 Every sentence arrives injured and mizpelt.
 Half-finished thoughts litter the page.`,
-
+ 
   /* Page 2 */
   `Entire paragraphs are abandoned before they reach the end because every time I look down to write, I find myself needing to look back up again.
 It's become a ridiculous cycle.
@@ -1707,7 +1809,7 @@ It catches the face of my watch for a moment before moving on.
 A ridiculous thing to notice.
 A watch is a watch.
 Except this one spent weeks living on her nightstand after I forgot it, spending more time with her than I did before eventually finding its way back onto my wrist.`,
-
+ 
   /* Page 3 */
   `It still tells the same time.
 Still ticks exactly as it always did.
@@ -1736,7 +1838,7 @@ Tiny ceremonies performed long before your name entered someone's life.
 Before your voice.
 Before your touch.
 Before they ever imagined sharing a room with you.`,
-
+ 
   /* Page 4 */
   `She has probably stood before mirrors like this hundreds of times.
 Perhaps thousands.
@@ -1764,7 +1866,7 @@ Then she arrived and ruined the discussion completely.
 The room smells faintly of her hair products now.
 Not enough to dominate the air.
 Just enough to announce its presence.`,
-
+ 
   /* Page 5 */
   `A soft sweetness drifting through the warmth left behind by the shower.
 It settles into the room quietly.
@@ -1791,7 +1893,7 @@ A painter could have captured this.
 The light gathering around her shoulders.
 The concentration in her eyes.
 The quiet confidence of somebody entirely comfortable in their own skin.`,
-
+ 
   /* Page 6 */
   `A photographer could have stolen the moment whole.
 Frozen it forever.
@@ -1817,7 +1919,7 @@ What has me trapped on this floor like an idiot is something far more difficult 
 It's the complete absence of performance.
 She isn't posing.
 She isn't trying.`,
-
+ 
   /* Page 7 */
   `She isn't aware that she is being observed at all.
 She is simply existing.
@@ -1840,7 +1942,7 @@ Because she is entirely unaware of herself.
 Completely unguarded.
 Completely real.
 The sort of beauty that vanishes the moment somebody attempts to manufacture it.`,
-
+ 
   /* Page 8 */
   `Perhaps that's why I keep looking up.
 Why every sentence takes five times longer than it should.
@@ -1858,34 +1960,34 @@ And the overwhelming certainty that I was witnessing something infinitely more b
 An ordinary moment.
 Transforming, slowly and without permission, into a memory.
 And, annoyingly, she fucking can draw too.
-
+ 
 (I hope you didn't mind waiting that extra year for birthday poetry, i'm a better bloody writer than smelly sam anyway, even without a course tutors prize.)`
 ];
-
+ 
 /* ════════════════════════════════════════════════
    STORY VIEWER
 ════════════════════════════════════════════════ */
 var storyCurrentPage = 0;
-
+ 
 function openStory(){
   storyCurrentPage = 0;
   renderStoryPage();
   document.getElementById('story-overlay').classList.add('open');
   playClick();
 }
-
+ 
 function closeStory(){
   document.getElementById('story-overlay').classList.remove('open');
   playClick();
 }
-
+ 
 function storyPage(dir){
   var total = VIGNETTE_PAGES.length;
   storyCurrentPage = Math.max(0, Math.min(storyCurrentPage + dir, total - 1));
   renderStoryPage();
   playClick();
 }
-
+ 
 function renderStoryPage(){
   var total = VIGNETTE_PAGES.length;
   var el = document.getElementById('story-page-text');
@@ -1902,7 +2004,7 @@ function renderStoryPage(){
   var panel = document.getElementById('story-panel');
   if(panel) panel.scrollTop = 0;
 }
-
+ 
 /* swipe support */
 (function(){
   var sx = null;
@@ -1918,12 +2020,12 @@ function renderStoryPage(){
     sx = null;
   }, {passive:true});
 })();
-
+ 
 /* ════════════════════════════════════════════════
    SCREENS
 ════════════════════════════════════════════════ */
 var SCREENS = {
-
+ 
   /* SPLASH */
   splash:function(){ return ''
     
@@ -1936,7 +2038,7 @@ var SCREENS = {
     +'<br><button class="btn" onclick="playClick();goto(\'verify\');">Let\'s go 💗</button>'
     +'</div>';
   },
-
+ 
   /* VERIFY */
   verify:function(){
     var qs = VERIFY_QS.map(function(q,i){
@@ -1957,7 +2059,7 @@ var SCREENS = {
       +'<div id="verify-popup" style="display:none;animation:fadeUp .5s ease both;'
       +'background:linear-gradient(135deg,var(--bg),#fff5fb);border-radius:16px;'
       +'border:1px solid var(--pl);padding:18px 16px;margin-bottom:16px;text-align:center;">'
-      +'<p style="font-family:\'Georgia,serif;font-size:1.25rem;color:var(--pd);margin-bottom:6px;">It\'s really you 💕</p>'
+      +'<p style="font-family:Georgia,serif;font-size:1.25rem;color:var(--pd);margin-bottom:6px;">It\'s really you 💕</p>'
       +'<p style="font-size:.9rem;color:var(--soft);line-height:1.6;">'
       +'[FILL IN — a little message before the yes/no. Could be a memory, an inside joke, or just something sweet.]'
       +'</p>'
@@ -1968,7 +2070,7 @@ var SCREENS = {
       +'<button id="yes-btn" onclick="pressYes()">Yes! 🎀</button>'
       +'</div>';
   },
-
+ 
  
 /* HUB */
   hub:function(){
@@ -2023,7 +2125,7 @@ var SCREENS = {
       +'<div class="center"><button class="btn" onclick="checkGiftCode()">Unlock 🔑</button></div>'
       +resetBtn;
   }
-
+ 
 }; /* end SCREENS */
 </script>
 </body>
