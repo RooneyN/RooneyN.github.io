@@ -563,53 +563,6 @@ canvas.scratch-canvas{
 @keyframes hbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.13)}}
 .splash-gif{width:100%;max-width:320px;border-radius:16px;margin:12px auto;display:block}
 
-/* ── INTRO SCREEN ────────────────────────────── */
-#intro-screen{
-  display:none;position:fixed;inset:0;z-index:1000;
-  align-items:center;justify-content:center;
-  flex-direction:column;
-  background:radial-gradient(ellipse at 50% 40%, #2a1020 0%, #0d0a0d 70%);
-  padding:32px 24px;
-  font-family:Arial,sans-serif;
-}
-#intro-screen.visible{display:flex}
-#intro-screen::before{
-  content:'';position:absolute;inset:0;
-  background:rgba(13,10,13,.55);
-  backdrop-filter:blur(2px);
-}
-#intro-screen > *{position:relative;z-index:1}
-.intro-photo{
-  width:120px;height:120px;border-radius:50%;
-  object-fit:cover;object-position:center;
-  border:3px solid rgba(255,133,179,.6);
-  box-shadow:0 0 32px rgba(255,133,179,.35);
-  margin-bottom:28px;
-  display:block;
-}
-#intro-screen h1{
-  font-family:Georgia,serif;
-  font-size:2.4rem;color:#fff;text-align:center;
-  text-shadow:0 2px 12px rgba(0,0,0,.5);
-  margin-bottom:8px;
-}
-#intro-screen p{
-  color:rgba(255,255,255,.6);font-size:.92rem;
-  text-align:center;margin-bottom:32px;
-}
-#intro-screen button{
-  background:transparent;border:1px solid rgba(255,255,255,.3);
-  border-radius:999px;color:rgba(255,255,255,.7);
-  font-family:Arial,sans-serif;font-weight:700;
-  font-size:.9rem;letter-spacing:2.5px;
-  text-transform:uppercase;padding:14px 44px;
-  cursor:pointer;transition:border-color .2s,color .2s,background .2s;
-}
-#intro-screen button:hover{
-  border-color:rgba(255,133,179,.7);
-  color:#fff;background:rgba(255,133,179,.15);
-}
-#intro-screen button:active{transform:scale(.97)}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -618,26 +571,17 @@ canvas.scratch-canvas{
 <body>
 
 <!-- ═══════════════════════════════════════════
-     INTRO SPLASH — shown before password gate
-═══════════════════════════════════════════ -->
-<div id="intro-screen" class="visible">
-  
-  <h1>Happy Birthday Dani ❤️</h1>
-  <p>Something I made just for you 🌸</p>
-  <button onclick="startExperience()">Enter</button>
-</div>
-
-<!-- ═══════════════════════════════════════════
      DARK GATE
 ═══════════════════════════════════════════ -->
-<div id="dark-gate">
+<div id="dark-gate" class="visible">
   <!-- Happy Birthday sits at the top now -->
   <p id="gate-greeting" style="
     font-family:Georgia,serif;
     font-size:1.6rem;color:rgba(255,200,220,.75);
     text-align:center;margin-bottom:28px;
     letter-spacing:.5px;text-shadow:0 0 24px rgba(255,133,179,.3);
-  ">Happy Birthday Dani ❤️</p>
+  ">Something just for Dani</p>
+  <p style="font-family:Georgia,serif;font-style:italic;font-size:.95rem;color:rgba(255,200,220,.35);text-align:center;margin-bottom:32px;letter-spacing:.5px;">a little door, just for you ❤️</p>
 
   <!-- NR monogram — replaces ghost -->
   <div class="ghost-wrap" style="width:120px;height:120px;margin-bottom:36px;">
@@ -934,32 +878,29 @@ canvas.scratch-canvas{
 <script>
 
 /* ════════════════════════════════════════════════
-   INTRO SPLASH & AUTO-LOGIN BYPASS
+   AUTO-LOGIN BYPASS
 ════════════════════════════════════════════════ */
-function startExperience(){
-  var intro = document.getElementById('intro-screen');
-  intro.style.transition = 'opacity .55s ease';
-  intro.style.opacity = '0';
-  setTimeout(function(){
-    intro.style.display = 'none';
-    
-    if (S.setupComplete) {
-      document.getElementById('dark-gate').style.display='none';
-      document.getElementById('meter-bar').style.display='flex';
-      document.getElementById('bottom-nav').style.display='flex';
-      document.getElementById('hearts-bg').style.display='block';
-      document.getElementById('screen-wrap').style.display='flex';
-      setLove(S.love);
-      startAudio();
-      applyFlexMode();
-      applyPgMode();
-      goto('hub');
-    } else {
-      document.getElementById('dark-gate').classList.add('visible');
-      setTimeout(function(){ document.getElementById('dark-pw').focus(); }, 100);
-    }
-  }, 550);
-}
+function startExperience(){ /* no-op — kept for safety */ }
+
+window.addEventListener('DOMContentLoaded', function(){
+  if(S.setupComplete){
+    document.getElementById('dark-gate').style.display='none';
+    document.getElementById('meter-bar').style.display='flex';
+    document.getElementById('bottom-nav').style.display='flex';
+    document.getElementById('hearts-bg').style.display='block';
+    document.getElementById('screen-wrap').style.display='flex';
+    setLove(S.love);
+    startAudio();
+    applyFlexMode();
+    applyPgMode();
+    goto('hub');
+  } else {
+    setTimeout(function(){
+      var pw = document.getElementById('dark-pw');
+      if(pw) pw.focus();
+    }, 150);
+  }
+});
 
 function applyFlexMode() {
   if (S.flexMode) {
@@ -1007,17 +948,17 @@ var PW = {
    GIFTS  ← FILL IN text & letterPart for each
 ════════════════════════════════════════════════ */
 var GIFTS = {
-  demo:{ icon:'🎁', title:'Scratch to reveal!', text:'This is what your gifts look like — scratch away 💅' },
-  greenbeans:{ icon:'☕', title:'Coffee on me', text:'[FILL IN]', letterPart:'[FILL IN: para 1]' },
-  redbeans:{ icon:'🃏', title:'????', text:'Some battlefields are made of mud. Ours are made of dropped loot, missed shots, and me getting distracted talking to you. Go to your personal landing spot before we dominate as a dream team.', letterPart:'[FILL IN: para 2]' },
-  roses:{ icon:'🎀', title:'????', text:'Not every memory lives in your head. Some are hidden away, kept safe for another day. Go look beneath the surface.', letterPart:'[FILL IN: para 3]' },
-  steak:{ icon:'🥩', title:'Steak dinner', text:'With wine, sides and a movie. (You're the dessert)', letterPart:'[FILL IN: para 4]' },
-  sweets:{ icon:'🍬', title:'????', text:'Before birthdays, before dates, before all of this, there was a moment I didn't realise would matter so much. Find the place hiding the evidence that I was always going to come back.', letterPart:'[FILL IN: para 5]' },
-  diffuser:{ icon:'🍫', title:'Chocolate room diffuser', text:'[FILL IN]', letterPart:'[FILL IN: para 6]' },
-  wheels:{ icon:'🚗', title:'Uber home sorted', text:'[FILL IN]', letterPart:'[FILL IN: para 7]' },
-  bubbles:{ icon:'🧃', title:'????', text:'One of the easiest ways to make you happy comes in a bottle and definitely isn't water.', letterPart:'[FILL IN: para 8]' },
-  mist:{ icon:'💨', title:'????', text:'Some people unpack their lives into a house. You somehow managed to pack yours into a few boxes and bags. Go look where most of your world is currently living.', letterPart:'[FILL IN: para 9]' },
-  story:{ icon:'📖', title:'Something just for you', text:'Open "From Me" — there\'s something waiting 💕', letterPart:'[FILL IN: para 10]' }
+  demo:      { icon:"🎁", title:"Scratch to reveal!", text:"This is what your gifts look like — scratch away 💅" },
+  greenbeans:{ icon:"☕", title:"Coffee on me", text:"[FILL IN]", letterPart:"[FILL IN: para 1]" },
+  redbeans:  { icon:"🃏", title:"????", text:"Some battlefields are made of mud. Ours are made of dropped loot, missed shots, and me getting distracted talking to you. Go to your personal landing spot before we dominate as a dream team.", letterPart:"[FILL IN: para 2]" },
+  roses:     { icon:"🎀", title:"????", text:"Not every memory lives in your head. Some are hidden away, kept safe for another day. Go look beneath the surface.", letterPart:"[FILL IN: para 3]" },
+  steak:     { icon:"🥩", title:"Steak dinner", text:"With wine, sides and a movie. (You're the dessert)", letterPart:"[FILL IN: para 4]" },
+  sweets:    { icon:"🍬", title:"????", text:"Before birthdays, before dates, before all of this, there was a moment I didn't realise would matter so much. Find the place hiding the evidence that I was always going to come back.", letterPart:"[FILL IN: para 5]" },
+  diffuser:  { icon:"🍫", title:"Chocolate room diffuser", text:"[FILL IN]", letterPart:"[FILL IN: para 6]" },
+  wheels:    { icon:"🚗", title:"Uber home sorted", text:"[FILL IN]", letterPart:"[FILL IN: para 7]" },
+  bubbles:   { icon:"🧃", title:"????", text:"One of the easiest ways to make you happy comes in a bottle and definitely isn't water.", letterPart:"[FILL IN: para 8]" },
+  mist:      { icon:"💨", title:"????", text:"Some people unpack their lives into a house. You somehow managed to pack yours into a few boxes and bags. Go look where most of your world is currently living.", letterPart:"[FILL IN: para 9]" },
+  story:     { icon:"📖", title:"Something just for you", text:"Open \"From Me\" — there's something waiting 💕", letterPart:"[FILL IN: para 10]" }
 };
 
 /* ════════════════════════════════════════════════
