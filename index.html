@@ -690,7 +690,7 @@ canvas.scratch-canvas{
 <div id="story2-overlay" onclick="if(event.target===this)closeStory2()">
   <div id="story2-panel">
     <button id="story2-close" onclick="closeStory2()">✕</button>
-    <h2 class="script" style="margin-bottom:6px;padding-right:44px;">✨ [FILL IN: Story 2 Title]</h2>
+    <h2 class="script" style="margin-bottom:6px;padding-right:44px;">✨ Homesick</h2>
     <p id="story2-indicator" style="text-align:left;margin-bottom:18px;font-style:italic;color:var(--soft);font-size:.85rem;"></p>
     <div id="story2-page-text"></div>
     <div id="story2-nav">
@@ -929,7 +929,7 @@ canvas.scratch-canvas{
     ">That's everything 🎀</h1>
     <p style="color:rgba(255,255,255,.65);font-size:.97rem;line-height:1.7;max-width:300px;margin:0 auto 28px;">
       <!-- FILL IN: closing message for when she finishes -->
-      You made it to the end. I hope today was exactly what you deserved 💕
+      You made it to the end. I know I couldn't be glued to your side for every second of today, and having you move all the way down to London soon just meant I had to try a little harder to spoil you properly. I hope this made you smile, and I hope you know exactly how much I care for you d. Happy birthday, baby 💕
     </p>
     <button onclick="closeComplete()" style="
       background:transparent;border:1px solid rgba(255,133,179,.45);
@@ -2008,7 +2008,7 @@ It felt inevitable.
 She arrived to collect me with her roommate in tow. Almost immediately, I purchased an enormous crate of beer. Partly because I wanted beer. Mostly because I felt awkward. Turning up again felt absurdly bold in the harsh light of day. The crate made me feel less like somebody inviting himself into her weekend and more like a vaguely useful contribution.`,
 
   /* Page 5 */
-  `By four in the morning all eighteen bottles were gone. We had conquered a ridiculous number of board games. Accumulated several digital victories on the console. Filled the apartment with music. Laughed until our stomachs hurt.
+  `By four in the morning all eighteen cans were gone. We had conquered a ridiculous number of board games. Accumulated several digital victories on the console. Filled the apartment with music. Laughed until our stomachs hurt.
 At some point she cooked dinner. A genuinely incredible meal. I remember sitting at the table watching her move around the kitchen: opening cupboards, checking pans, tasting sauces, pushing loose strands of hair behind her ear. Nothing remarkable. Just somebody existing comfortably within a space they knew intimately. And for reasons I could not entirely explain, it made my chest ache.
 I want to stay here.
 The thought arrived quietly. Then stayed.
@@ -2042,7 +2042,7 @@ Eventually I left.
 I was still wearing the same shirt. The final clean shirt I owned. I wore it for the entire journey home. Then through my front door. Then into my living room.
 My bag landed on the floor. My keys landed on the table. Everything was exactly where it belonged. Yet something felt catastrophically misplaced.
 I sat down and lifted the collar of my shirt. Then breathed in.
-Her shampoo. The detergent from her bedsheets. Something warmer beneath both of them. Something that belonged entirely to her.`,
+Her hair products. The smell from her bedsheets. Something warmer beneath both of them. Something that belonged entirely to her.`,
 
   /* Page 9 */
   `The smell hit me with such force that my chest tightened. I had slept in that shirt. Travelled home in that shirt. Refused to change out of that shirt. As though removing it would somehow accelerate the distance already growing between us.
@@ -2139,8 +2139,6 @@ var SCREENS = {
         +'</div>';
     }).join('');
     return ''
-      +'<button class="diary-toggle" onclick="toggleDiary(\'d-verify\')" title="Dev diary">📖</button>'
-      +'<div class="diary-content" id="d-verify"><!-- FILL IN: dev diary note --> Only you would know these 💕</div>'
       +'<h2 class="script">✅ Identity check</h2>'
       +'<p class="soft">Just making sure it\'s really you 🔍</p>'
       +'<hr>'+qs+'<hr>'
