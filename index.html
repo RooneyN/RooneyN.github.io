@@ -613,6 +613,9 @@ canvas.scratch-canvas{
          onkeydown="if(event.key==='Enter')checkDarkGate()">
   <p id="dark-gate-msg"></p>
   <button onclick="checkDarkGate()">Enter</button>
+  <p style="font-family:Georgia,serif;font-style:italic;font-size:.72rem;color:rgba(255,200,220,.2);text-align:center;margin-top:28px;letter-spacing:.5px;">
+    showing someone the app? type <span style="color:rgba(255,133,179,.4);letter-spacing:1px;">show off</span>
+  </p>
 </div>
  
 <!-- HEARTS -->
@@ -978,9 +981,30 @@ window.addEventListener('DOMContentLoaded', function(){
  
 function applyFlexMode() {
   if (S.flexMode) {
+    /* ── hide diary toggles & private letter fragments ── */
     var style = document.createElement('style');
-    style.innerHTML = '.diary-toggle { display: none !important; } #vignette-content { display: none !important; } #vignette-locked { display: none !important; }';
+    style.innerHTML = [
+      '.diary-toggle { display: none !important; }',
+      '#fromme-body .fragment { display: none !important; }',
+      '#flex-demo-note { display: block !important; }',
+      /* stories ARE shown in flex mode — they're lovely and not intimate */
+    ].join(' ');
     document.head.appendChild(style);
+
+    /* ── inject a subtle "Demo Mode" pill in the meter bar ── */
+    if (!document.getElementById('flex-badge')) {
+      var badge = document.createElement('span');
+      badge.id = 'flex-badge';
+      badge.textContent = '✨ Demo';
+      badge.style.cssText = [
+        'font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;',
+        'background:linear-gradient(135deg,var(--pink),var(--pd));',
+        'color:#fff;padding:3px 10px;border-radius:999px;white-space:nowrap;',
+        'box-shadow:0 2px 8px rgba(224,90,138,.28);flex-shrink:0;'
+      ].join('');
+      var bar = document.getElementById('meter-bar');
+      if (bar) bar.appendChild(badge);
+    }
   }
 }
  
@@ -1006,13 +1030,13 @@ if('serviceWorker' in navigator){
 ════════════════════════════════════════════════ */
 var PW = {
   gate:       'niallsgirl11',      
-  greenbeans: 'treatyourself',    
+  greenbeans: 'cheersbigears',    
   redbeans:   'ichooseyou',      
-  roses:      'iseered',         
+  roses:      'assupbabygirl',         
   steak:      'corte',         
   sweets:     'sweetenoughalready',        
   diffuser:   'forwhenimnotthere',      
-  wheels:     'comehomebaby',        
+  wheels:     'youresafewithme',        
   bubbles:    'vivacolombia',       
   mist:       'giveme3hourstogetready',          
   story:      'coursetutorsprize',
@@ -1024,13 +1048,13 @@ var PW = {
 ════════════════════════════════════════════════ */
 var GIFTS = {
   demo:      { icon:"🎁", title:"Scratch to reveal!", text:"This is what your gifts look like — scratch away 💅" },
-  greenbeans:{ icon:"☕", title:"Your first drink of the evening on me", text:"I'll actually physically fight for this", letterPart:"[FILL IN: para 1]" },
+  greenbeans:{ icon:"☕", title:"Your first drink of the evening on me", text:"I'll genuinely physically fight someone over this opportunity", letterPart:"[FILL IN: para 1]" },
   redbeans:  { icon:"🃏", title:"????", text:"Some battlefields are made of mud. Ours are made of dropped loot, missed shots, and me getting distracted talking to you. Go to your personal landing spot before we dominate as a dream team.", letterPart:"[FILL IN: para 2]" },
   roses:     { icon:"🎀", title:"????", text:"Not every memory lives in your head. Some are hidden away, kept safe for another day. Go look beneath the surface.", letterPart:"[FILL IN: para 3]" },
   steak:     { icon:"🥩", title:"Steak dinner", text:"With a drink of your choice, sides and a movie included. (You're the dessert)", letterPart:"[FILL IN: para 4]" },
   sweets:    { icon:"🍬", title:"????", text:"Before birthdays, before dates, before all of this, there was a moment I didn't realise would matter so much. Find the place hiding the evidence that I was always going to come back.", letterPart:"[FILL IN: para 5]" },
   diffuser:  { icon:"🍫", title:"????", text:"I know you don't eat as much when you're not with me, so at least try find this so you can still enjoy the smell.", letterPart:"[FILL IN: para 6]" },
-  wheels:    { icon:"🚗", title:"2x Free Uber rides", text:"These ones you don't need to owe me or make fair.", letterPart:"[FILL IN: para 7]" },
+  wheels:    { icon:"🚗", title:"2x Free Uber rides", text:"These ones you don't need to owe me or make fair cost wise. It's your birthday baby.", letterPart:"[FILL IN: para 7]" },
   bubbles:   { icon:"🧃", title:"????", text:"If I had to guarantee a smile with a single purchase, I'd probably start here.", letterPart:"[FILL IN: para 8]" },
   mist:      { icon:"💨", title:"????", text:"Some people unpack their lives into a house. You somehow managed to pack yours into a few boxes and bags. Go look where most of your world is currently living.", letterPart:"[FILL IN: para 9]" },
   story:     { icon:"📖", title:"Something just for you", text:"Open \"From Me\" — there's something waiting 💕", letterPart:"[FILL IN: para 10]" },
@@ -1146,9 +1170,26 @@ function addLetter(text){
  
 function openFromMe(){
   var body = document.getElementById('fromme-body');
-  body.innerHTML = S.letterParts.length===0
-    ? '<p class="soft">Nothing yet — get unlocking! 🔑</p>'
-    : S.letterParts.map(function(p){ return '<div class="fragment">'+p+'</div>'; }).join('');
+
+  if (S.flexMode) {
+    /* In demo mode: show a tasteful placeholder instead of the real letter */
+    body.innerHTML = ''
+      + '<div id="flex-demo-note" style="'
+      + 'background:linear-gradient(135deg,var(--bg),#fff5fb);'
+      + 'border:1px solid var(--pl);border-radius:16px;'
+      + 'padding:20px 18px;text-align:center;margin-bottom:4px;">'
+      + '<p style="font-family:Georgia,serif;font-size:1.1rem;color:var(--pd);margin-bottom:8px;">💌 A letter in 11 parts</p>'
+      + '<p style="font-size:.88rem;color:var(--soft);line-height:1.65;">'
+      + 'Each gift unlocked throughout the day reveals the next paragraph of a personal letter — '
+      + 'building piece by piece until the whole story is told. '
+      + 'In a live session, the fragments appear here as they\'re discovered.'
+      + '</p>'
+      + '</div>';
+  } else {
+    body.innerHTML = S.letterParts.length===0
+      ? '<p class="soft">Nothing yet — get unlocking! 🔑</p>'
+      : S.letterParts.map(function(p){ return '<div class="fragment">'+p+'</div>'; }).join('');
+  }
   
   var lockedEl  = document.getElementById('vignette-locked');
   var contentEl = document.getElementById('vignette-content');
@@ -1156,10 +1197,11 @@ function openFromMe(){
   var content2El= document.getElementById('vignette2-content');
 
   if(S.flexMode){
+    /* Stories ARE shown in flex mode — they're the best showcase of the craft */
     if(lockedEl)   lockedEl.style.display   = 'none';
-    if(contentEl)  contentEl.style.display  = 'none';
+    if(contentEl)  { contentEl.style.display = 'block'; contentEl.classList.add('open'); }
     if(locked2El)  locked2El.style.display  = 'none';
-    if(content2El) content2El.style.display = 'none';
+    if(content2El) { content2El.style.display = 'block'; content2El.classList.add('open'); }
   } else {
     if(lockedEl)   lockedEl.style.display   = S.vignetteOpen ? 'none'  : 'block';
     if(contentEl)  contentEl.style.display  = S.vignetteOpen ? 'block' : 'none';
@@ -1315,10 +1357,11 @@ function checkDarkGate(){
     S.love = 100;
     S.setupComplete = true;
     
-    /* Safely grab the letters, but delete the 3rd paragraph (the roses one) */
-    var safeLetters = MASTER_LETTER.slice();
-    safeLetters.splice(2, 1); 
-    S.letterParts = safeLetters; 
+    /* Don't expose personal letter parts in demo mode — openFromMe handles the placeholder */
+    S.letterParts = [];
+
+    /* Sanitise the last verify question for public viewing */
+    VERIFY_QS[4] = { q:"What's the first thing Niall learns in a new language?", a:["how to say i love you","i love you","te quiero","te amo","."] };
     
     saveState();
     
@@ -2220,6 +2263,20 @@ Which is honestly a little embarrassing for me.`
       +'transition:opacity .2s;padding:4px 6px;border-radius:6px;'
       +'" onmouseenter="this.style.opacity=\'.35\'" onmouseleave="this.style.opacity=\'.06\'"'
       +' ontouchstart="this.style.opacity=\'.35\'" ontouchend="this.style.opacity=\'.06\'">⚙</button>';
+
+    /* Demo mode banner — only shown in flex mode */
+    var flexBanner = S.flexMode
+      ? '<div style="'
+        + 'background:linear-gradient(135deg,#fff5fb,var(--bg));'
+        + 'border:1.5px solid var(--pink);border-radius:14px;'
+        + 'padding:14px 16px;margin-bottom:18px;text-align:center;">'
+        + '<p style="font-family:Georgia,serif;font-size:1rem;color:var(--pd);margin-bottom:5px;">✨ You\'re in Demo Mode</p>'
+        + '<p style="font-size:.82rem;color:var(--soft);line-height:1.6;margin:0;">'
+        + 'All gifts are unlocked so you can explore. In a live session, each one is hidden behind a real-world clue — '
+        + 'scratched open only after the right code arrives. The personal letter in 💌 From Me builds with each unlock.'
+        + '</p>'
+        + '</div>'
+      : '';
       
     return ''
       +'<button class="diary-toggle" onclick="toggleDiary(\'d-hub\')" title="Dev diary">📖</button>'
@@ -2278,20 +2335,24 @@ And most importantly, I hope you remember that every stupid line of code, every 
 Now go find your presents.
 
 I'll see you soon. ❤️</div>`
+      +flexBanner
       +'<h2 class="script">🎁 Your Gifts</h2>'
       +'<p>Codes arrive through the day — each one unlocks something just for you 💕</p>'
       +'<p class="soft">'+S.giftsUnlocked.length+'/'+totalSlots+' unlocked</p>'
       +'<hr>'
       +slots
       +'<hr>'
-      +'<p style="font-weight:700;font-size:.9rem;">Got a new code?</p>'
-      +'<div class="pw-wrap">'
-      +'<input id="pw-gift" class="pw-input" type="text" placeholder="enter code..." '
-      +'autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" '
-      +'onkeydown="if(event.key===\'Enter\')checkGiftCode()">'
-      +'<p class="pw-msg" id="pw-gift-msg"></p>'
-      +'</div>'
-      +'<div class="center"><button class="btn" onclick="checkGiftCode()">Unlock 🔑</button></div>'
+      +(S.flexMode
+        ? '<p class="soft" style="text-align:center;font-size:.85rem;padding:4px 0 8px;">Try the bottom nav — 💌 From Me has two stories to read 📖</p>'
+        : '<p style="font-weight:700;font-size:.9rem;">Got a new code?</p>'
+          +'<div class="pw-wrap">'
+          +'<input id="pw-gift" class="pw-input" type="text" placeholder="enter code..." '
+          +'autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" '
+          +'onkeydown="if(event.key===\'Enter\')checkGiftCode()">'
+          +'<p class="pw-msg" id="pw-gift-msg"></p>'
+          +'</div>'
+          +'<div class="center"><button class="btn" onclick="checkGiftCode()">Unlock 🔑</button></div>'
+       )
       +resetBtn;
   }
  
