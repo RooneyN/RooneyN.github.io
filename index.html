@@ -1062,6 +1062,24 @@ var GIFTS = {
 };
  
 /* ════════════════════════════════════════════════
+   FLEX / DEMO GIFTS — viewer-friendly versions
+   shown instead of the real ones in demo mode
+════════════════════════════════════════════════ */
+var FLEX_GIFTS = {
+  demo:     { icon:"🎁", title:"Scratch to reveal!", text:"Each gift hides behind one of these." },
+  greenbeans:{ icon:"☕", title:"First drink of the night, on me", text:"Unlocked by solving a custom Wordle. Six guesses to crack it — she got it in four. Figured it out immediately after I told her it was in Spanish." },
+  redbeans: { icon:"🃏", title:"Japanese Pokemon cards — Even included protection sleeves for them", text:"Hidden them under her couch pillows." },
+  steak:    { icon:"🥩", title:"Steak dinner — drink, sides, movie included", text:"Earned by completing a tough crossword entirely by herself" },
+  sweets:   { icon:"🍬", title:"A bag of her favourite sweets", text:"Hidden somewhere meaningful. She had to find it using a riddle I wrote at 2am. She found it already before starting the treasure hunt and acted smug the entire time." },
+  diffuser: { icon:"🌸", title:"A scented diffuser for her room", text:"To remind her of me when I'm not there. Which is more often than I'd like. Chocolate heart scented." },
+  wheels:   { icon:"🚗", title:"2x free Uber rides — no IOUs, no splitting, no repaying", text:"A digital jigsaw stood between her and these. She built the puzzle faster than I expected. I thought it was really hard. I'm choosing not to think too long about what that says on me." },
+  bubbles:  { icon:"🧃", title:"Her favourite drink — she knows the one", text:"The easiest unlock of the day. I'm fairly sure she guessed it before she finished reading the clue." },
+  mist:     { icon:"💨", title:"A hair mister she'd spoke about the night before I got here", text:"Hidden in plain sight among her things. The clue was arguably too clever. She found it in about four seconds." },
+  story:    { icon:"📖", title:"She unlocked some writing 📖", text:"Had to put the English degree to use eventually. 3000 words. Took me longer to write than the entire rest of this app combined. Obviously." },
+  story2:   { icon:"📚", title:"She unlocked a second piece 📚", text:"She asked if there'd be more writing. I said of course there would be. She rolled her eyes at me - I think that means she really loves reading" }
+};
+
+/* ════════════════════════════════════════════════
    VERIFY QUESTIONS  ← FILL THESE IN
    a: array of accepted answers (all lowercase)
 ════════════════════════════════════════════════ */
@@ -1180,9 +1198,8 @@ function openFromMe(){
       + 'padding:20px 18px;text-align:center;margin-bottom:4px;">'
       + '<p style="font-family:Georgia,serif;font-size:1.1rem;color:var(--pd);margin-bottom:8px;">💌 A letter in 11 parts</p>'
       + '<p style="font-size:.88rem;color:var(--soft);line-height:1.65;">'
-      + 'Each gift unlocked throughout the day reveals the next paragraph of a personal letter — '
-      + 'building piece by piece until the whole story is told. '
-      + 'In a live session, the fragments appear here as they\'re discovered.'
+      + 'Each gift as she unlocks them across the day adds the next paragraph of a birthday letter. '
+      + 'By the end, it builds into something whole. Unfortunately for guests, this is private so I\'ve hidden this part away for the person it\'s actually meant for.'
       + '</p>'
       + '</div>';
   } else {
@@ -1225,7 +1242,20 @@ function closeWorld(){ document.getElementById('world-panel').classList.remove('
 /* ════════════════════════════════════════════════
    COLOMBIAN MENU
 ════════════════════════════════════════════════ */
-function openColombian() { restoreMenuTicks(); document.getElementById('colombian-overlay').classList.add('open'); }
+function openColombian() {
+  restoreMenuTicks();
+  /* In flex mode, swap out the cheeky cinnamon roll description */
+  if (S.flexMode) {
+    document.querySelectorAll('.menu-item').forEach(function(el){
+      var nameEl = el.querySelector('.menu-name');
+      var descEl = el.querySelector('.menu-desc');
+      if (nameEl && nameEl.textContent.trim() === 'Homemade Cinnamon Rolls' && descEl) {
+        descEl.textContent = 'Just a recipe we found on tiktok. They look absolutely incredible so we agreed we\'ve gotta make them';
+      }
+    });
+  }
+  document.getElementById('colombian-overlay').classList.add('open');
+}
 function closeColombian(){ document.getElementById('colombian-overlay').classList.remove('open'); }
  
 function tickMenu(el, name){
@@ -1753,6 +1783,19 @@ function scratchCardHTML(giftKey){
     +'</div>';
 }
  
+/* Flex mode: clean revealed card — no canvas, no scratch, just the gift */
+function flexRevealedHTML(giftKey){
+  var g = FLEX_GIFTS[giftKey] || GIFTS[giftKey];
+  if(!g) return '';
+  return '<div class="scratch-wrap done">'
+    +'<div class="scratch-prize">'
+    +'<span class="prize-icon">'+g.icon+'</span>'
+    +'<p class="prize-title">'+g.title+'</p>'
+    +'<p class="prize-text">'+g.text+'</p>'
+    +'</div>'
+    +'</div>';
+}
+
 var VIGNETTE_PAGES = [
   /* Page 1 */
   `I've always thought writing was boring.
@@ -2239,7 +2282,17 @@ Which is honestly a little embarrassing for me.`
     for(var i=0;i<totalSlots;i++){
       var key  = S.giftsUnlocked[i];
       var gift = key ? GIFTS[key] : null;
-      if(gift && key === 'demo'){
+      if(S.flexMode && gift){
+        /* In demo mode: all gifts shown as clean revealed cards with viewer-friendly text */
+        if(key === 'demo'){
+          slots+='<div class="gift-slot filled">'
+            +'<p style="font-weight:700;margin-bottom:8px;">✨ This is what a scratch card looks like</p>'
+            +flexRevealedHTML(key)
+            +'</div>';
+        } else {
+          slots+='<div class="gift-slot filled">'+flexRevealedHTML(key)+'</div>';
+        }
+      } else if(gift && key === 'demo'){
         slots+='<div class="gift-slot filled">'
           +'<p style="font-weight:700;margin-bottom:8px;">✨ Try scratching this one!</p>'
           +scratchCardHTML(key)
@@ -2270,10 +2323,11 @@ Which is honestly a little embarrassing for me.`
         + 'background:linear-gradient(135deg,#fff5fb,var(--bg));'
         + 'border:1.5px solid var(--pink);border-radius:14px;'
         + 'padding:14px 16px;margin-bottom:18px;text-align:center;">'
-        + '<p style="font-family:Georgia,serif;font-size:1rem;color:var(--pd);margin-bottom:5px;">✨ You\'re in Demo Mode</p>'
+        + '<p style="font-family:Georgia,serif;font-size:1rem;color:var(--pd);margin-bottom:5px;">✨ Demo Mode</p>'
         + '<p style="font-size:.82rem;color:var(--soft);line-height:1.6;margin:0;">'
-        + 'All gifts are unlocked so you can explore. In a live session, each one is hidden behind a real-world clue — '
-        + 'scratched open only after the right code arrives. The personal letter in 💌 From Me builds with each unlock.'
+        + 'In the real version, every gift is locked behind a scratch card and a real-world clue. '
+        + 'Codes arrive across the day — one by one, each revealing the next piece. '
+        + 'Hit 💌 <em>From Me</em> up top to see what else got built.'
         + '</p>'
         + '</div>'
       : '';
