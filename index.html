@@ -750,12 +750,11 @@ canvas.scratch-canvas{
   <div id="colombian-panel">
     <button id="colombian-close" onclick="closeColombian()">✕</button>
     <h2 class="script">🍽️ The Menu</h2>
-    <p class="soft" style="margin-bottom:16px;">Tick them off as you try them 🇨🇴</p>
+    <p class="soft" style="margin-bottom:16px;">Things we've had, things we want — tick them off as you go 🍴</p>
     <div id="menu-list">
-      <!-- FILL IN: tap to tick. Copy the pattern to add more dishes -->
       <div class="menu-item" onclick="tickMenu(this,'Chicken Caesar Lasagna')">
         <div class="menu-check"></div>
-        <div><div class="menu-name">Chicken Caesar Lasagna</div><div class="menu-desc">Creamy salad meets warm comfort</div></div>
+        <div><div class="menu-name">Chicken Caesar Lasagna</div><div class="menu-desc">Creamy salad meets warm comfort — Dani's invention and it's genuinely incredible</div></div>
       </div>
       <div class="menu-item" onclick="tickMenu(this,'Homemade Cinnamon Rolls')">
         <div class="menu-check"></div>
@@ -763,21 +762,52 @@ canvas.scratch-canvas{
       </div>
       <div class="menu-item" onclick="tickMenu(this,'Sancocho')">
         <div class="menu-check"></div>
-        <div><div class="menu-name">Sancocho</div><div class="menu-desc">Hearty chicken and veg soup</div></div>
+        <div><div class="menu-name">Sancocho</div><div class="menu-desc">Hearty Colombian chicken and veg stew — the kind that fixes everything</div></div>
+      </div>
+      <div class="menu-item" onclick="tickMenu(this,'Arepas con Todo')">
+        <div class="menu-check"></div>
+        <div><div class="menu-name">Arepas con Todo</div><div class="menu-desc">Loaded cornmeal patties — cheese, egg, whatever we fancy piling on</div></div>
+      </div>
+      <div class="menu-item" onclick="tickMenu(this,'Bandeja Paisa')">
+        <div class="menu-check"></div>
+        <div><div class="menu-name">Bandeja Paisa</div><div class="menu-desc">The big one — beans, rice, chicharrón, egg, chorizo, the works. A whole event on a plate</div></div>
+      </div>
+      <div class="menu-item" onclick="tickMenu(this,'Empanadas')">
+        <div class="menu-check"></div>
+        <div><div class="menu-name">Empanadas</div><div class="menu-desc">Crispy Colombian style, filled with potato and beef. Saturday afternoon food</div></div>
       </div>
       <div class="menu-item" onclick="tickMenu(this,'Fat Hippos cheese balls')">
         <div class="menu-check"></div>
-        <div><div class="menu-name">Fat Hippo's cheese balls</div><div class="menu-desc">The one that got away, and worth the wait</div></div>
+        <div><div class="menu-name">Fat Hippo's Cheese Balls</div><div class="menu-desc">The one that got away. Worth the wait, worth the trip</div></div>
       </div>
       <div class="menu-item" onclick="tickMenu(this,'Nialls salted caramel brownies')">
         <div class="menu-check"></div>
-        <div><div class="menu-name">Niall's salted caramel brownies</div><div class="menu-desc">They'll actually turn out edible next time I promise</div></div>
+        <div><div class="menu-name">Niall's Salted Caramel Brownies</div><div class="menu-desc">They'll actually turn out edible next time. I promise. Don't look at me like that</div></div>
+      </div>
+      <div class="menu-item" onclick="tickMenu(this,'Birria Tacos')">
+        <div class="menu-check"></div>
+        <div><div class="menu-name">Birria Tacos</div><div class="menu-desc">Slow-braised beef, consommé for dipping, cheese pull mandatory. Non-negotiable date food</div></div>
+      </div>
+      <div class="menu-item" onclick="tickMenu(this,'Homemade Ramen')">
+        <div class="menu-check"></div>
+        <div><div class="menu-name">Homemade Ramen</div><div class="menu-desc">Proper broth, soft egg, whatever toppings we argue about. Winter evening essential</div></div>
+      </div>
+      <div class="menu-item" onclick="tickMenu(this,'Patacones')">
+        <div class="menu-check"></div>
+        <div><div class="menu-name">Patacones</div><div class="menu-desc">Twice-fried green plantain. Crispy outside, soft inside — the only correct snack</div></div>
+      </div>
+      <div class="menu-item" onclick="tickMenu(this,'Churros con Chocolate')">
+        <div class="menu-check"></div>
+        <div><div class="menu-name">Churros con Chocolate</div><div class="menu-desc">Fried dough and thick drinking chocolate. Designed for a specific kind of evening</div></div>
       </div>
       <div class="menu-item" onclick="tickMenu(this,'Aguapanela')">
         <div class="menu-check"></div>
-        <div><div class="menu-name">Aguapanela</div><div class="menu-desc">Sweet sugarcane drink</div></div>
+        <div><div class="menu-name">Aguapanela</div><div class="menu-desc">Sweet sugarcane drink — simple, warm, completely hers</div></div>
       </div>
-      <!-- Add more here in same format -->
+      <div class="menu-item" onclick="tickMenu(this,'Lulo Juice')">
+        <div class="menu-check"></div>
+        <div><div class="menu-name">Lulo Juice</div><div class="menu-desc">Bright, citrusy Colombian fruit drink. Impossible to find here — worth the effort when we do</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1047,7 +1077,7 @@ var PW = {
    GIFTS  ← FILL IN text & letterPart for each
 ════════════════════════════════════════════════ */
 var GIFTS = {
-  demo:      { icon:"🎁", title:"Scratch to reveal!", text:"This is what your gifts look like — scratch away 💅" },
+  demo:      { icon:"🎁", title:"That's how it works!", text:"Every gift she gets is hidden behind one of these. Scratch to reveal 💅" },
   greenbeans:{ icon:"☕", title:"Your first drink of the evening on me", text:"I'll genuinely physically fight someone over this opportunity", letterPart:"[FILL IN: para 1]" },
   redbeans:  { icon:"🃏", title:"????", text:"Some battlefields are made of mud. Ours are made of dropped loot, missed shots, and me getting distracted talking to you. Go to your personal landing spot before we dominate as a dream team.", letterPart:"[FILL IN: para 2]" },
   roses:     { icon:"🎀", title:"????", text:"Not every memory lives in your head. Some are hidden away, kept safe for another day. Go look beneath the surface.", letterPart:"[FILL IN: para 3]" },
@@ -1066,7 +1096,7 @@ var GIFTS = {
    shown instead of the real ones in demo mode
 ════════════════════════════════════════════════ */
 var FLEX_GIFTS = {
-  demo:     { icon:"🎁", title:"Scratch to reveal!", text:"Each gift hides behind one of these." },
+  demo:     { icon:"🎁", title:"That's the mechanic!", text:"Every gift in the real version is hidden behind one of these. She scratches to reveal." },
   greenbeans:{ icon:"☕", title:"First drink of the night, on me", text:"Unlocked by solving a custom Wordle. Six guesses to crack it — she got it in four. Figured it out immediately after I told her it was in Spanish." },
   redbeans: { icon:"🃏", title:"Japanese Pokemon cards — Even included protection sleeves for them", text:"Hidden them under her couch pillows." },
   steak:    { icon:"🥩", title:"Steak dinner — drink, sides, movie included", text:"Earned by completing a tough crossword entirely by herself" },
@@ -1214,11 +1244,40 @@ function openFromMe(){
   var content2El= document.getElementById('vignette2-content');
 
   if(S.flexMode){
-    /* Stories ARE shown in flex mode — they're the best showcase of the craft */
+    /* In flex mode: hide the actual stories, describe them with context and a bit of wit */
     if(lockedEl)   lockedEl.style.display   = 'none';
-    if(contentEl)  { contentEl.style.display = 'block'; contentEl.classList.add('open'); }
+    if(contentEl)  contentEl.style.display  = 'none';
     if(locked2El)  locked2El.style.display  = 'none';
-    if(content2El) { content2El.style.display = 'block'; content2El.classList.add('open'); }
+    if(content2El) content2El.style.display = 'none';
+
+    /* Inject flex story description cards after the fromme-body */
+    var existingFlexStories = document.getElementById('flex-stories-block');
+    if (!existingFlexStories) {
+      var storyBlock = document.createElement('div');
+      storyBlock.id = 'flex-stories-block';
+      storyBlock.innerHTML = ''
+        + '<div style="margin-top:18px;padding:18px 16px;background:linear-gradient(135deg,var(--bg),#fff5fb);border-radius:16px;border:1px solid var(--pl);">'
+        + '<p style="font-family:Georgia,serif;font-size:.95rem;color:var(--pd);margin-bottom:6px;">📖 A Masterpiece in Real Time</p>'
+        + '<p style="font-size:.83rem;color:var(--soft);line-height:1.65;">'
+        + 'Written the night of her hair routine. Niall sat on the floor of her room trying to write while she got ready — '
+        + 'and completely failed to write a single sentence because he couldn\'t stop watching her. '
+        + 'Spent the whole evening equal parts mesmerised and absolutely terrified. '
+        + 'Eight pages. Locked behind a gift code.'
+        + '</p>'
+        + '</div>'
+        + '<div style="margin-top:14px;padding:18px 16px;background:linear-gradient(135deg,var(--bg),#fff5fb);border-radius:16px;border:1px solid var(--pl);">'
+        + '<p style="font-family:Georgia,serif;font-size:.95rem;color:var(--pd);margin-bottom:6px;">📚 Homesick</p>'
+        + '<p style="font-size:.83rem;color:var(--soft);line-height:1.65;">'
+        + 'Written about the first night he stayed over at her apartment. '
+        + 'Terrified the whole time. Missed his train home on purpose. '
+        + 'Went home in the same shirt he slept in because he couldn\'t bring himself to change it. '
+        + 'Nine pages. Also locked behind a gift code.'
+        + '</p>'
+        + '<p style="font-size:.78rem;color:var(--pink);margin-top:8px;font-style:italic;">Sensing a theme?</p>'
+        + '</div>';
+      var panel = document.getElementById('fromme-panel');
+      panel.appendChild(storyBlock);
+    }
   } else {
     if(lockedEl)   lockedEl.style.display   = S.vignetteOpen ? 'none'  : 'block';
     if(contentEl)  contentEl.style.display  = S.vignetteOpen ? 'block' : 'none';
@@ -1231,7 +1290,12 @@ function openFromMe(){
   document.getElementById('fromme-overlay').classList.add('open');
 }
 
-function closeFromMe(){ document.getElementById('fromme-overlay').classList.remove('open'); }
+function closeFromMe(){
+  document.getElementById('fromme-overlay').classList.remove('open');
+  /* remove injected flex story block so it can be re-rendered cleanly next open */
+  var fb = document.getElementById('flex-stories-block');
+  if(fb) fb.parentNode.removeChild(fb);
+}
  
 /* ════════════════════════════════════════════════
    OUR WORLD
@@ -1250,7 +1314,7 @@ function openColombian() {
       var nameEl = el.querySelector('.menu-name');
       var descEl = el.querySelector('.menu-desc');
       if (nameEl && nameEl.textContent.trim() === 'Homemade Cinnamon Rolls' && descEl) {
-        descEl.textContent = 'Just a recipe we found on tiktok. They look absolutely incredible so we agreed we\'ve gotta make them';
+        descEl.textContent = 'From a recipe she found on TikTok. They look genuinely incredible. Making them is basically already scheduled.';
       }
     });
   }
@@ -2283,11 +2347,11 @@ Which is honestly a little embarrassing for me.`
       var key  = S.giftsUnlocked[i];
       var gift = key ? GIFTS[key] : null;
       if(S.flexMode && gift){
-        /* In demo mode: all gifts shown as clean revealed cards with viewer-friendly text */
+        /* In demo mode: demo card stays live and scratchable — show the mechanic for real */
         if(key === 'demo'){
           slots+='<div class="gift-slot filled">'
-            +'<p style="font-weight:700;margin-bottom:8px;">✨ This is what a scratch card looks like</p>'
-            +flexRevealedHTML(key)
+            +'<p style="font-weight:700;margin-bottom:8px;">✨ Go on, scratch it</p>'
+            +scratchCardHTML(key)
             +'</div>';
         } else {
           slots+='<div class="gift-slot filled">'+flexRevealedHTML(key)+'</div>';
